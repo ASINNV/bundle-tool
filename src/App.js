@@ -1,10 +1,140 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+
+import ReactSwipe from 'react-swipe';
+
+class MobileLayout extends Component {
+  render() {
+    return (
+      <ReactSwipe className="carousel" swipeOptions={{continuous: true, startSlide: 1}}>
+        <div>
+          <div id="pack-one" className="card service-pack shadowed overflow-hidden">
+
+            <div className="sub-header">
+              <p>startup</p>
+            </div>
+
+            <div className="list-container">
+              <ul className="line-item-container small-text">
+                {this.props.startup}
+              </ul>
+            </div>
+
+            <div className="sub-footer">
+              <p className="sub-footer-price">$1800</p>
+            </div>
+
+          </div>
+        </div>
+        <div>
+          <div id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden">
+
+            <div className="sub-header recommended-header">
+              <p>recommended</p>
+            </div>
+
+            <div className="list-container">
+              <ul className="line-item-container small-text">
+                {this.props.recommendation}
+              </ul>
+            </div>
+
+            <div className="sub-footer recommended-footer">
+              <p className="sub-footer-price">$3000</p>
+            </div>
+
+          </div>
+        </div>
+        <div>
+          <div id="pack-three" className="card service-pack shadowed overflow-hidden">
+
+            <div className="sub-header">
+              <p>enterprise</p>
+            </div>
+
+            <div className="list-container">
+              <ul className="line-item-container small-text">
+                {this.props.enterprise}
+              </ul>
+            </div>
+
+            <div className="sub-footer">
+              <p className="sub-footer-price">$5000</p>
+            </div>
+
+          </div>
+        </div>
+
+      </ReactSwipe>
+    );
+  }
+}
+
+class DesktopCards extends Component {
+  render() {
+    return (
+      <div className="flex-centered">
+        <div id="pack-one" className="card service-pack shadowed overflow-hidden">
+
+          <div className="sub-header">
+            <p>startup</p>
+          </div>
+
+          <div className="list-container">
+            <ul className="line-item-container small-text">
+              {this.props.startup}
+            </ul>
+          </div>
+
+          <div className="sub-footer">
+            <p className="sub-footer-price">$1800</p>
+          </div>
+
+        </div>
+        <div id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden">
+
+          <div className="sub-header recommended-header">
+            <p>recommended</p>
+          </div>
+
+          <div className="list-container">
+            <ul className="line-item-container small-text">
+              {this.props.recommendation}
+            </ul>
+          </div>
+
+          <div className="sub-footer recommended-footer">
+            <p className="sub-footer-price">$3000</p>
+          </div>
+
+        </div>
+        <div id="pack-three" className="card service-pack shadowed overflow-hidden">
+
+          <div className="sub-header">
+            <p>enterprise</p>
+          </div>
+
+          <div className="list-container">
+            <ul className="line-item-container small-text">
+              {this.props.enterprise}
+            </ul>
+          </div>
+
+          <div className="sub-footer">
+            <p className="sub-footer-price">$5000</p>
+          </div>
+
+        </div>
+      </div>
+    );
+  }
+}
 
 class App extends Component {
   render() {
-    const startup_array = [
+
+    const startup_deliverables = [
       { name: "marketing services",
         include: true
       },
@@ -15,7 +145,7 @@ class App extends Component {
         include: true
       }
     ];
-    const recommended_array = [
+    const recommended_deliverables = [
       { name: "marketing services",
         include: true
       },
@@ -35,7 +165,7 @@ class App extends Component {
         include: true
       }
     ];
-    const enterprise_array = [
+    const enterprise_deliverables = [
       { name: "marketing services",
         include: true
       },
@@ -61,6 +191,7 @@ class App extends Component {
         include: true
       }
     ];
+
     function createList(array) {
       var newArray = [];
       for (var i = 0; i < array.length; i++) {
@@ -74,13 +205,18 @@ class App extends Component {
       }
       return newArray;
     }
-    var startup = createList(startup_array);
-    var recommendation = createList(recommended_array);
-    var enterprise = createList(enterprise_array);
+    var startup = createList(startup_deliverables);
+    var recommendation = createList(recommended_deliverables);
+    var enterprise = createList(enterprise_deliverables);
+
+
+    const isMobile = window.innerWidth < 480;
+    const relevantLayout = isMobile ? <MobileLayout startup={startup} recommendation={recommendation} enterprise={enterprise}/> : <DesktopCards startup={startup} recommendation={recommendation} enterprise={enterprise}/>;
 
 
     return (
       <div className="App default-gray-element">
+
         {/*<header className="App-header">*/}
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
           {/*<h1 className="App-title">Welcome to React</h1>*/}
@@ -96,59 +232,9 @@ class App extends Component {
           <div className="full centered large-title">
             <p>choose one</p>
           </div>
-          <div className="flex-centered">
-            <div id="pack-one" className="card service-pack shadowed">
 
-              <div className="sub-header">
-                <p>startup</p>
-              </div>
+          {relevantLayout}
 
-              <div className="list-container">
-                <ul className="line-item-container small-text">
-                  {startup}
-                </ul>
-              </div>
-
-              <div className="sub-footer">
-                <p className="sub-footer-price">$1800</p>
-              </div>
-
-            </div>
-            <div id="pack-two" className="card service-pack featured-pack shadowed">
-
-              <div className="sub-header recommended-header">
-                <p>recommended</p>
-              </div>
-
-              <div className="list-container">
-                <ul className="line-item-container small-text">
-                  {recommendation}
-                </ul>
-              </div>
-
-              <div className="sub-footer recommended-footer">
-                <p className="sub-footer-price">$3000</p>
-              </div>
-
-            </div>
-            <div id="pack-three" className="card service-pack shadowed">
-
-              <div className="sub-header">
-                <p>enterprise</p>
-              </div>
-
-              <div className="list-container">
-                <ul className="line-item-container small-text">
-                  {enterprise}
-                </ul>
-              </div>
-
-              <div className="sub-footer">
-                <p className="sub-footer-price">$5000</p>
-              </div>
-
-            </div>
-          </div>
           <div className="full centered or">
             <p>-or-</p>
           </div>
@@ -168,3 +254,59 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+    {/*<ReactSwipe className="carousel" swipeOptions={{continuous: true, startSlide: 1, centeredSlides: true}}>*/}
+      {/*<div id="pack-one" className="card service-pack shadowed overflow-hidden">*/}
+
+        {/*<div className="sub-header">*/}
+          {/*<p>startup</p>*/}
+        {/*</div>*/}
+
+        {/*<div className="list-container">*/}
+          {/*<ul className="line-item-container small-text">*/}
+            {/*{startup}*/}
+          {/*</ul>*/}
+        {/*</div>*/}
+
+        {/*<div className="sub-footer">*/}
+          {/*<p className="sub-footer-price">$1800</p>*/}
+        {/*</div>*/}
+
+      {/*</div>*/}
+      {/*<div id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden">*/}
+
+        {/*<div className="sub-header recommended-header">*/}
+          {/*<p>recommended</p>*/}
+        {/*</div>*/}
+
+        {/*<div className="list-container">*/}
+          {/*<ul className="line-item-container small-text">*/}
+            {/*{recommendation}*/}
+          {/*</ul>*/}
+        {/*</div>*/}
+
+        {/*<div className="sub-footer recommended-footer">*/}
+          {/*<p className="sub-footer-price">$3000</p>*/}
+        {/*</div>*/}
+
+      {/*</div>*/}
+      {/*<div id="pack-three" className="card service-pack shadowed overflow-hidden">*/}
+
+        {/*<div className="sub-header">*/}
+          {/*<p>enterprise</p>*/}
+        {/*</div>*/}
+
+        {/*<div className="list-container">*/}
+          {/*<ul className="line-item-container small-text">*/}
+            {/*{enterprise}*/}
+          {/*</ul>*/}
+        {/*</div>*/}
+
+        {/*<div className="sub-footer">*/}
+          {/*<p className="sub-footer-price">$5000</p>*/}
+        {/*</div>*/}
+
+      {/*</div>*/}
+    {/*</ReactSwipe>*/}

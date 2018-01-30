@@ -103,8 +103,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .shadowed {
-  box-shadow: 0px 4px 4px #222222;
+  box-shadow: 0px 15px 20px 0px #222222;
 }
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */
@@ -117,24 +120,57 @@ body {
 /* choose your bundle page styles */
 /* choose your bundle page styles */
 /* choose your bundle page styles */
+
+/* top bar styles */
 .app-header {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40px;
 }
+
+/* footer styles */
 .app-footer {
   position: absolute;
   bottom: 10px;
   color: #4a4a4a;
 }
+
+/* service package card styles */
+/* service package card styles */
 .card {
   position: relative;
   border-radius: 8px;
-  margin: 0 10px;
-  color: #ffffff;
+  margin: 0 10px; /* create 20px of space between cards */
   font-size: 24px;
 }
+.service-pack {
+  display: inline-block;
+  height: 320px;
+  width: 260px;
+  background-color: #222;
+}
+/* style the lists inside each service package card */
+.list-container {
+  height: 100%;
+  overflow: auto; /* hide inner list's corners */
+}
+.line-item-container {
+  margin: 30px 0; /* ensure no overlap between card header or footer and list item */
+  color: #999999; /* make list item text gray */
+}
+.line-item-container li {
+  text-align: left;
+  padding: 10px 20px; /* create space between content and walls for aesthetic purposes */
+}
+.line-item-container li:nth-child(2n+2) { /* alternate background-color every other line */
+  background-color: #4a4a4a;
+}
+.line-item-name { /* create space between check mark and deliverable */
+  padding-left: 20px;
+}
+
+/* top bar of service package card styles */
 .sub-header {
   position: absolute;
   height: 30px;
@@ -146,6 +182,8 @@ body {
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
 }
+
+/* footer of service package card styles */
 .sub-footer {
   position: absolute;
   bottom: 0;
@@ -158,49 +196,28 @@ body {
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+/* footer and header of service package card styles */
+.sub-footer, .sub-header {
+  color: #ffffff; /* make card name and price white */
+}
+
+/* recommended service package card styles */
 .recommended-header, .recommended-footer {
   background-color: #4a8e5f;
 }
-.service-pack {
-  display: inline-block;
-  height: 320px;
-  width: 260px;
-  background-color: #222;
-}
+
 .featured-pack {
   width: 300px;
   height: 382px;
 }
+
+/* style the "or" word */
 .or {
   font-size: 24px;
   color: #4a4a4a;
   margin: 40px 0;
 }
-.list-container {
-  height: 290px;
-  overflow: scroll;
-}
-.line-item-container {
-  margin-top: 30px;
-}
-.line-item-container li {
-  text-align: left;
-  padding: 10px 20px;
-  overflow: scroll;
-}
-.line-item-container li:nth-child(2n+2) {
-  background-color: #4a4a4a;
-}
-.line-item-name {
-  padding-left: 20px;
-}
-.line-item-checkmark {
-  height: 100%;
-}
-/* end of choose your bundle page styles */
-/* end of choose your bundle page styles */
-/* end of choose your bundle page styles */
-
 
 .simple-button {
   display: flex;
@@ -214,3 +231,52 @@ body {
   font-size: 24px;
   border-radius: 8px;
 }
+/* end of choose your bundle page styles */
+/* end of choose your bundle page styles */
+/* end of choose your bundle page styles */
+
+
+
+
+
+.list-container::-webkit-scrollbar {
+  width: 0em;
+}
+
+/*.list-container::-webkit-scrollbar-track {*/
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+/*}*/
+
+/*.list-container::-webkit-scrollbar-thumb {*/
+  /*background-color: darkgrey;*/
+  /*outline: 1px solid slategrey;*/
+/*}*/
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .card {
+    margin: 0;
+  }
+  .service-pack {
+    width: 85%;
+  }
+  .or {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+}
+
+/*.swipe {*/
+  /*overflow: hidden;*/
+  /*visibility: hidden;*/
+  /*position: relative;*/
+/*}*/
+/*.swipe-wrap {*/
+  /*overflow: hidden;*/
+  /*position: relative;*/
+/*}*/
+/*.swipe-wrap > div {*/
+  /*float:left;*/
+  /*width:100%;*/
+  /*position: relative;*/
+/*}*/
