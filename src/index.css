@@ -55,8 +55,13 @@ body {
 }
 
 .App {
-  height: 100vh;
+  /*height: 100vh;*/
   font-family: "Lato";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 /* miscellaneous styles */
@@ -89,6 +94,9 @@ body {
 }
 .default-gray-element {
   background-color: #333;
+}
+.flex {
+  display: flex;
 }
 .flex-centered {
   display: flex;
@@ -183,8 +191,11 @@ body {
 .line-item-container li:nth-child(2n+2) {
   background-color: #4a4a4a;
 }
+.line-item-name {
+  padding-left: 20px;
+}
 .line-item-checkmark {
-  padding-right: 20px;
+  height: 100%;
 }
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */

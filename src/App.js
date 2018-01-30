@@ -4,6 +4,81 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const startup_array = [
+      { name: "marketing services",
+        include: true
+      },
+      { name: "graphics services",
+        include: true
+      },
+      { name: "web services",
+        include: true
+      }
+    ];
+    const recommended_array = [
+      { name: "marketing services",
+        include: true
+      },
+      { name: "graphics services",
+        include: true
+      },
+      { name: "web services",
+        include: true
+      },
+      { name: "video services",
+        include: true
+      },
+      { name: "IT services",
+        include: true
+      },
+      { name: "business development services",
+        include: true
+      }
+    ];
+    const enterprise_array = [
+      { name: "marketing services",
+        include: true
+      },
+      { name: "graphics services",
+        include: true
+      },
+      { name: "web services",
+        include: true
+      },
+      { name: "video services",
+        include: true
+      },
+      { name: "IT services",
+        include: true
+      },
+      { name: "business development services",
+        include: true
+      },
+      { name: "consultation services",
+        include: true
+      },
+      { name: "repair services",
+        include: true
+      }
+    ];
+    function createList(array) {
+      var newArray = [];
+      for (var i = 0; i < array.length; i++) {
+        var possibleP;
+        if (array[i].include === true) {
+          possibleP = <p className="line-item-checkmark inline">&#10004;</p>;
+        } else {
+          possibleP = <p className="line-item-checkmark inline">X</p>;
+        }
+        newArray.push(<li className="flex">{possibleP}<span className="line-item-name inline">{array[i].name}</span></li>);
+      }
+      return newArray;
+    }
+    var startup = createList(startup_array);
+    var recommendation = createList(recommended_array);
+    var enterprise = createList(enterprise_array);
+
+
     return (
       <div className="App default-gray-element">
         {/*<header className="App-header">*/}
@@ -28,11 +103,11 @@ class App extends Component {
                 <p>startup</p>
               </div>
 
-              <ul className="line-item-container small-text">
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-              </ul>
+              <div className="list-container">
+                <ul className="line-item-container small-text">
+                  {startup}
+                </ul>
+              </div>
 
               <div className="sub-footer">
                 <p className="sub-footer-price">$1800</p>
@@ -45,14 +120,11 @@ class App extends Component {
                 <p>recommended</p>
               </div>
 
-              <ul className="line-item-container small-text">
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-              </ul>
+              <div className="list-container">
+                <ul className="line-item-container small-text">
+                  {recommendation}
+                </ul>
+              </div>
 
               <div className="sub-footer recommended-footer">
                 <p className="sub-footer-price">$3000</p>
@@ -67,15 +139,7 @@ class App extends Component {
 
               <div className="list-container">
                 <ul className="line-item-container small-text">
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
-                  <li><span className="line-item-checkmark">&#10004;</span><span className="line-item-name">awesome deliverable</span></li>
+                  {enterprise}
                 </ul>
               </div>
 
