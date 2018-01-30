@@ -1,0 +1,205 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+  text-decoration: none;
+}
+
+body {
+  /*background-color: #333;*/
+}
+
+.App {
+  height: 100vh;
+  font-family: "Lato";
+}
+
+/* miscellaneous styles */
+/* miscellaneous styles */
+/* miscellaneous styles */
+/* miscellaneous styles */
+/* miscellaneous styles */
+.large-title {
+  color: #4a8e5f;
+  font-size: 48px;
+  margin: 30px 0;
+}
+.small-text {
+  font-size: 16px;
+}
+.light-text {
+  color: #999999;
+}
+.full {
+  width: 100%;
+}
+.centered {
+  text-align: center;
+}
+.inline {
+  display: inline-block;
+}
+.dark-gray-element {
+  background-color: #222;
+}
+.default-gray-element {
+  background-color: #333;
+}
+.flex-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shadowed {
+  box-shadow: 0px 4px 4px #222222;
+}
+/* end of miscellaneous styles */
+/* end of miscellaneous styles */
+/* end of miscellaneous styles */
+
+
+
+/* choose your bundle page styles */
+/* choose your bundle page styles */
+/* choose your bundle page styles */
+/* choose your bundle page styles */
+/* choose your bundle page styles */
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+.app-footer {
+  position: absolute;
+  bottom: 10px;
+  color: #4a4a4a;
+}
+.card {
+  position: relative;
+  border-radius: 8px;
+  margin: 0 10px;
+  color: #ffffff;
+  font-size: 24px;
+}
+.sub-header {
+  position: absolute;
+  height: 30px;
+  width: 100%;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.sub-footer {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.recommended-header, .recommended-footer {
+  background-color: #4a8e5f;
+}
+.service-pack {
+  display: inline-block;
+  height: 320px;
+  width: 260px;
+  background-color: #222;
+}
+.featured-pack {
+  width: 300px;
+  height: 382px;
+}
+.or {
+  font-size: 24px;
+  color: #4a4a4a;
+  margin: 40px 0;
+}
+.list-container {
+  height: 290px;
+  overflow: scroll;
+}
+.line-item-container {
+  margin-top: 30px;
+}
+.line-item-container li {
+  text-align: left;
+  padding: 10px 20px;
+  overflow: scroll;
+}
+.line-item-container li:nth-child(2n+2) {
+  background-color: #4a4a4a;
+}
+.line-item-checkmark {
+  padding-right: 20px;
+}
+/* end of choose your bundle page styles */
+/* end of choose your bundle page styles */
+/* end of choose your bundle page styles */
+
+
+.simple-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999999;
+  background-color: #4A4A4A;
+  width: 300px;
+  height: 45px;
+  margin: 0 auto;
+  font-size: 24px;
+  border-radius: 8px;
+}
