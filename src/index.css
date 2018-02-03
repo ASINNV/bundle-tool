@@ -48,6 +48,7 @@ table {
 }
 a {
   text-decoration: none;
+  color: #000000;
 }
 
 body {
@@ -75,39 +76,61 @@ body {
   margin: 30px 0;
 }
 .small-text {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 .light-text {
-  color: #999999;
+  color: #999999 !important;
 }
 .full {
-  width: 100%;
+  width: 100% !important;
 }
 .centered {
-  text-align: center;
+  text-align: center !important;
 }
 .inline {
-  display: inline-block;
+  display: inline-block !important;
+}
+.horizontal-padding {
+  padding: 0 10px !important;
 }
 .dark-gray-element {
-  background-color: #222;
+  background-color: #222 !important;
 }
 .default-gray-element {
-  background-color: #333;
+  background-color: #333 !important;
 }
 .flex {
-  display: flex;
+  display: flex !important;
 }
 .flex-centered {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.flex-center-top {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
 }
 .overflow-hidden {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .shadowed {
-  box-shadow: 0px 15px 20px 0px #222222;
+  box-shadow: 0px 0px 5px 0px #222222 !important;
+}
+
+.checkout {
+  width: 800px !important;
+  margin-top: 20px !important;
+}
+.package-price {
+  color: #498d5e !important;
+}
+.active {
+  background-color: #ffffff !important;
+  color: #222;
+  /*border-left: 10px solid #fff !important;*/
+  /*border-left: 10px solid #fff !important;*/
 }
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */
@@ -139,23 +162,33 @@ body {
 /* service package card styles */
 /* service package card styles */
 .card {
-  position: relative;
-  border-radius: 8px;
-  margin: 0 10px; /* create 20px of space between cards */
-  font-size: 24px;
-}
-.service-pack {
   display: inline-block;
+  position: relative;
   height: 320px;
   width: 260px;
   background-color: #222;
+  border-radius: 8px;
+  border: 0px solid #000000;
+  margin: 0 10px; /* create 20px of space between cards */
+  font-size: 24px;
+  cursor: default;
+  transition: border .2s ease-in-out, border-radius .2s ease-in-out;
+}
+.service-pack {
+
+}
+.selected {
+  border-left: 4px solid #e91e63;
+  border-right: 4px solid #e91e63;
+  border-radius: 8px;
+  transition: border .2s ease-in-out, border-radius .2s ease-in-out;
 }
 /* style the lists inside each service package card */
 .list-container {
   height: 100%;
   overflow: auto; /* hide inner list's corners */
 }
-.line-item-container {
+.line-item-container, .description-container {
   margin: 30px 0; /* ensure no overlap between card header or footer and list item */
   color: #999999; /* make list item text gray */
 }
@@ -235,7 +268,24 @@ body {
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */
 
-
+#item-showcase {
+  height: 662px;
+}
+#description-box {
+  margin-top: 20px;
+}
+.description-container {
+  padding: 5px 15px;
+}
+.description-p {
+  font-size: 16px;
+  text-align: left;
+  line-height: 1.2em;
+  margin: 10px 0;
+}
+.doublewide {
+  width: 520px;
+}
 
 
 
@@ -253,16 +303,56 @@ body {
 /*}*/
 
 @media (max-width: 600px) and (orientation: portrait) {
+  /* misc styles */
+  .large-title {
+    margin: 20px 0 30px 0;
+  }
+
+  /* choose your bundle page styles */
+  /* choose your bundle page styles */
+  /* choose your bundle page styles */
+  /* choose your bundle page styles */
+  /* choose your bundle page styles */
   .card {
+    width: 85%;
     margin: 0;
   }
   .service-pack {
-    width: 85%;
+
   }
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.75);
+  }
+  .popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .popup-button {
+    width: 100% !important;
+    margin-top: 20px;
+  }
+
   .or {
     font-size: 16px;
     margin: 10px 0;
   }
+  /*.simple-button {*/
+    /*width: 85%;*/
+  /*}*/
+  .checkout {
+    width: 85% !important;
+  }
+  /* end of choose your bundle page styles */
+  /* end of choose your bundle page styles */
+  /* end of choose your bundle page styles */
 
 }
 
