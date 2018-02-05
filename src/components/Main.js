@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import DesktopCards from './DesktopCards';
-import MobileCards from './MobileCards';
+import DesktopCards from "./DesktopCards";
+import MobileCards from "./MobileCards";
 import {connect} from "react-redux";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
   render() {
@@ -31,7 +32,7 @@ class Main extends Component {
 
     return (
       <section id="bod" className="app-body">
-        <div className="full centered large-title">
+        <div className="full centered large-title green-text">
           <p>choose bundle</p>
         </div>
 
@@ -41,7 +42,7 @@ class Main extends Component {
           <p>-or-</p>
         </div>
         <div className="button-container">
-          <a className="simple-button shadowed" href="" >custom bundle</a>
+          <Link to="/custom" className="simple-button shadowed">custom bundle</Link>
         </div>
       </section>
     );

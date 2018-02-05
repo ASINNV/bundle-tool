@@ -72,9 +72,18 @@ body {
 /* miscellaneous styles */
 /* miscellaneous styles */
 .large-title {
-  color: #4a8e5f;
+  /*color: #4a8e5f;*/
   font-size: 48px;
   margin: 30px 0;
+}
+.red-text {
+  color: #d26868 !important;
+}
+.green-text {
+  color: #498d5e !important;
+}
+.green-bg {
+  background-color: #498d5e !important;
 }
 .small-text {
   font-size: 16px !important;
@@ -213,7 +222,7 @@ body {
   padding-left: 20px;
 }
 .line-item-checkmark {
-  color: #498d5e;
+  /*color: #498d5e;*/
 }
 
 /* top bar of service package card styles */
@@ -249,9 +258,6 @@ body {
 }
 
 /* recommended service package card styles */
-.recommended-header, .recommended-footer {
-  background-color: #4a8e5f;
-}
 
 .featured-pack {
   width: 300px;

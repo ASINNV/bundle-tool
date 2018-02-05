@@ -11,6 +11,7 @@ import './App.css';
 
 import Main from './components/Main';
 import Detail from './components/Detail';
+import Custom from './components/Custom';
 
 
 class App extends Component {
@@ -38,6 +39,8 @@ class App extends Component {
             <Route exact path="/startup" component={Detail}/>
             <Route exact path="/recommended" component={Detail}/>
             <Route exact path="/enterprise" component={Detail}/>
+            <Route exact path="/custom" component={Custom}/>
+
 
           </div>
 

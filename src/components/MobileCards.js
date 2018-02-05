@@ -66,13 +66,13 @@ class MobileCards extends Component {
 
           <Link to="/recommended" id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 
-            <div className="sub-header recommended-header">
+            <div className="sub-header green-bg">
               <p>recommended</p>
             </div>
 
             <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1}/>
 
-            <div className="sub-footer recommended-footer">
+            <div className="sub-footer green-bg">
               {recommendedBundlePrice}
             </div>
 

@@ -6,7 +6,7 @@ import ItemList from "./ItemList";
 
 
 
-class MobileDetail extends Component {
+class MobileCustom extends Component {
   hidePopupDesc() {
     let facehole = document.getElementById('popup-desc');
     facehole.style.display = "none";
@@ -17,7 +17,7 @@ class MobileDetail extends Component {
       <div>
 
         <div className="full centered large-title green-text">
-          <p>bundle details</p>
+          <p>custom</p>
         </div>
 
         <section id="bod" className="app-body">
@@ -29,7 +29,7 @@ class MobileDetail extends Component {
                 <p>{this.props.bundleName}</p>
               </div>
 
-              <ItemList list_array={this.props.list_array} functionalityDepth={2} page="detail" />
+              <ItemList list_array={this.props.list_array} functionalityDepth={3} page="custom" />
 
               <div className="sub-footer">
                 {this.props.bundleTotal}
@@ -65,14 +65,14 @@ class MobileDetail extends Component {
   }
 }
 
-class DesktopDetail extends Component {
+class DesktopCustom extends Component {
   render() {
 
     return (
       <div>
 
         <div className="full centered large-title green-text">
-          <p>{this.props.bundleName} bundle</p>
+          <p>custom bundle</p>
         </div>
 
         <section id="bod" className="app-body">
@@ -84,7 +84,7 @@ class DesktopDetail extends Component {
                 <p>services & deliverables</p>
               </div>
 
-              <ItemList list_array={this.props.list_array} functionalityDepth={2} page="detail" />
+              <ItemList list_array={this.props.list_array} functionalityDepth={3} page="custom" />
 
               <div className="sub-footer">
                 {/*<p className="sub-footer-price">$1800</p>*/}
@@ -133,38 +133,18 @@ class DesktopDetail extends Component {
   }
 }
 
-class Detail extends Component {
+class Custom extends Component {
   render() {
-    let description, service, price, bundleTotal, bundleName, list;
-    if (this.props.awesome.chosen_bundle === 0) {
-      console.log("chosen_bundle = ", this.props.awesome.chosen_bundle);
-      bundleName = "startup";
-      list = this.props.awesome.startup;
-      description = getDescription(this.props.awesome, this.props.awesome.startup);
-      service = getServiceName(this.props.awesome, this.props.awesome.startup);
-      price = getPrice(this.props.awesome, this.props.awesome.startup);
-      bundleTotal = getBundlePrice(this.props.awesome.startup);
-    } else if (this.props.awesome.chosen_bundle === 1) {
-      console.log("chosen_bundle = ", this.props.awesome.chosen_bundle);
-      bundleName = "recommended";
-      list = this.props.awesome.recommended;
-      description = getDescription(this.props.awesome, this.props.awesome.recommended);
-      service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-      price = getPrice(this.props.awesome, this.props.awesome.recommended);
-      bundleTotal = getBundlePrice(this.props.awesome.recommended);
-    } else if (this.props.awesome.chosen_bundle === 2) {
-      console.log("chosen_bundle = ", this.props.awesome.chosen_bundle);
-      bundleName = "enterprise";
-      list = this.props.awesome.enterprise;
-      description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-      service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-      price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-      bundleTotal = getBundlePrice(this.props.awesome.enterprise);
-    }
+    let description = getDescription(this.props.awesome, this.props.awesome.custom);
+    let bundleName = "custom";
+    let list = this.props.awesome.custom;
+    let service = getServiceName(this.props.awesome, this.props.awesome.custom);
+    let price = getPrice(this.props.awesome, this.props.awesome.custom);
+    let bundleTotal = getBundlePrice(this.props.awesome.custom);
 
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileDetail list_array={list} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopDetail list_array={list} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileCustom list_array={list} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopCustom list_array={list} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 
@@ -203,4 +183,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);
+export default connect(mapStateToProps, mapDispatchToProps)(Custom);

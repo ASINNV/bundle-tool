@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { createList } from "./Functions";
+// import { createList } from "./Functions";
+import ItemList from "./ItemList";
 import { getBundlePrice } from "./Functions";
 
 class DesktopCards extends Component {
@@ -51,12 +52,12 @@ class DesktopCards extends Component {
             <p>startup</p>
           </div>
 
-          {/*<ItemList list_array={this.props.awesome.startup} functionalityDepth={1} />*/}
-          <div className="list-container">
-            <ul className="line-item-container small-text">
-              {createList(this.props.startup)}
-            </ul>
-          </div>
+          <ItemList list_array={this.props.awesome.startup} functionalityDepth={1} detailPage={false} />
+          {/*<div className="list-container">*/}
+            {/*<ul className="line-item-container small-text">*/}
+              {/*{createList(this.props.startup)}*/}
+            {/*</ul>*/}
+          {/*</div>*/}
 
           <div className="sub-footer">
             {startupBundlePrice}
@@ -65,18 +66,13 @@ class DesktopCards extends Component {
         </Link>
         <Link to="/recommended" id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 
-          <div className="sub-header recommended-header">
+          <div className="sub-header green-bg">
             <p>recommended</p>
           </div>
 
-          {/*<ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} />*/}
-          <div className="list-container">
-            <ul className="line-item-container small-text">
-              {createList(this.props.recommended)}
-            </ul>
-          </div>
+          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} detailPage={false} />
 
-          <div className="sub-footer recommended-footer">
+          <div className="sub-footer green-bg">
             {recommendedBundlePrice}
           </div>
 
@@ -87,12 +83,7 @@ class DesktopCards extends Component {
             <p>enterprise</p>
           </div>
 
-          {/*<ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1} />*/}
-          <div className="list-container">
-            <ul className="line-item-container small-text">
-              {createList(this.props.enterprise)}
-            </ul>
-          </div>
+          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1} detailPage={false} />
 
           <div className="sub-footer">
             {enterpriseBundlePrice}

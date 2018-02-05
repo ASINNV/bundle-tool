@@ -24,6 +24,31 @@ const initialState = {
       description: "333333 cription will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 300,
       include: true
+    },
+    { name: "video services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 825,
+      include: false
+    },
+    { name: "IT services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 60,
+      include: false
+    },
+    { name: "business development services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 175,
+      include: false
+    },
+    { name: "consultation services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 150,
+      include: false
+    },
+    { name: "repair services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 90,
+      include: false
     }
   ],
   recommended: [
@@ -56,6 +81,16 @@ const initialState = {
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 175,
       include: true
+    },
+    { name: "consultation services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 150,
+      include: false
+    },
+    { name: "repair services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 90,
+      include: false
     }
 
   ],
@@ -101,6 +136,48 @@ const initialState = {
       include: true
     }
   ],
+  custom: [
+    { name: "marketing services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 100,
+      include: false
+    },
+    { name: "graphics services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 250,
+      include: false
+    },
+    { name: "web services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 300,
+      include: false
+    },
+    { name: "video services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 825,
+      include: false
+    },
+    { name: "IT services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 60,
+      include: false
+    },
+    { name: "business development services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 175,
+      include: false
+    },
+    { name: "consultation services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 150,
+      include: false
+    },
+    { name: "repair services",
+      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 90,
+      include: false
+    }
+  ],
   default_item: {
     description: "Please click a line item for more information.",
     price: 0
@@ -138,6 +215,12 @@ const awesomeReducer = (state = initialState, action) => {
       state = {
         ...state,
         active_item: action.payload
+      };
+      break;
+    case "SET_INCLUSION":
+      state = {
+        ...state,
+        custom: action.payload
       };
       break;
 
