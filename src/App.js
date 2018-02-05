@@ -10,9 +10,7 @@ import './App.css';
 
 
 import Main from './components/Main';
-import StartupDetail from './components/StartupDetail';
-import RecommendedDetail from './components/RecommendedDetail';
-import EnterpriseDetail from './components/EnterpriseDetail';
+import Detail from './components/Detail';
 
 
 class App extends Component {
@@ -37,9 +35,9 @@ class App extends Component {
           <div>
 
             <Route exact path="/" component={Main}/>
-            <Route exact path="/startup" component={StartupDetail}/>
-            <Route exact path="/recommended" component={RecommendedDetail}/>
-            <Route exact path="/enterprise" component={EnterpriseDetail}/>
+            <Route exact path="/startup" component={Detail}/>
+            <Route exact path="/recommended" component={Detail}/>
+            <Route exact path="/enterprise" component={Detail}/>
 
           </div>
 

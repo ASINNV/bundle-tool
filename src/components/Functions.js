@@ -5,9 +5,9 @@ export const createList = (array) => {
   for (var i = 0; i < array.length; i++) {
     var possibleP;
     if (array[i].include === true) {
-      possibleP = <p className="line-item-checkmark inline">&#10004;</p>;
+      possibleP = <p className="line-item-checkmark inline">&#10003;</p>;
     } else {
-      possibleP = <p className="line-item-checkmark inline">X</p>;
+      possibleP = <p className="line-item-checkmark inline">&#10005;</p>;
     }
     newArray.push(<li key={i} className="flex">{possibleP}<span className="line-item-name inline">{array[i].name}</span></li>);
   }
@@ -15,13 +15,13 @@ export const createList = (array) => {
 };
 
 
-export const getDescription = (myObj) => {
+export const getDescription = (myObj, list) => {
   var possibleP;
 
-  if (myObj.active_item > -1) {
+  if (myObj.active_item > -1 && list !== undefined && list !== null) {
 
-    possibleP = <p className="description-p">{myObj.startup[myObj.active_item].description}</p>;
-    console.log(myObj.startup[myObj.active_item], myObj.active_item);
+    possibleP = <p className="description-p">{list[myObj.active_item].description}</p>;
+    console.log(list[myObj.active_item], myObj.active_item);
     return <div className="description-container light-text">{possibleP}</div>;
 
   } else {
@@ -30,5 +30,39 @@ export const getDescription = (myObj) => {
     return <div className="description-container light-text">{possibleP}</div>;
 
   }
+
+};
+
+export const getServiceName = (myObj, list) => {
+  if (myObj.active_item > -1 && list !== undefined && list !== null) {
+    if (list[myObj.active_item].name.length > 20) {
+      return <p>{list[myObj.active_item].name.slice(0, 20)}&hellip;</p>;
+    } else {
+      return <p>{list[myObj.active_item].name}</p>;
+    }
+
+  }
+};
+
+export const getPrice = (myObj, list) => {
+  if (myObj.active_item > -1 && list !== undefined && list !== null) {
+    return <p className="sub-footer-price">${list[myObj.active_item].price}</p>;
+  } else {
+    return <p className="sub-footer-price">${myObj.default_item.price}</p>;
+  }
+
+};
+
+export const getBundlePrice = (list) => {
+  let total = 0;
+  if (list !== undefined && list !== null) {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].include === true) {
+        total += list[i].price;
+      }
+    }
+    return <p className="sub-footer-price">${total}</p>;
+  }
+
 
 };

@@ -12,40 +12,49 @@ const initialState = {
   startup: [
     { name: "marketing services",
       description: "FIRST: This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 100,
       include: true
     },
     { name: "graphics services",
       description: "Number 2 it'll be sweet when we get these populated with real content.",
+      price: 250,
       include: true
     },
     { name: "web services",
       description: "333333 cription will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 300,
       include: true
     }
   ],
-  recommendation: [
+  recommended: [
     { name: "marketing services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 100,
       include: true
     },
     { name: "graphics services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 250,
       include: true
     },
     { name: "web services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 300,
       include: true
     },
     { name: "video services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 825,
       include: true
     },
     { name: "IT services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 60,
       include: true
     },
     { name: "business development services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 175,
       include: true
     }
 
@@ -53,39 +62,48 @@ const initialState = {
   enterprise: [
     { name: "marketing services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 100,
       include: true
     },
     { name: "graphics services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 250,
       include: true
     },
     { name: "web services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 300,
       include: true
     },
     { name: "video services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 825,
       include: true
     },
     { name: "IT services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 60,
       include: true
     },
     { name: "business development services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 175,
       include: true
     },
     { name: "consultation services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 150,
       include: true
     },
     { name: "repair services",
       description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      price: 90,
       include: true
     }
   ],
   default_item: {
-    description: "Please click a line item for more information."
+    description: "Please click a line item for more information.",
+    price: 0
   },
   chosen_bundle: 1,
   active_item: -1

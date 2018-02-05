@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { createList } from "./Functions";
-// import ItemList from "./ItemList";
+import { getBundlePrice } from "./Functions";
 
 class DesktopCards extends Component {
   crazyFunc(e) {
@@ -13,6 +13,8 @@ class DesktopCards extends Component {
 
     let whoa = e.target;
     let setting = 1;
+
+    this.props.awesome.active_item = -1; // reset displayed description to default
 
     function findCard(startingPoint) {
 
@@ -37,6 +39,10 @@ class DesktopCards extends Component {
     }
   }
   render() {
+    var startupBundlePrice = getBundlePrice(this.props.awesome.startup);
+    var recommendedBundlePrice = getBundlePrice(this.props.awesome.recommended);
+    var enterpriseBundlePrice = getBundlePrice(this.props.awesome.enterprise);
+
     return (
       <div className="flex-centered">
         <Link to="/startup" id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
@@ -53,7 +59,7 @@ class DesktopCards extends Component {
           </div>
 
           <div className="sub-footer">
-            <p className="sub-footer-price">$1800</p>
+            {startupBundlePrice}
           </div>
 
         </Link>
@@ -63,15 +69,15 @@ class DesktopCards extends Component {
             <p>recommended</p>
           </div>
 
-          {/*<ItemList list_array={this.props.awesome.recommendation} functionalityDepth={1} />*/}
+          {/*<ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} />*/}
           <div className="list-container">
             <ul className="line-item-container small-text">
-              {createList(this.props.recommendation)}
+              {createList(this.props.recommended)}
             </ul>
           </div>
 
           <div className="sub-footer recommended-footer">
-            <p className="sub-footer-price">$3000</p>
+            {recommendedBundlePrice}
           </div>
 
         </Link>
@@ -89,7 +95,7 @@ class DesktopCards extends Component {
           </div>
 
           <div className="sub-footer">
-            <p className="sub-footer-price">$5000</p>
+            {enterpriseBundlePrice}
           </div>
 
         </Link>

@@ -4,8 +4,6 @@ import DesktopCards from './DesktopCards';
 import MobileCards from './MobileCards';
 import {connect} from "react-redux";
 
-// import {createList} from "./Functions";
-
 class Main extends Component {
   render() {
 
@@ -24,17 +22,17 @@ class Main extends Component {
     //   return newArray;
     // }
     // var startup = createList(this.props.awesome.startup);
-    // var recommendation = createList(this.props.awesome.recommendation);
+    // var recommended = createList(this.props.awesome.recommended);
     // var enterprise = createList(this.props.awesome.enterprise);
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileCards /> : <DesktopCards startup={this.props.awesome.startup} recommendation={this.props.awesome.recommendation} enterprise={this.props.awesome.enterprise}/>;
+    const relevantLayout = isMobile ? <MobileCards /> : <DesktopCards startup={this.props.awesome.startup} recommended={this.props.awesome.recommended} enterprise={this.props.awesome.enterprise}/>;
 
 
     return (
       <section id="bod" className="app-body">
         <div className="full centered large-title">
-          <p>choose one</p>
+          <p>choose bundle</p>
         </div>
 
         {relevantLayout}

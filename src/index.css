@@ -53,11 +53,12 @@ a {
 
 body {
   /*background-color: #333;*/
+  cursor: default;
 }
 
 .App {
   /*height: 100vh;*/
-  font-family: "Lato";
+  font-family: "Lato", "Helvetica Neue";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -132,6 +133,15 @@ body {
   /*border-left: 10px solid #fff !important;*/
   /*border-left: 10px solid #fff !important;*/
 }
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */
@@ -201,6 +211,9 @@ body {
 }
 .line-item-name { /* create space between check mark and deliverable */
   padding-left: 20px;
+}
+.line-item-checkmark {
+  color: #498d5e;
 }
 
 /* top bar of service package card styles */

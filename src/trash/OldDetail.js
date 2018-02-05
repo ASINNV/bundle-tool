@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 // import DesktopCards from './DesktopCards';
 // import MobileCards from './MobileCards';
-// import { getDescription } from "./Functions";
-import ItemList from "./ItemList";
+import {createList} from "../components/Functions";
 
 
 
-class EnterpriseDetail extends Component {
+class Detail extends Component {
   render() {
-    // var enterprise = createList(this.props.awesome.enterprise);
+    var startup = createList(this.props.awesome.startup);
 
-    // const isMobile = window.innerWidth < 480;
-    // const relevantLayout = isMobile ? <MobileEnterprise startup={startup} recommendation={recommendation} enterprise={enterprise}/> : <DesktopEnterprise startup={startup} recommendation={recommendation} enterprise={enterprise}/>;
+    const isMobile = window.innerWidth < 480;
+    const relevantLayout = isMobile ? <MobileDetailZero startup={startup} recommendation={recommendation} enterprise={enterprise}/> : <DesktopDetail startup={startup} recommendation={recommendation} enterprise={enterprise}/>;
 
     return (
       <section id="bod" className="app-body">
@@ -21,21 +20,24 @@ class EnterpriseDetail extends Component {
         </div>
 
         <div>
-          <div id="pack-three" className="card service-pack shadowed overflow-hidden">
+          <div id="pack-one" className="card service-pack shadowed overflow-hidden">
 
             <div className="sub-header">
-              <p>enterprise</p>
+              <p>startup</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={2}/>
+            <div className="list-container">
+              <ul className="line-item-container small-text">
+                {startup}
+              </ul>
+            </div>
 
             <div className="sub-footer">
-              <p className="sub-footer-price">$5000</p>
+              <p className="sub-footer-price">$1800</p>
             </div>
 
           </div>
         </div>
-
         <div className="button-container">
           <a className="simple-button shadowed checkout" href="">checkout</a>
         </div>
@@ -65,4 +67,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterpriseDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);
