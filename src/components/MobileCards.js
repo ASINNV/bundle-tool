@@ -46,7 +46,7 @@ class MobileCards extends Component {
     var recommendedBundlePrice = getBundlePrice(this.props.awesome.recommended);
     var enterpriseBundlePrice = getBundlePrice(this.props.awesome.enterprise);
     return (
-      <ReactSwipe className="carousel" swipeOptions={{continuous: true, startSlide: 1}}>
+      <ReactSwipe className="carousel" swipeOptions={{continuous: false, startSlide: 1}}>
         <div>
           <Link to="/startup" id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 

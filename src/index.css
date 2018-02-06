@@ -213,17 +213,19 @@ body {
 }
 .line-item-container li {
   text-align: left;
-  padding: 10px 20px; /* create space between content and walls for aesthetic purposes */
+  /*padding: 10px 20px; !* create space between content and walls for aesthetic purposes *!*/
 }
 .line-item-container li:nth-child(2n+2) { /* alternate background-color every other line */
   background-color: #4a4a4a;
 }
 .line-item-name { /* create space between check mark and deliverable */
-  padding-left: 20px;
+  padding: 10px 20px 10px 10px;
+  width: 100%;
 }
 .line-item-checkmark {
-  /*color: #498d5e;*/
+  padding: 10px 10px 10px 20px;
 }
+
 
 /* top bar of service package card styles */
 .sub-header {
