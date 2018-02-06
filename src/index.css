@@ -122,6 +122,10 @@ body {
   align-items: flex-start !important;
   justify-content: center !important;
 }
+.flex-vertical-center {
+  display: flex !important;
+  align-items: center !important;
+}
 .overflow-hidden {
   overflow: hidden !important;
 }
@@ -218,13 +222,18 @@ body {
 .line-item-container li:nth-child(2n+2) { /* alternate background-color every other line */
   background-color: #4a4a4a;
 }
+.line-item-checkmark {
+  padding-left: 20px;
+  padding-right: 10px;
+}
 .line-item-name { /* create space between check mark and deliverable */
   padding: 10px 20px 10px 10px;
   width: 100%;
 }
-.line-item-checkmark {
-  padding: 10px 10px 10px 20px;
+.line-item-price {
+  padding: 0 10px;
 }
+
 
 
 /* top bar of service package card styles */

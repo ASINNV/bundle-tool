@@ -89,16 +89,16 @@ class ItemList extends Component {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
         if (this.props.list_array[i].include === true) {
-          possibleP = <div className="line-item-checkmark green-text inline noselect">&#10003;</div>;
+          possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
         } else {
-          possibleP = <div className="line-item-checkmark red-text inline noselect">&#10005;</div>;
+          possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
         }
         if (this.props.functionalityDepth === 2) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         } else if (this.props.functionalityDepth === 1) {
-          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         } else if (this.props.functionalityDepth === 0) {
-          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         }
 
       }
@@ -107,18 +107,18 @@ class ItemList extends Component {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
         if (this.props.list_array[i].include === true) {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark green-text inline noselect" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+          possibleP = <div id={"check-" + i} className="line-item-checkmark green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
         } else {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark red-text inline noselect" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+          possibleP = <div id={"check-" + i} className="line-item-checkmark red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
         }
         if (this.props.functionalityDepth === 3) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         } else if (this.props.functionalityDepth === 2) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         } else if (this.props.functionalityDepth === 1) {
-          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         } else if (this.props.functionalityDepth === 0) {
-          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p></li>);
+          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
         }
 
       }
@@ -127,9 +127,9 @@ class ItemList extends Component {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
         if (this.props.list_array[i].include === true) {
-          possibleP = <div className="line-item-checkmark green-text inline noselect">&#10003;</div>;
+          possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
         } else {
-          possibleP = <div className="line-item-checkmark red-text inline noselect">&#10005;</div>;
+          possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
         }
         if (this.props.functionalityDepth === 2 && this.props.list_array[i].include === true) {
           newArray.push(<li key={i} id={"list-item-" + i} className="flex">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
