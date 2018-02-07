@@ -139,23 +139,24 @@ class DesktopDetail extends Component {
 class Detail extends Component {
   submitInformation(e) {
     e.preventDefault();
-    let myForm = document.querySelector("form");
-    let firstName = myForm.elements["firstName"].value;
-    let lastName = myForm.elements["lastName"].value;
-    let companyName = myForm.elements["companyName"].value;
-    let emailAddress = myForm.elements["emailAddress"].value;
-    let phoneNumber = myForm.elements["phoneNumber"].value;
-    let paymentType = myForm.elements["paymentType"].value;
-    let key = 'AIzaSyBaGao4jb7-lPFLspVj-Lvt3Q0-Gj1Abpo';
-    let myUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1s4MibybITpXT9uVFpIF3okokjoveKRZil8dNF_m6MFE/values/A1:append?includeValuesInResponse=false&insertDataOption=INSERT_ROWS&responseDateTimeRenderOption=SERIAL_NUMBER&responseValueRenderOption=FORMATTED_VALUE&valueInputOption=USER_ENTERED&key=' + key;
-    fetch(myUrl).then(() => {
-      console.log('success');
-    }).catch(() => {
-      console.log('failure');
-    })
+    console.log('You tried to submit the form.');
+    // let myForm = document.querySelector("form");
+    // let firstName = myForm.elements["firstName"].value;
+    // let lastName = myForm.elements["lastName"].value;
+    // let companyName = myForm.elements["companyName"].value;
+    // let emailAddress = myForm.elements["emailAddress"].value;
+    // let phoneNumber = myForm.elements["phoneNumber"].value;
+    // let paymentType = myForm.elements["paymentType"].value;
+    // let key = 'AIzaSyBaGao4jb7-lPFLspVj-Lvt3Q0-Gj1Abpo';
+    // let myUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1s4MibybITpXT9uVFpIF3okokjoveKRZil8dNF_m6MFE/values/A1:append?includeValuesInResponse=false&insertDataOption=INSERT_ROWS&responseDateTimeRenderOption=SERIAL_NUMBER&responseValueRenderOption=FORMATTED_VALUE&valueInputOption=USER_ENTERED&key=' + key;
+    // fetch(myUrl).then(() => {
+    //   console.log('success');
+    // }).catch(() => {
+    //   console.log('failure');
+    // })
 
   }
-  toggleCheckout(e) {
+  toggleCheckout() {
     let checkout = document.getElementById('checkout-window');
     if (checkout.className.indexOf(' flex-centered') !== -1) {
       checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
@@ -165,7 +166,7 @@ class Detail extends Component {
     }
     console.log(checkout.className);
   }
-  selectAll(e) {
+  selectAll() {
     let needSelecting;
     let newCustom = this.props.awesome.custom;
 
