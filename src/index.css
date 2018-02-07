@@ -76,7 +76,7 @@ body {
   left: 0;
   right: 0;
   background-color: rgba(0,0,0,0.75);
-  z-index: 2;
+  z-index: 5;
 }
 .popup {
   position: fixed;
@@ -228,6 +228,8 @@ body {
   margin: 0 20px;
 }
 .label-input-couplet select {
+  -webkit-appearance: none;
+  background-color: #111;
   height: 37px;
 }
 .user-input-button {
@@ -291,6 +293,7 @@ body {
 .list-container {
   height: 100%;
   overflow: auto; /* hide inner list's corners */
+
 }
 .line-item-container, .description-container {
   margin: 30px 0; /* ensure no overlap between card header or footer and list item */
@@ -318,7 +321,7 @@ body {
 
 
 /* top bar of service package card styles */
-.sub-header {
+.sub-header, .sub-footer {
   position: absolute;
   height: 30px;
   width: 100%;
@@ -326,24 +329,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+}
+.sub-header {
+  z-index: 1;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  z-index: 1;
 }
-
 /* footer of service package card styles */
 .sub-footer {
-  position: absolute;
   bottom: 0;
-  height: 30px;
-  width: 100%;
-  background-color: #555;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+
 
 /* footer and header of service package card styles */
 .sub-footer, .sub-header {
@@ -385,7 +385,7 @@ body {
 }
 .select-all {
   position: absolute;
-  z-index: 5;
+  z-index: 2;
   left: 20px;
   top: 10px;
   font-size: 0.7em;
@@ -440,10 +440,6 @@ body {
   .service-pack {
 
   }
-  .list-container {
-    overflow: scroll !important; /* hide inner list's corners */
-    -webkit-overflow-scrolling: touch !important;
-  }
 
   .or {
     font-size: 16px;
@@ -455,6 +451,10 @@ body {
   .checkout {
     width: 85% !important;
   }
+  /*.list-item-container {*/
+    /*overflow-y: scroll; !* has to be scroll, not auto *!*/
+    /*-webkit-overflow-scrolling: touch;*/
+  /*}*/
   /* end of choose your bundle page styles */
   /* end of choose your bundle page styles */
   /* end of choose your bundle page styles */
