@@ -440,6 +440,10 @@ body {
   .service-pack {
 
   }
+  .list-container {
+    overflow: scroll !important; /* hide inner list's corners */
+    -webkit-overflow-scrolling: touch !important;
+  }
 
   .or {
     font-size: 16px;

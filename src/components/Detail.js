@@ -24,6 +24,7 @@ class MobileDetail extends Component {
 
           <div>
             <div id="pack-one" className="card service-pack shadowed overflow-hidden">
+              {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
               <div className="sub-header">
                 <p>{this.props.bundleName}</p>
