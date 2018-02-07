@@ -21,74 +21,74 @@ const initialState = {
       include: true
     },
     { name: "web services",
-      description: "333333 cription will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "3 3 3 3 3 3 cription will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 300,
       include: true
     },
     { name: "video services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "4 4 4 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 825,
       include: false
     },
     { name: "IT services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "5 5 5 5 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 60,
       include: false
     },
     { name: "business development services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "6 6 6 6 6 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 175,
       include: false
     },
     { name: "consultation services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "7 7 7 7 7 7 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 150,
       include: false
     },
     { name: "repair services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "8 8 8 8 8 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 90,
       include: false
     }
   ],
   recommended: [
     { name: "marketing services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "9 9 9 9 9 9 9 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 100,
       include: true
     },
     { name: "graphics services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "10 10 10 10 10 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 250,
       include: true
     },
     { name: "web services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "11 11 11 11 11 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 300,
       include: true
     },
     { name: "video services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "12 12 12 12 12 12 12 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 825,
       include: true
     },
     { name: "IT services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "13 13 13 13 13 13 13 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 60,
       include: true
     },
     { name: "business development services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "14 14 14 14 14 14 14 14 14 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 175,
       include: true
     },
     { name: "consultation services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "15 15 15 15 15 15 15 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 150,
       include: false
     },
     { name: "repair services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "16 16 16 16 16 16 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 90,
       include: false
     }
@@ -96,84 +96,84 @@ const initialState = {
   ],
   enterprise: [
     { name: "marketing services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "17 17 17 17 17 17 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 100,
       include: true
     },
     { name: "graphics services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "18 18 18 18 18 18 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 250,
       include: true
     },
     { name: "web services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "19 19 19 19 19 19 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 300,
       include: true
     },
     { name: "video services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "20 20 20 20 20 20 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 825,
       include: true
     },
     { name: "IT services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "21 21 21 21 21 21 21 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 60,
       include: true
     },
     { name: "business development services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "22 22 22 22 22 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 175,
       include: true
     },
     { name: "consultation services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "23 23 23 23 23 23 23 23 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 150,
       include: true
     },
     { name: "repair services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "24 24 24 24 24 24 24 24 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 90,
       include: true
     }
   ],
   custom: [
     { name: "marketing services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "25 25 25 25 25 25 25 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 100,
       include: false
     },
     { name: "graphics services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "26 26 26 26 26 26 26 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 250,
       include: false
     },
     { name: "web services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "27 27 27 27 27 27 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 300,
       include: false
     },
     { name: "video services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "2828282828This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 825,
       include: false
     },
     { name: "IT services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "29292929This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 60,
       include: false
     },
     { name: "business development services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "3030303030This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 175,
       include: false
     },
     { name: "consultation services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "31 31 31 31 31 31 31 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 150,
       include: false
     },
     { name: "repair services",
-      description: "This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
+      description: "32 32 32 32 32 32 32 32 This is where the description will go. Awesome, it'll be sweet when we get these populated with real content.",
       price: 90,
       include: false
     }

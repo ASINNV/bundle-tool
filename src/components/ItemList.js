@@ -17,7 +17,6 @@ class ItemList extends Component {
 
       let popup = document.getElementById('popup-desc');
       // let facehole = document.getElementById('popup-desc');
-      // console.log("facehole: ", facehole);
       // facehole.style.display = 'block';
       // facehole.setAttribute('style', 'display: block !important');
 
@@ -25,7 +24,7 @@ class ItemList extends Component {
 
       if (popup !== null) {
         if (popup.style.display === "" || popup.style.display === "none") {
-          popup.style.display = "block";
+          popup.style.display = "flex";
         } else {
           popup.style.display = "none";
         }
@@ -59,26 +58,35 @@ class ItemList extends Component {
   selectItem(e) {
     let myObj = this.props.awesome.custom[e.target.id.slice(6)];
     let myList = this.props.awesome.custom;
+    let selectAllButton = document.getElementById('select-all-button');
+    let allSelected = true;
+
+    if (selectAllButton.checked === true) {
+      selectAllButton.checked = false;
+    }
 
     if (this.props.awesome.custom[e.target.id.slice(6)].include === false) {
       myObj.include = true;
       myList[e.target.id.slice(6)] = myObj;
-      // console.log(myObj);
     } else if (this.props.awesome.custom[e.target.id.slice(6)].include === true) {
       myObj.include = false;
       myList[e.target.id.slice(6)] = myObj;
-      // console.log(myObj);
     }
     this.props.setInclusion(myList);
-    // console.log("THIS IS THE TARGET, HEY DUDE:", e.target);
 
-    // console.log(e.target, this.props.awesome.custom[e.target.id.slice(6)]);
+
+    for (let i = 0; i < myList.length; i++) {
+      if (myList[i].include === false) {
+        allSelected = false;
+      }
+    }
+    if (selectAllButton.checked === false && allSelected === true) {
+      selectAllButton.checked = true;
+    }
+
     // if (e.target.innerHTML === '&#10003;') {
-    //   console.log("check");
     // } else if (e.target.innerHTML === '&#10005;') {
-    //   console.log('x');
     // } else {
-    //   console.log('neither');
     // }
   }
 

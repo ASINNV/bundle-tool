@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 
-import { getDescription, getServiceName, getPrice, getBundlePrice } from "./Functions";
-import ItemList from "./ItemList";
+import { getDescription, getServiceName, getPrice, getBundlePrice } from "../components/Functions";
+import ItemList from "../components/ItemList";
 
 
 

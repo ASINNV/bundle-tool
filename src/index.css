@@ -2,6 +2,9 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+* {
+  box-sizing: border-box;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -65,7 +68,26 @@ body {
   right: 0;
   left: 0;
 }
-
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.75);
+  z-index: 2;
+}
+.popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup-button {
+  width: 100% !important;
+  margin-top: 20px;
+}
 /* miscellaneous styles */
 /* miscellaneous styles */
 /* miscellaneous styles */
@@ -75,6 +97,10 @@ body {
   /*color: #4a8e5f;*/
   font-size: 48px;
   margin: 30px 0;
+}
+.checkout-title {
+  font-size: 48px;
+  margin: 10px 0 20px 0;
 }
 .red-text {
   color: #d26868 !important;
@@ -93,6 +119,9 @@ body {
 }
 .full {
   width: 100% !important;
+}
+.tall {
+  height: auto !important;
 }
 .centered {
   text-align: center !important;
@@ -154,6 +183,58 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+.narrow-button {
+  width: 300px !important;
+}
+.form-card {
+  position: relative;
+  background-color: #222;
+  border-radius: 16px;
+  padding: 20px 0;
+}
+.corner-x {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #222;
+  font-size: 1.2em;
+  background-color: #111;
+  padding: 4px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+
+}
+.user-form {
+  position: relative;
+  width: 100%;
+  z-index: 0;
+}
+.user-input-label {
+  color: #555;
+}
+.user-input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #111;
+  font-size: 14px;
+  color: #999;
+  border: 0;
+  border-radius: 4px;
+}
+.label-input-couplet {
+  text-align: left;
+  margin: 0 20px;
+}
+.label-input-couplet select {
+  height: 37px;
+}
+.user-input-button {
+  color: #ffffff;
+  background-color: #498d5e;
+  font-size: 1.2em;
+  border-radius: 8px;
 }
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */
@@ -247,6 +328,7 @@ body {
   align-items: center;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
+  z-index: 1;
 }
 
 /* footer of service package card styles */
@@ -288,7 +370,7 @@ body {
   align-items: center;
   color: #999999;
   background-color: #4A4A4A;
-  width: 300px;
+  /*width: 300px;*/
   height: 45px;
   margin: 0 auto;
   font-size: 24px;
@@ -300,6 +382,14 @@ body {
 
 #item-showcase {
   height: 662px;
+}
+.select-all {
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  top: 10px;
+  font-size: 0.7em;
+  margin: 0;
 }
 #description-box {
   margin-top: 20px;
@@ -350,33 +440,14 @@ body {
   .service-pack {
 
   }
-  .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0,0,0,0.75);
-  }
-  .popup {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .popup-button {
-    width: 100% !important;
-    margin-top: 20px;
-  }
 
   .or {
     font-size: 16px;
     margin: 10px 0;
   }
-  /*.simple-button {*/
-    /*width: 85%;*/
-  /*}*/
+  .simple-button {
+    margin-top: 20px;
+  }
   .checkout {
     width: 85% !important;
   }

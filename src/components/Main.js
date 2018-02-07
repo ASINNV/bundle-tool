@@ -6,6 +6,11 @@ import {connect} from "react-redux";
 import { Link } from "react-router-dom";
 
 class Main extends Component {
+  loadCustomPage(e) {
+    let customPageNumber = 3;
+    this.props.setPackage(customPageNumber);
+  }
+
   render() {
 
 
@@ -42,7 +47,7 @@ class Main extends Component {
           <p>-or-</p>
         </div>
         <div className="button-container">
-          <Link to="/custom" className="simple-button shadowed">custom bundle</Link>
+          <Link to="/custom" className="simple-button shadowed narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</Link>
         </div>
       </section>
     );
@@ -58,18 +63,18 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Main);
+// export default connect(mapStateToProps)(Main);
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     setPackage: (thing) => {
-//       dispatch({
-//         type: "SET_PACKAGE_SELECTION",
-//         payload: thing
-//       });
-//
-//     }
-//   };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(Main);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPackage: (thing) => {
+      dispatch({
+        type: "SET_PACKAGE_SELECTION",
+        payload: thing
+      });
+
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
