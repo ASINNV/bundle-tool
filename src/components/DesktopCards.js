@@ -32,12 +32,7 @@ class DesktopCards extends Component {
     }
     findCard(whoa);
 
-
-    if (this.props.awesome.chosen_bundle === setting) {
-      this.props.setPackage(1);
-    } else {
-      this.props.setPackage(setting);
-    }
+    this.props.setPackage(setting);
   }
   render() {
     var startupBundlePrice = getBundlePrice(this.props.awesome.startup);
@@ -52,7 +47,7 @@ class DesktopCards extends Component {
             <p>startup</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.startup} functionalityDepth={0} detailPage={false} />
+          <ItemList list_array={this.props.awesome.startup} functionalityDepth={0} page="other" />
           {/*<div className="list-container">*/}
             {/*<ul className="line-item-container small-text">*/}
               {/*{createList(this.props.startup)}*/}
@@ -70,7 +65,7 @@ class DesktopCards extends Component {
             <p>recommended</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} detailPage={false} />
+          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="other" />
 
           <div className="sub-footer green-bg">
             {recommendedBundlePrice}
@@ -83,7 +78,7 @@ class DesktopCards extends Component {
             <p>enterprise</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} detailPage={false} />
+          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} page="other" />
 
           <div className="sub-footer">
             {enterpriseBundlePrice}

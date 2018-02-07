@@ -146,6 +146,14 @@ class Detail extends Component {
     let emailAddress = myForm.elements["emailAddress"].value;
     let phoneNumber = myForm.elements["phoneNumber"].value;
     let paymentType = myForm.elements["paymentType"].value;
+    let key = 'AIzaSyBaGao4jb7-lPFLspVj-Lvt3Q0-Gj1Abpo';
+    let myUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1s4MibybITpXT9uVFpIF3okokjoveKRZil8dNF_m6MFE/values/A1:append?includeValuesInResponse=false&insertDataOption=INSERT_ROWS&responseDateTimeRenderOption=SERIAL_NUMBER&responseValueRenderOption=FORMATTED_VALUE&valueInputOption=USER_ENTERED&key=' + key;
+    fetch(myUrl).then(() => {
+      console.log('success');
+    }).catch(() => {
+      console.log('failure');
+    })
+
   }
   toggleCheckout(e) {
     let checkout = document.getElementById('checkout-window');

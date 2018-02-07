@@ -216,7 +216,7 @@ body {
 .user-input {
   width: 100%;
   margin: 10px 0;
-  padding: 10px 20px;
+  padding: 10px;
   background-color: #111;
   font-size: 14px;
   color: #999;
@@ -386,10 +386,29 @@ body {
 .select-all {
   position: absolute;
   z-index: 2;
-  left: 20px;
-  top: 10px;
+  left: 17px;
+  top: 7px;
   font-size: 0.7em;
   margin: 0;
+  -webkit-appearance: none;
+  padding: 10px;
+  background-color: #222;
+  border: 1px solid #111;
+}
+.select-all {
+  -webkit-appearance: none;
+  background-color: #222222;
+  border: 1px solid #111111;
+  padding: 9px;
+  border-radius: 4px;
+}
+.select-all:checked:after {
+  content: '\2713';
+  font-size: 16px;
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  color: #555555;
 }
 #description-box {
   margin-top: 20px;

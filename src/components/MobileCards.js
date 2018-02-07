@@ -33,12 +33,7 @@ class MobileCards extends Component {
     }
     findCard(whoa);
 
-
-    if (this.props.awesome.chosen_bundle === setting) {
-      this.props.setPackage(1);
-    } else {
-      this.props.setPackage(setting);
-    }
+    this.props.setPackage(setting);
   }
 
   render() {
@@ -54,7 +49,7 @@ class MobileCards extends Component {
               <p>startup</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.startup} functionalityDepth={1}/>
+            <ItemList list_array={this.props.awesome.startup} functionalityDepth={1} page="other"/>
 
             <div className="sub-footer">
               {startupBundlePrice}
@@ -70,7 +65,7 @@ class MobileCards extends Component {
               <p>recommended</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1}/>
+            <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} page="other"/>
 
             <div className="sub-footer green-bg">
               {recommendedBundlePrice}
@@ -85,7 +80,7 @@ class MobileCards extends Component {
               <p>enterprise</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1}/>
+            <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1} page="other"/>
 
             <div className="sub-footer">
               {enterpriseBundlePrice}
