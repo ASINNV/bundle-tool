@@ -65,7 +65,7 @@ class DesktopCards extends Component {
             <p>recommended</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="other" />
+          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="other" featured={true} />
 
           <div className="sub-footer green-bg">
             {recommendedBundlePrice}

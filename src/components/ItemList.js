@@ -93,6 +93,7 @@ class ItemList extends Component {
   render() {
     var newArray = [];
     let possibleP;
+    let unorderedList;
     if (this.props.page === "detail") {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
@@ -110,6 +111,7 @@ class ItemList extends Component {
         }
 
       }
+      unorderedList = <div className="list-container height-equalizer"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     } else if (this.props.page === "custom") {
 
@@ -130,6 +132,17 @@ class ItemList extends Component {
         }
 
       }
+      unorderedList = <div className="list-container height-equalizer"><ul className="line-item-container small-text">{newArray}</ul></div>;
+
+    } else if (this.props.page === "confirmation") {
+
+      for (let i = 0; i < this.props.list_array.length; i++) {
+        if (this.props.list_array[i].include === true) {
+          possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
+          newArray.push(<li key={i} className="flex">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+        }
+      }
+      unorderedList = <ul className="line-item-container small-text">{newArray}</ul>;
 
     } else {
 
@@ -148,15 +161,18 @@ class ItemList extends Component {
         }
 
       }
+      if (this.props.featured === true) {
+        unorderedList = <div className="list-container featured-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      } else {
+        unorderedList = <div className="list-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      }
 
     }
 
+
     return (
-      <div className="list-container">
-        <ul className="line-item-container small-text">
-          {/*{this.props.startup_items}*/}
-          {newArray}
-        </ul>
+      <div>
+        {unorderedList}
       </div>
     );
   }

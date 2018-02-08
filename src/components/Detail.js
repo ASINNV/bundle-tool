@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getDescription, getServiceName, getPrice, getBundlePrice } from "./Functions";
 import ItemList from "./ItemList";
@@ -19,6 +20,8 @@ class MobileDetail extends Component {
         <div className="full centered large-title green-text">
           <p>bundle details</p>
         </div>
+
+        <p id="required-popup">please pick at least one item to checkout</p>
 
         <section id="bod" className="app-body">
 
@@ -75,6 +78,8 @@ class DesktopDetail extends Component {
         <div className="full centered large-title green-text">
           <p>{this.props.bundleName} bundle</p>
         </div>
+
+        <p id="required-popup">please pick at least one item to checkout</p>
 
         <section id="bod" className="app-body">
 
@@ -138,8 +143,10 @@ class DesktopDetail extends Component {
 
 class Detail extends Component {
   submitInformation(e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('You tried to submit the form.');
+    // history.push('/confirmation');
+
     // let myForm = document.querySelector("form");
     // let firstName = myForm.elements["firstName"].value;
     // let lastName = myForm.elements["lastName"].value;
@@ -157,14 +164,35 @@ class Detail extends Component {
 
   }
   toggleCheckout() {
-    let checkout = document.getElementById('checkout-window');
-    if (checkout.className.indexOf(' flex-centered') !== -1) {
-      checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
-      document.querySelector("form").reset();
-    } else {
-      checkout.className += " flex-centered";
+    let custom = this.props.awesome.custom;
+    let allFalse = true;
+    let required = document.getElementById('required-popup');
+
+    for (let i = 0; i < custom.length; i++) {
+      if (custom[i].include === true) {
+        allFalse = false;
+      }
     }
-    console.log(checkout.className);
+
+    if (this.props.awesome.chosen_bundle === 3 && allFalse === true) {
+      required.style.display = 'block';
+    } else {
+      let checkout = document.getElementById('checkout-window');
+      if (checkout.className.indexOf(' flex-centered') !== -1) {
+        checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
+        document.querySelector("form").reset();
+
+      } else {
+        checkout.className += " flex-centered";
+
+      }
+      console.log(checkout.className);
+      if (required.style.display === 'block') {
+        required.style.display = 'none';
+      }
+    }
+
+
   }
   selectAll() {
     let needSelecting;
@@ -249,28 +277,30 @@ class Detail extends Component {
             </div>
 
             <form action="" className="user-form">
+              <p className="user-input-label left">personal info</p>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="companyName">Company Name</label>
-                <input className="user-input" type="text" name="companyName" placeholder=""/>
+                {/*<label className="user-input-label" htmlFor="companyName">Company Name</label>*/}
+                <input className="user-input" type="text" name="companyName" placeholder="Company Name"/>
               </div>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="firstName">First Name</label>
-                <input className="user-input" type="text" name="firstName" placeholder=""/>
+                {/*<label className="user-input-label" htmlFor="firstName">First Name</label>*/}
+                <input className="user-input" type="text" name="firstName" placeholder="First Name"/>
               </div>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="lastName">Last Name</label>
-                <input className="user-input" type="text" name="lastName" placeholder=""/>
+                {/*<label className="user-input-label" htmlFor="lastName">Last Name</label>*/}
+                <input className="user-input" type="text" name="lastName" placeholder="Last Name"/>
               </div>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="emailAddress">Email Address</label>
-                <input className="user-input" type="email" name="emailAddress" placeholder=""/>
+                {/*<label className="user-input-label" htmlFor="emailAddress">Email Address</label>*/}
+                <input className="user-input" type="email" name="emailAddress" placeholder="Email Address"/>
               </div>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="phoneNumber">Phone Number</label>
-                <input className="user-input" type="text" name="phoneNumber" placeholder=""/>
+                {/*<label className="user-input-label" htmlFor="phoneNumber">Phone Number</label>*/}
+                <input className="user-input" type="text" name="phoneNumber" placeholder="Phone Number"/>
               </div>
+              <p className="user-input-label left">payment method</p>
               <div className="label-input-couplet">
-                <label className="user-input-label" htmlFor="paymentType">Payment Method</label>
+                {/*<label className="user-input-label" htmlFor="paymentType">Payment Method</label>*/}
                 <select className="user-input" name="paymentType" id="">
                   <option value="credit">Credit Card</option>
                   <option value="check">Check</option>
@@ -278,7 +308,7 @@ class Detail extends Component {
                 </select>
               </div>
               <div className="label-input-couplet">
-                <button type="submit" className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>confirm order</button>
+                <Link to="/confirmation" type="submit" className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>confirm order</Link>
               </div>
             </form>
 
