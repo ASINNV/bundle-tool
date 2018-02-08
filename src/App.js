@@ -33,7 +33,7 @@ class App extends Component {
           </nav>
 
 
-          <div>
+          <div className="content-container">
 
             <Route exact path="/" component={Main}/>
             <Route exact path="/startup" component={Detail}/>
