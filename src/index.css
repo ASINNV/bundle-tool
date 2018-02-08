@@ -560,6 +560,13 @@ body {
     color: #4a4a4a;
     z-index: 0;
   }
+  .inner-content-container {
+    position: relative;
+  }
+  #required-popup {
+    top: 50px;
+  }
+
 }
 @media (max-width: 600px) and (orientation: portrait) {
   /* misc styles */

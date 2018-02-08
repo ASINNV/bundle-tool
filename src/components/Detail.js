@@ -73,7 +73,7 @@ class DesktopDetail extends Component {
   render() {
 
     return (
-      <div>
+      <div className="inner-content-container">
 
         <div className="full centered large-title green-text">
           <p>{this.props.bundleName} bundle</p>
