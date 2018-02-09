@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+// const fetch = require('node-fetch');
+// import fetch from "node-fetch";
 
 import { getDescription, getServiceName, getPrice, getBundlePrice } from "./Functions";
 import ItemList from "./ItemList";
@@ -144,8 +146,37 @@ class DesktopDetail extends Component {
 class Detail extends Component {
   submitInformation(e) {
     // e.preventDefault();
-    console.log('You tried to submit the form.');
+    let myForm = document.querySelector('form');
+
+    let companyName = myForm.elements["companyName"].value;
+    let firstName = myForm.elements["firstName"].value;
+    let lastName = myForm.elements["lastName"].value;
+    let emailAddress = myForm.elements["emailAddress"].value;
+    let phoneNumber = myForm.elements["phoneNumber"].value;
+    let paymentMethod = myForm.elements["paymentMethod"].value;
+
+    let data = {
+      companyName: companyName,
+      firstName: firstName,
+      lastName: lastName,
+      emailAddress: emailAddress,
+      phoneNumber: phoneNumber,
+      paymentMethod: paymentMethod
+    };
+    let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
+
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => console.log('Success:', response));
+
+
+
     // history.push('/confirmation');
+
+    // appendData([ ["Void", "Canvas", "Website"], ["Paul", "Shan", "Human"] ]);
 
     // let myForm = document.querySelector("form");
     // let firstName = myForm.elements["firstName"].value;
@@ -153,7 +184,7 @@ class Detail extends Component {
     // let companyName = myForm.elements["companyName"].value;
     // let emailAddress = myForm.elements["emailAddress"].value;
     // let phoneNumber = myForm.elements["phoneNumber"].value;
-    // let paymentType = myForm.elements["paymentType"].value;
+    // let paymentMethod = myForm.elements["paymentMethod"].value;
     // let key = 'AIzaSyBaGao4jb7-lPFLspVj-Lvt3Q0-Gj1Abpo';
     // let myUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1s4MibybITpXT9uVFpIF3okokjoveKRZil8dNF_m6MFE/values/A1:append?includeValuesInResponse=false&insertDataOption=INSERT_ROWS&responseDateTimeRenderOption=SERIAL_NUMBER&responseValueRenderOption=FORMATTED_VALUE&valueInputOption=USER_ENTERED&key=' + key;
     // fetch(myUrl).then(() => {
@@ -300,8 +331,8 @@ class Detail extends Component {
               </div>
               <p className="user-input-label left">payment method</p>
               <div className="label-input-couplet">
-                {/*<label className="user-input-label" htmlFor="paymentType">Payment Method</label>*/}
-                <select className="user-input" name="paymentType" id="">
+                {/*<label className="user-input-label" htmlFor="paymentMethod">Payment Method</label>*/}
+                <select className="user-input" name="paymentMethod" id="">
                   <option value="credit">Credit Card</option>
                   <option value="check">Check</option>
                   <option value="cash">Cash</option>
