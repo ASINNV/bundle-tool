@@ -154,6 +154,51 @@ class Detail extends Component {
     let emailAddress = myForm.elements["emailAddress"].value;
     let phoneNumber = myForm.elements["phoneNumber"].value;
     let paymentMethod = myForm.elements["paymentMethod"].value;
+    let bundle = "didn't work";
+    let services = [], serviceString;
+
+    switch (this.props.awesome.chosen_bundle) {
+      case 0:
+        bundle = 'startup';
+        for (let i = 0; i < this.props.awesome.startup.length; i++) {
+          if (this.props.awesome.startup[i].include === true) {
+            services.push(this.props.awesome.startup[i].name);
+          }
+        }
+        break;
+      case 1:
+        bundle = 'recommended';
+        for (let i = 0; i < this.props.awesome.recommended.length; i++) {
+          if (this.props.awesome.recommended[i].include === true) {
+            services.push(this.props.awesome.recommended[i].name);
+
+          }
+        }
+        serviceString = services.join(', ');
+        break;
+      case 2:
+        bundle = 'enterprise';
+        for (let i = 0; i < this.props.awesome.enterprise.length; i++) {
+          if (this.props.awesome.enterprise[i].include === true) {
+            services.push(this.props.awesome.enterprise[i].name);
+          }
+        }
+        serviceString = services.join(', ');
+        break;
+      case 3:
+        bundle = 'custom';
+        for (let i = 0; i < this.props.awesome.custom.length; i++) {
+          if (this.props.awesome.custom[i].include === true) {
+            services.push(this.props.awesome.custom[i].name);
+          }
+        }
+        serviceString = services.join(', ');
+        break;
+      default:
+        serviceString = "no services";
+    }
+
+
 
     let data = {
       companyName: companyName,
@@ -161,7 +206,9 @@ class Detail extends Component {
       lastName: lastName,
       emailAddress: emailAddress,
       phoneNumber: phoneNumber,
-      paymentMethod: paymentMethod
+      paymentMethod: paymentMethod,
+      chosenBundle: bundle,
+      includedServices: serviceString
     };
     let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
 
@@ -170,7 +217,13 @@ class Detail extends Component {
       body: JSON.stringify(data)
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      .then(response => console.log('Success:', response));
+      .then((response) => {
+        console.log('Success:', response)
+
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
 
 
