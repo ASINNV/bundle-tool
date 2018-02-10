@@ -147,6 +147,13 @@ body {
 .inline {
   display: inline-block !important;
 }
+.block {
+  display: block !important;
+}
+.classic-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .horizontal-padding {
   padding: 0 10px !important;
 }
@@ -248,7 +255,7 @@ body {
   text-align: left;
 }
 .label-input-couplet select {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   background-color: #111;
   height: 37px;
 }
@@ -286,6 +293,10 @@ body {
 }
 .spaced-line-height {
   line-height: 1.5em;
+}
+.required-field {
+  border-left: 5px solid #d26868 !important;
+  /*color: #fff !important;*/
 }
 /* end of miscellaneous styles */
 /* end of miscellaneous styles */

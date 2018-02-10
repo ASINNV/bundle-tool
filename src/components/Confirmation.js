@@ -138,6 +138,9 @@ class DesktopConfirmation extends Component {
 
             </div>
           </div>
+          <div className="centered block dark-text vert-margin-20">
+            <p onClick={window.print} className="classic-link">PRINT THIS PAGE</p>
+          </div>
 
         </section>
       </div>

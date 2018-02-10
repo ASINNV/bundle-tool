@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // const fetch = require('node-fetch');
 // import fetch from "node-fetch";
 
@@ -145,8 +145,14 @@ class DesktopDetail extends Component {
 
 class Detail extends Component {
   submitInformation(e) {
-    // e.preventDefault();
+    e.preventDefault();
+
     let myForm = document.querySelector('form');
+    if (myForm.elements["companyName"].value !== "") {
+      console.log(myForm.elements["companyName"].value);
+    } else {
+      console.log("NO COMPANY NAME");
+    }
 
     let companyName = myForm.elements["companyName"].value;
     let firstName = myForm.elements["firstName"].value;
@@ -155,96 +161,86 @@ class Detail extends Component {
     let phoneNumber = myForm.elements["phoneNumber"].value;
     let paymentMethod = myForm.elements["paymentMethod"].value;
     let bundle = "didn't work";
-    let services = [], serviceString;
+    let services = [];
 
-    switch (this.props.awesome.chosen_bundle) {
-      case 0:
-        bundle = 'startup';
-        for (let i = 0; i < this.props.awesome.startup.length; i++) {
-          if (this.props.awesome.startup[i].include === true) {
-            services.push(this.props.awesome.startup[i].name);
-          }
-        }
-        break;
-      case 1:
-        bundle = 'recommended';
-        for (let i = 0; i < this.props.awesome.recommended.length; i++) {
-          if (this.props.awesome.recommended[i].include === true) {
-            services.push(this.props.awesome.recommended[i].name);
-
-          }
-        }
-        serviceString = services.join(', ');
-        break;
-      case 2:
-        bundle = 'enterprise';
-        for (let i = 0; i < this.props.awesome.enterprise.length; i++) {
-          if (this.props.awesome.enterprise[i].include === true) {
-            services.push(this.props.awesome.enterprise[i].name);
-          }
-        }
-        serviceString = services.join(', ');
-        break;
-      case 3:
-        bundle = 'custom';
-        for (let i = 0; i < this.props.awesome.custom.length; i++) {
-          if (this.props.awesome.custom[i].include === true) {
-            services.push(this.props.awesome.custom[i].name);
-          }
-        }
-        serviceString = services.join(', ');
-        break;
-      default:
-        serviceString = "no services";
-    }
-
-
-
+    let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
     let data = {
       companyName: companyName,
       firstName: firstName,
       lastName: lastName,
       emailAddress: emailAddress,
       phoneNumber: phoneNumber,
-      paymentMethod: paymentMethod,
-      chosenBundle: bundle,
-      includedServices: serviceString
+      paymentMethod: paymentMethod
     };
-    let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
-
-    fetch(url, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(data)
-    }).then(res => res.json())
-      .catch(error => console.error('Error:', error))
-      .then((response) => {
-        console.log('Success:', response)
-
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
 
 
+    switch (this.props.awesome.chosen_bundle) {
+      case 0:
+        bundle = 'startup';
+        services = this.props.awesome.startup;
+        break;
+      case 1:
+        bundle = 'recommended';
+        services = this.props.awesome.recommended;
+        break;
+      case 2:
+        bundle = 'enterprise';
+        services = this.props.awesome.enterprise;
+        break;
+      case 3:
+        bundle = 'custom';
+        services = this.props.awesome.custom;
+        break;
+      default:
+        bundle = 'recommended';
+        services = this.props.awesome.recommended;
+        console.log("The default case was executed: line 197 in Detail.js")
+    }
 
-    // history.push('/confirmation');
 
-    // appendData([ ["Void", "Canvas", "Website"], ["Paul", "Shan", "Human"] ]);
 
-    // let myForm = document.querySelector("form");
-    // let firstName = myForm.elements["firstName"].value;
-    // let lastName = myForm.elements["lastName"].value;
-    // let companyName = myForm.elements["companyName"].value;
-    // let emailAddress = myForm.elements["emailAddress"].value;
-    // let phoneNumber = myForm.elements["phoneNumber"].value;
-    // let paymentMethod = myForm.elements["paymentMethod"].value;
-    // let key = 'AIzaSyBaGao4jb7-lPFLspVj-Lvt3Q0-Gj1Abpo';
-    // let myUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1s4MibybITpXT9uVFpIF3okokjoveKRZil8dNF_m6MFE/values/A1:append?includeValuesInResponse=false&insertDataOption=INSERT_ROWS&responseDateTimeRenderOption=SERIAL_NUMBER&responseValueRenderOption=FORMATTED_VALUE&valueInputOption=USER_ENTERED&key=' + key;
-    // fetch(myUrl).then(() => {
-    //   console.log('success');
-    // }).catch(() => {
-    //   console.log('failure');
-    // })
+
+
+    data.chosenBundle = bundle; // set the chosen bundle after switch statement handles routing
+
+    services.forEach(function(service) {
+      if (service.include === true) {               // if service is included in purchase
+        data[service.name.split(' ')[0]] = 'yes';   // record it as a 'yes' in Google Sheets
+      } else {
+        data[service.name.split(' ')[0]] = 'no';    // else, record it as a 'no'
+      }
+    });
+
+    let count = 0;
+
+    for (let i = 0; i < myForm.elements.length; i++) {
+      if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
+        console.log('please fill in the payment method field.');
+        myForm.elements[i].className += " required-field";
+        count += 1;
+      } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
+          myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
+      }
+    }
+
+    if (count === 0) {
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+        .catch((error) => {
+          // console.error('Error:', error)
+        })
+        .then((response) => {
+          // console.log('Success:', response)
+          this.props.history.push('/confirmation');
+        })
+        .catch((error) => {
+          // console.error('Error:', error);
+        });
+    }
+
+
 
   }
   toggleCheckout() {
@@ -385,14 +381,15 @@ class Detail extends Component {
               <p className="user-input-label left">payment method</p>
               <div className="label-input-couplet">
                 {/*<label className="user-input-label" htmlFor="paymentMethod">Payment Method</label>*/}
-                <select className="user-input" name="paymentMethod" id="">
+                <select className="user-input" name="paymentMethod" id="" defaultValue="pick">
+                  <option value="pick">Select a method…</option>
                   <option value="credit">Credit Card</option>
                   <option value="check">Check</option>
                   <option value="cash">Cash</option>
                 </select>
               </div>
               <div className="label-input-couplet">
-                <Link to="/confirmation" type="submit" className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>confirm order</Link>
+                <p className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>confirm order</p>
               </div>
             </form>
 
