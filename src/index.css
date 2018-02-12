@@ -150,6 +150,9 @@ body {
 .block {
   display: block !important;
 }
+.relative {
+  position: relative !important;
+}
 .classic-link {
   text-decoration: underline;
   cursor: pointer;
@@ -366,12 +369,16 @@ body {
   background-color: #4a4a4a;
 }
 .line-item-checkmark {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   padding-left: 20px;
   padding-right: 10px;
 }
 .line-item-name { /* create space between check mark and deliverable */
   padding: 10px 20px 10px 10px;
   width: 100%;
+  margin-left: 40px;
 }
 .line-item-price {
   padding: 0 10px;
