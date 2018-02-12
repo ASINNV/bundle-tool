@@ -91,7 +91,6 @@ body {
 .large-title {
   /*color: #4a8e5f;*/
   font-size: 48px;
-  margin: 30px 0;
 }
 .medium-title {
   font-size: 36px;
@@ -104,6 +103,10 @@ body {
 .checkout-title {
   font-size: 48px;
   margin: 10px 0 20px 0;
+}
+.large-subtitle {
+  font-size: 24px;
+  color: #555555;
 }
 .red-text {
   color: #d26868 !important;
@@ -164,7 +167,8 @@ body {
   background-color: #222 !important;
 }
 .default-gray-element {
-  background-color: #333 !important;
+  background-color: #333;
+  background: linear-gradient(#333, #222) !important;
 }
 .flex {
   display: flex !important;
@@ -282,18 +286,21 @@ body {
   margin-top: 30px !important;
   margin-bottom: 30px !important;
 }
-.vert-margin-large {
-  margin-bottom: 60px !important;
-}
 
 .vert-margin-large {
-  margin-top: 60px !important;
-  margin-bottom: 60px !important;
+  margin-top: 0px !important;
+  margin-bottom: 40px !important;
 }
 .hor-margin-20 {
   margin-left: 20px !important;
   margin-right: 20px !important;
 }
+.margin-bottom-large {
+  margin-bottom: 40px;
+}
+/*.top-margin-20 {*/
+  /*margin-top: 20px;*/
+/*}*/
 .spaced-line-height {
   line-height: 1.5em;
 }
@@ -529,7 +536,8 @@ body {
 /*}*/
 @media (min-width: 1200px) {
   .default-gray-element {
-    background-color: #333 !important;
+    background-color: #333;
+    background: linear-gradient(#333, #222) !important;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -588,9 +596,6 @@ body {
 }
 @media (max-width: 600px) and (orientation: portrait) {
   /* misc styles */
-  .large-title {
-    margin: 20px 0 30px 0;
-  }
 
   /* choose your bundle page styles */
   /* choose your bundle page styles */
@@ -619,8 +624,8 @@ body {
     height: 260px;
   }
   .vert-margin-large {
-    margin-top: 20px !important;
-    margin-bottom: 20px !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
   }
   .form-card {
     width: 325px;

@@ -19,7 +19,7 @@ class MobileDetail extends Component {
     return (
       <div>
 
-        <div className="full centered large-title green-text">
+        <div className="full centered large-title green-text vert-margin-large">
           <p>bundle details</p>
         </div>
 
@@ -77,7 +77,7 @@ class DesktopDetail extends Component {
     return (
       <div className="inner-content-container">
 
-        <div className="full centered large-title green-text">
+        <div className="full centered large-title green-text vert-margin-large">
           <p>{this.props.bundleName} bundle</p>
         </div>
 
@@ -148,11 +148,11 @@ class Detail extends Component {
     e.preventDefault();
 
     let myForm = document.querySelector('form');
-    if (myForm.elements["companyName"].value !== "") {
-      console.log(myForm.elements["companyName"].value);
-    } else {
-      console.log("NO COMPANY NAME");
-    }
+    // if (myForm.elements["companyName"].value !== "") {
+    //   console.log(myForm.elements["companyName"].value);
+    // } else {
+    //   console.log("NO COMPANY NAME");
+    // }
 
     let companyName = myForm.elements["companyName"].value;
     let firstName = myForm.elements["firstName"].value;
@@ -194,7 +194,7 @@ class Detail extends Component {
       default:
         bundle = 'recommended';
         services = this.props.awesome.recommended;
-        console.log("The default case was executed: line 197 in Detail.js")
+        // console.log("The default case was executed: line 197 in Detail.js")
     }
 
 
@@ -215,7 +215,7 @@ class Detail extends Component {
 
     for (let i = 0; i < myForm.elements.length; i++) {
       if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
-        console.log('please fill in the payment method field.');
+        // console.log('please fill in the payment method field.');
         myForm.elements[i].className += " required-field";
         count += 1;
       } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
@@ -266,7 +266,7 @@ class Detail extends Component {
         checkout.className += " flex-centered";
 
       }
-      console.log(checkout.className);
+      // console.log(checkout.className);
       if (required.style.display === 'block') {
         required.style.display = 'none';
       }
@@ -303,8 +303,8 @@ class Detail extends Component {
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
     if (storedVar) {
       if (storedVar === 1) {
-        console.log(localStorage.getItem("chosen_bundle"));
-        console.log(storedVar);
+        // console.log(localStorage.getItem("chosen_bundle"));
+        // console.log(storedVar);
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
@@ -313,8 +313,8 @@ class Detail extends Component {
         price = getPrice(this.props.awesome, this.props.awesome.startup);
         bundleTotal = getBundlePrice(this.props.awesome.startup);
       } else if (storedVar === 2) {
-        console.log(localStorage.getItem("chosen_bundle"));
-        console.log(storedVar);
+        // console.log(localStorage.getItem("chosen_bundle"));
+        // console.log(storedVar);
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
@@ -323,8 +323,8 @@ class Detail extends Component {
         price = getPrice(this.props.awesome, this.props.awesome.recommended);
         bundleTotal = getBundlePrice(this.props.awesome.recommended);
       } else if (storedVar === 3) {
-        console.log(localStorage.getItem("chosen_bundle"));
-        console.log(storedVar);
+        // console.log(localStorage.getItem("chosen_bundle"));
+        // console.log(storedVar);
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
@@ -333,8 +333,8 @@ class Detail extends Component {
         price = getPrice(this.props.awesome, this.props.awesome.enterprise);
         bundleTotal = getBundlePrice(this.props.awesome.enterprise);
       } else if (storedVar === 4) {
-        console.log(localStorage.getItem("chosen_bundle"));
-        console.log(storedVar);
+        // console.log(localStorage.getItem("chosen_bundle"));
+        // console.log(storedVar);
         bundleName = "custom";
         list = this.props.awesome.custom;
         page = "custom";

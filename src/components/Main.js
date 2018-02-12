@@ -38,8 +38,9 @@ class Main extends Component {
 
     return (
       <section id="bod" className="app-body">
-        <div className="full centered large-title green-text">
-          <p>choose bundle</p>
+        <div className="full centered vert-margin-large">
+          <p className="large-title green-text">choose bundle</p>
+          <p className="large-subtitle gray-text">or create your own</p>
         </div>
 
         {relevantLayout}
