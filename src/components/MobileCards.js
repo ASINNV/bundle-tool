@@ -34,6 +34,7 @@ class MobileCards extends Component {
     findCard(whoa);
 
     this.props.setPackage(setting);
+    localStorage.setItem("chosen_bundle", setting + 1);
   }
 
   render() {

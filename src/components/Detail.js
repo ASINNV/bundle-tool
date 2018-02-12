@@ -300,40 +300,88 @@ class Detail extends Component {
 
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
-    if (this.props.awesome.chosen_bundle === 0) {
-      bundleName = "startup";
-      list = this.props.awesome.startup;
-      page = "detail";
-      description = getDescription(this.props.awesome, this.props.awesome.startup);
-      service = getServiceName(this.props.awesome, this.props.awesome.startup);
-      price = getPrice(this.props.awesome, this.props.awesome.startup);
-      bundleTotal = getBundlePrice(this.props.awesome.startup);
-    } else if (this.props.awesome.chosen_bundle === 1) {
-      bundleName = "recommended";
-      list = this.props.awesome.recommended;
-      page = "detail";
-      description = getDescription(this.props.awesome, this.props.awesome.recommended);
-      service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-      price = getPrice(this.props.awesome, this.props.awesome.recommended);
-      bundleTotal = getBundlePrice(this.props.awesome.recommended);
-    } else if (this.props.awesome.chosen_bundle === 2) {
-      bundleName = "enterprise";
-      list = this.props.awesome.enterprise;
-      page = "detail";
-      description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-      service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-      price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-      bundleTotal = getBundlePrice(this.props.awesome.enterprise);
-    } else if (this.props.awesome.chosen_bundle === 3) {
-      bundleName = "custom";
-      list = this.props.awesome.custom;
-      page = "custom";
-      description = getDescription(this.props.awesome, this.props.awesome.custom);
-      service = getServiceName(this.props.awesome, this.props.awesome.custom);
-      price = getPrice(this.props.awesome, this.props.awesome.custom);
-      bundleTotal = getBundlePrice(this.props.awesome.custom);
-      selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+    let storedVar = Number(localStorage.getItem("chosen_bundle"));
+    if (storedVar) {
+      if (storedVar === 1) {
+        console.log(localStorage.getItem("chosen_bundle"));
+        console.log(storedVar);
+        bundleName = "startup";
+        list = this.props.awesome.startup;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.startup);
+        service = getServiceName(this.props.awesome, this.props.awesome.startup);
+        price = getPrice(this.props.awesome, this.props.awesome.startup);
+        bundleTotal = getBundlePrice(this.props.awesome.startup);
+      } else if (storedVar === 2) {
+        console.log(localStorage.getItem("chosen_bundle"));
+        console.log(storedVar);
+        bundleName = "recommended";
+        list = this.props.awesome.recommended;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.recommended);
+        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
+        price = getPrice(this.props.awesome, this.props.awesome.recommended);
+        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+      } else if (storedVar === 3) {
+        console.log(localStorage.getItem("chosen_bundle"));
+        console.log(storedVar);
+        bundleName = "enterprise";
+        list = this.props.awesome.enterprise;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
+        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
+        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
+        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+      } else if (storedVar === 4) {
+        console.log(localStorage.getItem("chosen_bundle"));
+        console.log(storedVar);
+        bundleName = "custom";
+        list = this.props.awesome.custom;
+        page = "custom";
+        description = getDescription(this.props.awesome, this.props.awesome.custom);
+        service = getServiceName(this.props.awesome, this.props.awesome.custom);
+        price = getPrice(this.props.awesome, this.props.awesome.custom);
+        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+      }
+    } else {
+      if (this.props.awesome.chosen_bundle === 0) {
+        bundleName = "startup";
+        list = this.props.awesome.startup;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.startup);
+        service = getServiceName(this.props.awesome, this.props.awesome.startup);
+        price = getPrice(this.props.awesome, this.props.awesome.startup);
+        bundleTotal = getBundlePrice(this.props.awesome.startup);
+      } else if (this.props.awesome.chosen_bundle === 1) {
+        bundleName = "recommended";
+        list = this.props.awesome.recommended;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.recommended);
+        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
+        price = getPrice(this.props.awesome, this.props.awesome.recommended);
+        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+      } else if (this.props.awesome.chosen_bundle === 2) {
+        bundleName = "enterprise";
+        list = this.props.awesome.enterprise;
+        page = "detail";
+        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
+        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
+        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
+        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+      } else if (this.props.awesome.chosen_bundle === 3) {
+        bundleName = "custom";
+        list = this.props.awesome.custom;
+        page = "custom";
+        description = getDescription(this.props.awesome, this.props.awesome.custom);
+        service = getServiceName(this.props.awesome, this.props.awesome.custom);
+        price = getPrice(this.props.awesome, this.props.awesome.custom);
+        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+      }
     }
+
+
 
 
     const isMobile = window.innerWidth < 480;

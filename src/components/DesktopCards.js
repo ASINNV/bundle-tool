@@ -33,6 +33,7 @@ class DesktopCards extends Component {
     findCard(whoa);
 
     this.props.setPackage(setting);
+    localStorage.setItem("chosen_bundle", setting + 1);
   }
   render() {
     var startupBundlePrice = getBundlePrice(this.props.awesome.startup);

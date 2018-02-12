@@ -9,6 +9,7 @@ class Main extends Component {
   loadCustomPage(e) {
     let customPageNumber = 3;
     this.props.setPackage(customPageNumber);
+    localStorage.setItem('chosen_bundle', customPageNumber + 1);
   }
 
   render() {
