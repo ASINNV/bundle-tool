@@ -56,6 +56,8 @@ a {
 
 body {
   /*background-color: #333;*/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   cursor: default;
 }
 
@@ -111,6 +113,12 @@ body {
 .red-text {
   color: #d26868 !important;
 }
+.yellow-text {
+  color: #ffc107 !important;
+}
+.yellow-bg {
+  background-color: #ffc107 !important;
+}
 .green-text {
   color: #498d5e !important;
 }
@@ -122,6 +130,9 @@ body {
 }
 .smallish-text {
   font-size: 18px !important;
+}
+.white-text {
+  color: #ffffff !important;
 }
 .light-text {
   color: #999999 !important;
@@ -287,6 +298,9 @@ body {
   margin-bottom: 30px !important;
 }
 
+.bottom-margin-medium {
+  margin-bottom: 20px !important;
+}
 .vert-margin-large {
   margin-top: 0px !important;
   margin-bottom: 40px !important;
@@ -524,6 +538,15 @@ body {
   padding-top: 6px;
   letter-spacing: 6px;
   text-indent: 6px;
+}
+
+.background-image {
+  /*background-image: url('./beautiful_image.jpg');*/
+  border-radius: 8px;
+  /*background-position: 100px 200px;*/
+  background: url('./beautiful_image.jpg') -200px 210px;
+  padding: 10px;
+  margin: 0 10px;
 }
 
 /*.list-container::-webkit-scrollbar-track {*/

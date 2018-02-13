@@ -77,8 +77,11 @@ class DesktopDetail extends Component {
     return (
       <div className="inner-content-container">
 
-        <div className="full centered large-title green-text vert-margin-large">
-          <p>{this.props.bundleName} bundle</p>
+        <div className="centered bottom-margin-medium background-image">
+          <p className="small-text white-text">YOU'RE LOOKING AT THE</p>
+          <p className="large-title yellow-text">{this.props.bundleName}</p>
+          <p className="confirmation-niceties white-text">PACKAGE</p>
+
         </div>
 
         <p id="required-popup">please pick at least one item to checkout</p>
@@ -400,7 +403,7 @@ class Detail extends Component {
         <div id="checkout-window" className="overlay">
           <div className="form-card shadow">
             <span className="corner-x" onClick={this.toggleCheckout.bind(this)}>&#10005;</span>
-            <div className="full centered checkout-title green-text">
+            <div className="full centered checkout-title yellow-text">
               <p>client info</p>
             </div>
 
