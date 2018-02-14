@@ -594,7 +594,6 @@ body {
 @media (min-width: 1200px) {
   .default-gray-element {
     background-color: #333;
-    background: linear-gradient(#333, #222) !important;
     position: absolute;
     top: 0;
     bottom: 0;
