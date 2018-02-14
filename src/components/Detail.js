@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // const fetch = require('node-fetch');
 // import fetch from "node-fetch";
 
@@ -72,6 +72,57 @@ class MobileDetail extends Component {
 }
 
 class DesktopDetail extends Component {
+  showTooltip(e) {
+
+    let helper = e.target.tagName;
+    let target = e.target;
+
+    while (helper !== "DIV") {
+      helper = e.target.parentNode.tagName;
+      target = e.target.parentNode;
+    }
+    console.log(helper, target);
+
+    let header = document.getElementById(target.id);
+    let element = document.createElement('p');
+
+    element.id = "explainer";
+    if (target.id === "services-header") {
+      element.innerText = "All services & deliverables offered by And Moore Studios. Those with a green check mark are included in your bundle.";
+    } else if (target.id === "cart-header") {
+      element.innerText = "A list of all services & deliverables to be included at checkout. A total price can be found at the bottom of this window.";
+    } else if (target.id === "description-header") {
+      element.innerText = "Please click on a service in the “services & deliverables” window to see its description here.";
+    }
+
+    header.appendChild(element);
+
+    setTimeout(() => {
+      element.style.opacity = 1;
+    }, 150);
+
+  }
+  hideTooltip(e) {
+
+    let helper = e.target.tagName;
+    let target = e.target;
+
+    while (helper !== "DIV") {
+      helper = e.target.parentNode.tagName;
+      target = e.target.parentNode;
+    }
+    console.log(helper, target);
+
+    let header = document.getElementById(target.id);
+
+    if (document.getElementById('explainer')) {
+      let element = document.getElementById('explainer');
+      // element.style.opacity = 0;
+      header.removeChild(element);
+
+    }
+
+  }
   render() {
 
     return (
@@ -93,7 +144,7 @@ class DesktopDetail extends Component {
 
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
-              <div className="sub-header">
+              <div id="services-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                 <p>services & deliverables</p>
               </div>
 
@@ -108,7 +159,7 @@ class DesktopDetail extends Component {
               <div id="shopping-cart">
                 <div id="pack-one" className="card service-pack shadowed overflow-hidden">
 
-                  <div className="sub-header">
+                  <div id="cart-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>shopping cart</p>
                   </div>
 
@@ -123,7 +174,7 @@ class DesktopDetail extends Component {
               <div id="description-box" className="">
                 <div id="pack-one" className="card service-pack shadowed overflow-hidden inline">
 
-                  <div className="sub-header">
+                  <div id="description-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>description</p>
                   </div>
 
@@ -166,6 +217,17 @@ class Detail extends Component {
     let bundle = "didn't work";
     let services = [];
 
+
+    let screen = "data not found";
+    const isMobile = window.innerWidth < 480;
+
+    if (isMobile) {
+      screen = "mobile";
+    } else {
+      screen = "desktop";
+    }
+
+
     let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
     let data = {
       companyName: companyName,
@@ -173,7 +235,9 @@ class Detail extends Component {
       lastName: lastName,
       emailAddress: emailAddress,
       phoneNumber: phoneNumber,
-      paymentMethod: paymentMethod
+      paymentMethod: paymentMethod,
+      browserAndOS: navigator.userAgent,
+      screenSize: screen
     };
 
 
@@ -392,7 +456,9 @@ class Detail extends Component {
 
     return (
 
-      <section id="bod" className="app-body">
+      <section id="bod" className="app-body relative">
+
+        <Link to="/" className="back-button">&larr; back</Link>
 
         {relevantLayout}
 
@@ -403,7 +469,7 @@ class Detail extends Component {
         <div id="checkout-window" className="overlay">
           <div className="form-card shadow">
             <span className="corner-x" onClick={this.toggleCheckout.bind(this)}>&#10005;</span>
-            <div className="full centered checkout-title yellow-text">
+            <div className="full centered checkout-title green-text">
               <p>client info</p>
             </div>
 

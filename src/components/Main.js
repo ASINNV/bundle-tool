@@ -10,6 +10,7 @@ class Main extends Component {
     let customPageNumber = 3;
     this.props.setPackage(customPageNumber);
     localStorage.setItem('chosen_bundle', customPageNumber + 1);
+    console.log(navigator.userAgent, navigator.language, navigator.platform);
   }
 
   render() {

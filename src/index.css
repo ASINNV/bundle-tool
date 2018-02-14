@@ -5,6 +5,17 @@
 * {
   box-sizing: border-box;
 }
+*::-webkit-scrollbar {
+  width: 0.5em;
+}
+*::-webkit-scrollbar-track {
+  background-color: #555;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(50,50,50,1);
+  border-radius: 2px;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -179,7 +190,7 @@ body {
 }
 .default-gray-element {
   background-color: #333;
-  background: linear-gradient(#333, #222) !important;
+  background: radial-gradient(#333, #222) !important;
 }
 .flex {
   display: flex !important;
@@ -409,7 +420,7 @@ body {
 
 /* top bar of service package card styles */
 .sub-header, .sub-footer {
-  display: block;
+  position: relative;
   height: 30px;
   width: 100%;
   background-color: #555;
@@ -474,6 +485,17 @@ body {
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */
 
+.back-button {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  color: #999;
+  background-color: #444;
+  padding: 6px 12px;
+  z-index: 1;
+  border-radius: 8px;
+}
+
 #item-showcase {
   height: 662px;
 }
@@ -516,11 +538,6 @@ body {
   width: 800px;
 }
 
-
-.list-container::-webkit-scrollbar {
-  width: 0em;
-}
-
 .confirmation-list-container {
   border: 4px solid #555;
   border-radius: 8px;
@@ -547,8 +564,25 @@ body {
   background: url('./beautiful_image.jpg') -200px 210px;
   padding: 10px;
   margin: 0 10px;
+  box-shadow: 0 0 5px 0 #222 !important;
 }
 
+#explainer {
+  width: 100%;
+  top: 30px;
+  background: #999999;
+  color: #111111;
+  position: absolute;
+  z-index: 1;
+  padding: 20px;
+  font-size: 20px;
+  font-family: "Proxima Nova", "Helvetica Neue";
+  text-align: left;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
 /*.list-container::-webkit-scrollbar-track {*/
   /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
 /*}*/
@@ -663,6 +697,10 @@ body {
   /* end of choose your bundle page styles */
   /* end of choose your bundle page styles */
   /* end of choose your bundle page styles */
+
+  .back-button {
+    display: none;
+  }
 
 }
 

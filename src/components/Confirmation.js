@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getDescription, getServiceName, getPrice, getBundlePrice } from "./Functions";
 import ItemList from "./ItemList";
@@ -95,10 +96,12 @@ class DesktopConfirmation extends Component {
     return (
       <div>
 
-        <section id="bod" className="app-body">
+        <section id="bod" className="app-body relative">
+
+          <Link to="/" className="back-button">&larr; home</Link>
 
           <div className="flex-center-top">
-            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline triplewide auto-height vert-margin-20">
+            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline triplewide auto-height bottom-margin-medium">
 
 
 
