@@ -201,8 +201,8 @@ class Detail extends Component {
     //   this.props.setPackage(Number(localStorage.getItem("chosen_bundle")));
     // }
 
-
     let myForm = document.querySelector('form');
+
     // if (myForm.elements["companyName"].value !== "") {
     //   console.log(myForm.elements["companyName"].value);
     // } else {
@@ -217,6 +217,9 @@ class Detail extends Component {
     let paymentMethod = myForm.elements["paymentMethod"].value;
     let bundle = "didn't work";
     let services = [];
+
+    localStorage.setItem("payment_method", paymentMethod);
+    this.props.setPaymentMethod(paymentMethod);
 
 
     let screen = "data not found";
@@ -278,6 +281,7 @@ class Detail extends Component {
         data[service.name.split(' ')[0]] = 'no';    // else, record it as a 'no'
       }
     });
+
 
     let count = 0;
 
@@ -547,6 +551,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: "SET_INCLUSION",
         payload: myList
+      });
+    },
+    setPaymentMethod: (paymentMethod) => {
+      dispatch({
+        type: "SET_PAYMENT_METHOD",
+        payload: paymentMethod
       });
     }
   };

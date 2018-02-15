@@ -73,7 +73,7 @@ class ItemList extends Component {
       myList[e.target.id.slice(6)] = myObj;
     }
     this.props.setInclusion(myList);
-
+    localStorage.setItem("custom_list", JSON.stringify(myList));
 
     for (let i = 0; i < myList.length; i++) {
       if (myList[i].include === false) {

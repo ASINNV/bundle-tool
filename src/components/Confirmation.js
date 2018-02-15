@@ -82,17 +82,6 @@ class DesktopConfirmation extends Component {
 
 
 
-    let date = new Date();
-    let newdate = new Date(date);
-
-    newdate.setDate(newdate.getDate() + 14);
-
-    let dd = newdate.getDate();
-    let mm = newdate.getMonth() + 1;
-    let y = newdate.getFullYear();
-
-    let someFormattedDate = mm + '/' + dd + '/' + y;
-
     return (
       <div>
 
@@ -125,7 +114,7 @@ class DesktopConfirmation extends Component {
                 <div>
                   <p className="light-text centered small-title">TOTAL</p>
                   <h1 className="medium-title vert-margin-10 green-text">{this.props.bundleTotal}</h1>
-                  <p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p>
+                  {this.props.paymentMethodDirections}
                 </div>
 
               </div>
@@ -153,8 +142,41 @@ class DesktopConfirmation extends Component {
 
 class Confirmation extends Component {
   render() {
-    let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
+    let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
+    if (localStorage.getItem("payment_method")) {
+      paymentMethod = localStorage.getItem("payment_method");
+    } else {
+      paymentMethod = this.props.awesome.paymentMethod;
+    }
+
+    let paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
+
+    let date = new Date();
+    let newdate = new Date(date);
+
+    newdate.setDate(newdate.getDate() + 14);
+
+    let dd = newdate.getDate();
+    let mm = newdate.getMonth() + 1;
+    let y = newdate.getFullYear();
+
+    let someFormattedDate = mm + '/' + dd + '/' + y;
+
+
+    switch (paymentMethod) {
+      case "credit":
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">We will load a payment gateway here</p><p className="block">Payment Gateway</p></div>;
+        break;
+      case "cash":
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please come to our office to pay, the address is as follows:</p><p className="block">Arena Cove, Unit G</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
+        break;
+      case "check":
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please mail your check to the following address:</p><p className="block">P.O. BOX 444, Point Arena, CA 95468</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
+        break;
+      default:
+        console.log('hit the default on the confirmation page');
+    }
 
     if (storedVar) {
 
@@ -164,40 +186,46 @@ class Confirmation extends Component {
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.startup);
-        service = getServiceName(this.props.awesome, this.props.awesome.startup);
-        price = getPrice(this.props.awesome, this.props.awesome.startup);
-        bundleTotal = getBundlePrice(this.props.awesome.startup);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (storedVar === 2) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.recommended);
-        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-        price = getPrice(this.props.awesome, this.props.awesome.recommended);
-        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (storedVar === 3) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (storedVar === 4) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "custom";
-        list = this.props.awesome.custom;
+
+        if (localStorage.getItem("custom_list")) {
+          list = JSON.parse(localStorage.getItem("custom_list"));
+        } else {
+          list = this.props.awesome.custom;
+        }
+
         page = "custom";
-        description = getDescription(this.props.awesome, this.props.awesome.custom);
-        service = getServiceName(this.props.awesome, this.props.awesome.custom);
-        price = getPrice(this.props.awesome, this.props.awesome.custom);
-        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
         selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" />;
       }
     } else {
@@ -205,41 +233,46 @@ class Confirmation extends Component {
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.startup);
-        service = getServiceName(this.props.awesome, this.props.awesome.startup);
-        price = getPrice(this.props.awesome, this.props.awesome.startup);
-        bundleTotal = getBundlePrice(this.props.awesome.startup);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (this.props.awesome.chosen_bundle === 1) {
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.recommended);
-        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-        price = getPrice(this.props.awesome, this.props.awesome.recommended);
-        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (this.props.awesome.chosen_bundle === 2) {
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
       } else if (this.props.awesome.chosen_bundle === 3) {
         bundleName = "custom";
-        list = this.props.awesome.custom;
+
+        if (localStorage.getItem("custom_list")) {
+          list = JSON.parse(localStorage.getItem("custom_list"));
+        } else {
+          list = this.props.awesome.custom;
+        }
+
         page = "custom";
-        description = getDescription(this.props.awesome, this.props.awesome.custom);
-        service = getServiceName(this.props.awesome, this.props.awesome.custom);
-        price = getPrice(this.props.awesome, this.props.awesome.custom);
-        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
         selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" />;
       }
     }
 
-
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileConfirmation list_array={list} page={page} selectAllElement={selectAllElement} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopConfirmation list_array={list} page={page} selectAllElement={selectAllElement} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileConfirmation list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopConfirmation list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 

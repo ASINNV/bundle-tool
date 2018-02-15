@@ -183,6 +183,7 @@ const initialState = {
     price: 0
   },
   chosen_bundle: 1,
+  paymentMethod: 'none',
   active_item: -1
 };
 
@@ -210,7 +211,12 @@ const awesomeReducer = (state = initialState, action) => {
 
     case "SET_ITEM_SELECTION":
       break;
-
+    case "SET_PAYMENT_METHOD":
+      state = {
+        ...state,
+        paymentMethod: action.payload
+      };
+      break;
     case "SET_ACTIVE_ITEM":
       state = {
         ...state,
