@@ -81,7 +81,7 @@ class DesktopDetail extends Component {
       helper = e.target.parentNode.tagName;
       target = e.target.parentNode;
     }
-    console.log(helper, target);
+    // console.log(helper, target);
 
     let header = document.getElementById(target.id);
     let element = document.createElement('p');
@@ -111,7 +111,7 @@ class DesktopDetail extends Component {
       helper = e.target.parentNode.tagName;
       target = e.target.parentNode;
     }
-    console.log(helper, target);
+    // console.log(helper, target);
 
     let header = document.getElementById(target.id);
 
@@ -124,7 +124,6 @@ class DesktopDetail extends Component {
 
   }
   render() {
-
     return (
       <div className="inner-content-container">
 
@@ -134,8 +133,6 @@ class DesktopDetail extends Component {
           <p className="confirmation-niceties white-text">PACKAGE</p>
 
         </div>
-
-        <p id="required-popup">please pick at least one item to checkout</p>
 
         <section id="bod" className="app-body">
 
@@ -200,6 +197,10 @@ class DesktopDetail extends Component {
 class Detail extends Component {
   submitInformation(e) {
     e.preventDefault();
+    // if (localStorage.getItem("chosen_bundle")) {
+    //   this.props.setPackage(Number(localStorage.getItem("chosen_bundle")));
+    // }
+
 
     let myForm = document.querySelector('form');
     // if (myForm.elements["companyName"].value !== "") {
@@ -368,7 +369,9 @@ class Detail extends Component {
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
+
     if (storedVar) {
+
       if (storedVar === 1) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
@@ -466,6 +469,8 @@ class Detail extends Component {
           <div className="simple-button shadowed checkout" onClick={this.toggleCheckout.bind(this)}>checkout</div>
         </div>
 
+        <p id="required-popup">please pick at least one item to checkout</p>
+
         <div id="checkout-window" className="overlay">
           <div className="form-card shadow">
             <span className="corner-x" onClick={this.toggleCheckout.bind(this)}>&#10005;</span>
@@ -534,7 +539,7 @@ const mapDispatchToProps = (dispatch) => {
     setPackage: (thing) => {
       dispatch({
         type: "SET_PACKAGE_SELECTION",
-        payload: thing.target.innerText
+        payload: thing
       });
 
     },

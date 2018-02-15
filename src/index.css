@@ -546,7 +546,7 @@ body {
 #required-popup {
   display: none;
   position: absolute;
-  top: 120px;
+  bottom: -30px;
   left: 0;
   right: 0;
   color: #d26767;
@@ -645,9 +645,6 @@ body {
   .inner-content-container {
     position: relative;
   }
-  #required-popup {
-    top: 50px;
-  }
 
 }
 @media (max-width: 600px) and (orientation: portrait) {
@@ -688,6 +685,7 @@ body {
   }
   #required-popup {
     top: 110px;
+    bottom: auto;
   }
   /*.list-item-container {*/
     /*overflow-y: scroll; !* has to be scroll, not auto *!*/
