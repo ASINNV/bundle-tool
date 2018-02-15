@@ -407,6 +407,11 @@ body {
   padding-left: 20px;
   padding-right: 10px;
 }
+.half-opacity-hover:hover {
+  opacity: 0.5;
+  transition: opacity .1s ease-in-out;
+}
+
 .line-item-name { /* create space between check mark and deliverable */
   padding: 10px 20px 10px 10px;
   width: 100%;
@@ -427,6 +432,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 
 }
 .sub-header {

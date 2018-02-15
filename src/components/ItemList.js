@@ -117,9 +117,9 @@ class ItemList extends Component {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
         if (this.props.list_array[i].include === true) {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+          possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
         } else {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+          possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
         }
         if (this.props.functionalityDepth === 3) {
           newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
