@@ -15,6 +15,7 @@ class Main extends Component {
 
   render() {
 
+    localStorage.clear(); // remove all locally stored key/value pairs when visiting root directory
 
     // function createList(array) {
     //   var newArray = [];
