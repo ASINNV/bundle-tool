@@ -63,6 +63,7 @@ table {
 a {
   text-decoration: none;
   color: #000000;
+  cursor: default;
 }
 
 body {
@@ -490,6 +491,7 @@ body {
   font-size: 24px;
   border-radius: 8px;
 }
+
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */
