@@ -322,7 +322,7 @@ class Detail extends Component {
       }
     }
 
-    if (this.props.awesome.chosen_bundle === 3 && allFalse === true) {
+    if ((this.props.awesome.chosen_bundle === 3 && allFalse === true) || (Number(localStorage.getItem("chosen_bundle")) === 4 && allFalse === true)) {
       required.style.display = 'block';
     } else {
       let checkout = document.getElementById('checkout-window');
