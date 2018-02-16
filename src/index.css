@@ -713,8 +713,7 @@ body {
     width: 325px;
   }
   #required-popup {
-    top: 110px;
-    bottom: auto;
+    bottom: -25px;
   }
   /*.list-item-container {*/
     /*overflow-y: scroll; !* has to be scroll, not auto *!*/
