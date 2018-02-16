@@ -498,6 +498,10 @@ body {
   font-size: 24px;
   border-radius: 8px;
 }
+.hoverable:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2) !important;
+}
 
 /* end of choose your bundle page styles */
 /* end of choose your bundle page styles */
@@ -606,6 +610,10 @@ body {
 .blue-button {
   background-color: #009cde;
   color: #ffffff;
+  cursor: pointer;
+}
+.blue-button:hover {
+  box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.2);
 }
 .blue-text {
   color: #009cde !important;

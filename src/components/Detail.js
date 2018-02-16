@@ -232,7 +232,7 @@ class Detail extends Component {
     }
 
 
-    let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
+
     let data = {
       companyName: companyName,
       firstName: firstName,
@@ -282,6 +282,10 @@ class Detail extends Component {
       }
     });
 
+
+    localStorage.setItem("user_data", JSON.stringify(data));
+    // this.props.history.push('/review-order');
+
     let count = 0;
 
     for (let i = 0; i < myForm.elements.length; i++) {
@@ -295,21 +299,39 @@ class Detail extends Component {
     }
 
     if (count === 0) {
-      fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data)
-      }).then(res => res.json())
-        .catch((error) => {
-          // console.error('Error:', error)
-        })
-        .then((response) => {
-          // console.log('Success:', response)
-          this.props.history.push('/review-order');
-        })
-        .catch((error) => {
-          // console.error('Error:', error);
-        });
+      this.props.setUserData(data);
+      this.props.history.push('/review-order');
+
     }
+
+    // let count = 0;
+    //
+    // for (let i = 0; i < myForm.elements.length; i++) {
+    //   if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
+    //     // console.log('please fill in the payment method field.');
+    //     myForm.elements[i].className += " required-field";
+    //     count += 1;
+    //   } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
+    //       myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
+    //   }
+    // }
+    //
+    // if (count === 0) {
+    //   fetch(url, {
+    //     method: 'POST', // or 'PUT'
+    //     body: JSON.stringify(data)
+    //   }).then(res => res.json())
+    //     .catch((error) => {
+    //       // console.error('Error:', error)
+    //     })
+    //     .then((response) => {
+    //       // console.log('Success:', response)
+    //       this.props.history.push('/review-order');
+    //     })
+    //     .catch((error) => {
+    //       // console.error('Error:', error);
+    //     });
+    // }
 
 
 
@@ -557,6 +579,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: "SET_PAYMENT_METHOD",
         payload: paymentMethod
+      });
+    },
+    setUserData: (userDataObj) => {
+      dispatch({
+        type: "SET_USER_DATA",
+        payload: userDataObj
       });
     }
   };

@@ -35,7 +35,35 @@ class MyCartComponent extends Component {
 
         // The payment is complete!
         // You can now show a confirmation message to the customer
-        this.props.pageHistory.push('/confirmation');
+
+        let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
+        let data;
+
+        if (localStorage.getItem("user_data")) {
+          data = JSON.parse(localStorage.getItem("user_data"));
+        } else {
+          data = this.props.awesome.user_data;
+        }
+
+
+
+        fetch(url, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(data)
+        }).then(res => res.json())
+          .catch((error) => {
+            // console.error('Error:', error)
+          })
+          .then((response) => {
+            // console.log('Success:', response)
+            this.props.pageHistory.push('/confirmation');
+          })
+          .catch((error) => {
+            // console.error('Error:', error);
+          });
+
+
+
       });
     };
     // let shape = this.props.isItMobile ? 'rect' : 'pill';
@@ -182,24 +210,37 @@ class DesktopReviewOrder extends Component {
 
 class ReviewOrder extends Component {
   completeOrder(e) {
-    this.props.history.push('/confirmation');
+
+    let url = 'https://hooks.zapier.com/hooks/catch/2779749/z5cyhi/';
+    let data;
+
+    if (localStorage.getItem("user_data")) {
+      data = JSON.parse(localStorage.getItem("user_data"));
+      // console.log("user_data from localStorage ", JSON.parse(data));
+    } else {
+      data = this.props.awesome.user_data;
+      // console.log("user_data from redux: ", data);
+    }
+
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+      .catch((error) => {
+        // console.error('Error:', error)
+      })
+      .then((response) => {
+        // console.log('Success:', response)
+        this.props.history.push('/confirmation');
+      })
+      .catch((error) => {
+        // console.error('Error:', error);
+      });
+
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod, paymentButton;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
-    if (localStorage.getItem("payment_method")) {
-      paymentMethod = localStorage.getItem("payment_method");
-    } else {
-      paymentMethod = this.props.awesome.paymentMethod;
-    }
-
-    if (paymentMethod === "credit") {
-      paymentButton = <MyCartComponent total={this.props.bundleTotal} pageHistory={this.props.history}/>;
-    } else if (paymentMethod === "cash" || paymentMethod === "check") {
-      paymentButton = <div onClick={this.completeOrder.bind(this)} className="simple-button blue-button top-margin-30"><p>place your order</p></div>;
-    } else {
-      paymentButton = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
-    }
 
     if (storedVar) {
 
@@ -284,6 +325,20 @@ class ReviewOrder extends Component {
         bundleTotal = getBundlePrice(list);
         selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" />;
       }
+    }
+
+    if (localStorage.getItem("payment_method")) {
+      paymentMethod = localStorage.getItem("payment_method");
+    } else {
+      paymentMethod = this.props.awesome.paymentMethod;
+    }
+
+    if (paymentMethod === "credit") {
+      paymentButton = <MyCartComponent total={bundleTotal} pageHistory={this.props.history}/>;
+    } else if (paymentMethod === "cash" || paymentMethod === "check") {
+      paymentButton = <div onClick={this.completeOrder.bind(this)} className="simple-button blue-button top-margin-30"><p>place your order</p></div>;
+    } else {
+      paymentButton = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
     }
 
     const isMobile = window.innerWidth < 480;

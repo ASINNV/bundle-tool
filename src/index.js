@@ -184,7 +184,10 @@ const initialState = {
   },
   chosen_bundle: 1,
   paymentMethod: 'none',
-  active_item: -1
+  active_item: -1,
+  user_data: {
+    firstName: "Default"
+  }
 };
 
 const awesomeReducer = (state = initialState, action) => {
@@ -215,6 +218,12 @@ const awesomeReducer = (state = initialState, action) => {
       state = {
         ...state,
         paymentMethod: action.payload
+      };
+      break;
+    case "SET_USER_DATA":
+      state = {
+        ...state,
+        user_data: action.payload
       };
       break;
     case "SET_ACTIVE_ITEM":
