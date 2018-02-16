@@ -12,6 +12,7 @@ import './App.css';
 import Main from './components/Main';
 import Detail from './components/Detail';
 import Confirmation from './components/Confirmation';
+import ReviewOrder from './components/ReviewOrder';
 
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
             <Route exact path="/recommended" component={Detail}/>
             <Route exact path="/enterprise" component={Detail}/>
             <Route exact path="/custom" component={Detail}/>
+            <Route exact path="/review-order" component={ReviewOrder}/>
             <Route exact path="/confirmation" component={Confirmation}/>
 
 

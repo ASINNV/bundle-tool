@@ -1,12 +1,86 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
+import paypal from "paypal-checkout";
 
 import { getDescription, getServiceName, getPrice, getBundlePrice } from "./Functions";
 import ItemList from "./ItemList";
 
-class MobileConfirmation extends Component {
+const ReactButton = paypal.Button.driver('react', {React, ReactDOM});
+
+class MyCartComponent extends Component {
   render() {
+    let totalString = String(this.props.total);
+
+    let client = {
+      sandbox:    'AXsTAGYfcX30a0HM5vpU2zGBjLA_IT2-PIr0tQHR0-cR6MFOpXuy-vrhEqxysOsdDafIaVRgeDx7L7Ir',
+      production: 'AZ1NoBsqKYEyoE9ZKUBc3-DUGOe0BUDc0_DBmoSTAiqktxTYsz-vh24692U901fFC1alEHwMZ2PiZ50l'
+    };
+
+    let payment = (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            {
+              amount: { total: totalString, currency: 'USD' }
+            }
+          ]
+        }
+      });
+    };
+
+    let onAuthorize = (data, actions) => {
+      return actions.payment.execute().then((payment) => {
+
+        // The payment is complete!
+        // You can now show a confirmation message to the customer
+        this.props.pushableHistory.push('/confirmation');
+      });
+    };
+    // let shape = this.props.isItMobile ? 'rect' : 'pill';
+    let shape, size;
+    if (this.props.isItMobile) {
+      size = 'medium';
+    } else {
+      size = 'large';
+    }
+    return (
+      <div className='shoppingCart vert-margin-20'>
+
+        <ReactButton
+          env={'sandbox'}
+          style={{
+            size: size,
+            color: 'blue',
+            shape: 'pill',
+            label: 'checkout',
+            tagline: false
+          }}
+          client={client}
+          payment={payment}
+          commit={true}
+          onAuthorize={onAuthorize} />
+
+      </div>
+    );
+  }
+}
+
+class MobileReviewOrder extends Component {
+  render() {
+
+
+    let date = new Date();
+    let newdate = new Date(date);
+
+    newdate.setDate(newdate.getDate() + 14);
+
+    let dd = newdate.getDate();
+    let mm = newdate.getMonth() + 1;
+    let y = newdate.getFullYear();
+
+    let someFormattedDate = mm + '/' + dd + '/' + y;
 
     return (
       <div>
@@ -23,12 +97,12 @@ class MobileConfirmation extends Component {
 
 
               <div className="sub-header light-text">
-                <p>order confirmation</p>
+                <p>review your order</p>
               </div>
 
               <div className="vert-margin-large hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU BOUGHT THE</p>
+                  <p className="small-text dark-text">YOU'RE ABOUT TO BUY</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -45,12 +119,12 @@ class MobileConfirmation extends Component {
                   {this.props.paymentMethodDirections}
                 </div>
 
+                {this.props.paymentMethod === "credit" ? <MyCartComponent total={this.props.bundleTotal} isItMobile={this.props.isMobile} pushableHistory={this.props.pageHistory}/> : null}
+
               </div>
 
 
-              <div className="sub-footer">
-                <p className="sub-footer-price light-text">THANK YOU!</p>
-              </div>
+              <div className="sub-footer"></div>
 
             </div>
 
@@ -63,7 +137,7 @@ class MobileConfirmation extends Component {
   }
 }
 
-class DesktopConfirmation extends Component {
+class DesktopReviewOrder extends Component {
   render() {
     return (
       <div>
@@ -80,12 +154,12 @@ class DesktopConfirmation extends Component {
 
 
               <div className="sub-header light-text">
-                <p>order confirmation</p>
+                <p>review your order</p>
               </div>
 
               <div className="vert-margin-30 hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU BOUGHT THE</p>
+                  <p className="small-text dark-text">YOU'RE ABOUT TO BUY</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -102,6 +176,8 @@ class DesktopConfirmation extends Component {
                   {this.props.paymentMethodDirections}
                 </div>
 
+                {this.props.paymentMethod === "credit" ? <MyCartComponent total={this.props.bundleTotal} pushableHistory={this.props.pageHistory}/> : null}
+
               </div>
 
 
@@ -109,14 +185,9 @@ class DesktopConfirmation extends Component {
 
 
 
-              <div className="sub-footer">
-                <p className="sub-footer-price light-text">THANK YOU!</p>
-              </div>
+              <div className="sub-footer"></div>
 
             </div>
-          </div>
-          <div className="centered block dark-text vert-margin-20">
-            <p onClick={window.print} className="classic-link">PRINT THIS PAGE</p>
           </div>
 
         </section>
@@ -125,7 +196,7 @@ class DesktopConfirmation extends Component {
   }
 }
 
-class Confirmation extends Component {
+class ReviewOrder extends Component {
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
@@ -151,7 +222,7 @@ class Confirmation extends Component {
 
     switch (paymentMethod) {
       case "credit":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod} card</p><p className="block">Please click the button below to finish your order</p></div>;
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="block">Please click the button below to checkout</p></div>;
         break;
       case "cash":
         paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please come to our office to pay, the address is as follows:</p><p className="block">Arena Cove, Unit G</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
@@ -258,7 +329,7 @@ class Confirmation extends Component {
     }
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileConfirmation isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopConfirmation isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileReviewOrder pageHistory={this.props.history} isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder pageHistory={this.props.history} isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 
@@ -282,4 +353,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Confirmation);
+export default connect(mapStateToProps)(ReviewOrder);

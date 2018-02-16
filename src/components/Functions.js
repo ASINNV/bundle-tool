@@ -61,7 +61,7 @@ export const getBundlePrice = (list) => {
         total += list[i].price;
       }
     }
-    return <p className="sub-footer-price">${total}</p>;
+    return total;
   }
 
 

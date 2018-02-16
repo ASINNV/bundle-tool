@@ -38,7 +38,7 @@ class MobileDetail extends Component {
               <ItemList list_array={this.props.list_array} functionalityDepth={2} page={this.props.page} />
 
               <div className="sub-footer">
-                {this.props.bundleTotal}
+                <p className="sub-footer-price">${this.props.bundleTotal}</p>
               </div>
 
             </div>
@@ -163,7 +163,7 @@ class DesktopDetail extends Component {
                   <ItemList list_array={this.props.list_array} functionalityDepth={0} page="other" />
 
                   <div className="sub-footer">
-                    {this.props.bundleTotal}
+                    <p className="sub-footer-price">${this.props.bundleTotal}</p>
                   </div>
 
                 </div>
@@ -282,35 +282,35 @@ class Detail extends Component {
       }
     });
 
-
-    let count = 0;
-
-    for (let i = 0; i < myForm.elements.length; i++) {
-      if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
-        // console.log('please fill in the payment method field.');
-        myForm.elements[i].className += " required-field";
-        count += 1;
-      } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
-          myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
-      }
-    }
-
-    if (count === 0) {
-      fetch(url, {
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(data)
-      }).then(res => res.json())
-        .catch((error) => {
-          // console.error('Error:', error)
-        })
-        .then((response) => {
-          // console.log('Success:', response)
-          this.props.history.push('/confirmation');
-        })
-        .catch((error) => {
-          // console.error('Error:', error);
-        });
-    }
+    this.props.history.push('/review-order');
+    // let count = 0;
+    //
+    // for (let i = 0; i < myForm.elements.length; i++) {
+    //   if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
+    //     // console.log('please fill in the payment method field.');
+    //     myForm.elements[i].className += " required-field";
+    //     count += 1;
+    //   } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
+    //       myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
+    //   }
+    // }
+    //
+    // if (count === 0) {
+    //   fetch(url, {
+    //     method: 'POST', // or 'PUT'
+    //     body: JSON.stringify(data)
+    //   }).then(res => res.json())
+    //     .catch((error) => {
+    //       // console.error('Error:', error)
+    //     })
+    //     .then((response) => {
+    //       // console.log('Success:', response)
+    //       this.props.history.push('/review-order');
+    //     })
+    //     .catch((error) => {
+    //       // console.error('Error:', error);
+    //     });
+    // }
 
 
 

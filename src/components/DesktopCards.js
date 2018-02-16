@@ -56,7 +56,7 @@ class DesktopCards extends Component {
           {/*</div>*/}
 
           <div className="sub-footer">
-            {startupBundlePrice}
+            <p className="sub-footer-price">${startupBundlePrice}</p>
           </div>
 
         </Link>
@@ -69,7 +69,7 @@ class DesktopCards extends Component {
           <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="other" featured={true} />
 
           <div className="sub-footer green-bg">
-            {recommendedBundlePrice}
+            <p className="sub-footer-price">${recommendedBundlePrice}</p>
           </div>
 
         </Link>
@@ -82,7 +82,7 @@ class DesktopCards extends Component {
           <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} page="other" />
 
           <div className="sub-footer">
-            {enterpriseBundlePrice}
+            <p className="sub-footer-price">${enterpriseBundlePrice}</p>
           </div>
 
         </Link>
