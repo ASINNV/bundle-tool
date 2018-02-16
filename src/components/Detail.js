@@ -215,6 +215,7 @@ class Detail extends Component {
     let emailAddress = myForm.elements["emailAddress"].value;
     let phoneNumber = myForm.elements["phoneNumber"].value;
     let paymentMethod = myForm.elements["paymentMethod"].value;
+    let bundlePriceData = 0;
     let bundle = "didn't work";
     let services = [];
 
@@ -268,8 +269,11 @@ class Detail extends Component {
         // console.log("The default case was executed: line 197 in Detail.js")
     }
 
+    bundlePriceData = getBundlePrice(this.props.awesome[bundle]);
+    data.bundlePriceData = bundlePriceData;
 
 
+    // localStorage.setItem("bundle_total", JSON.stringify();
 
 
     data.chosenBundle = bundle; // set the chosen bundle after switch statement handles routing
@@ -478,8 +482,6 @@ class Detail extends Component {
     }
 
 
-
-
     const isMobile = window.innerWidth < 480;
     const relevantLayout = isMobile ? <MobileDetail list_array={list} page={page} selectAllElement={selectAllElement} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopDetail list_array={list} page={page} selectAllElement={selectAllElement} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
@@ -585,6 +587,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: "SET_USER_DATA",
         payload: userDataObj
+      });
+    },
+    setBundleTotal: (myNumber) => {
+      dispatch({
+        type: "SET_BUNDLE_TOTAL",
+        payload: myNumber
       });
     }
   };

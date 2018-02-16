@@ -700,6 +700,10 @@ body {
 
   }
 
+  .featured-container {
+    height: 260px !important;
+  }
+
   .or {
     font-size: 16px;
     margin: 10px 0;
@@ -733,6 +737,10 @@ body {
 
   .back-button {
     display: none;
+  }
+  .half-opacity-hover:hover {
+    opacity: 1;
+    /*transition: opacity .1s ease-in-out;*/
   }
 
 }

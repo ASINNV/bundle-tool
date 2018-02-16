@@ -67,19 +67,14 @@ class MyCartComponent extends Component {
       });
     };
     // let shape = this.props.isItMobile ? 'rect' : 'pill';
-    let size;
-    if (this.props.isItMobile) {
-      size = 'medium';
-    } else {
-      size = 'large';
-    }
+
     return (
       <div className='shoppingCart vert-margin-20'>
 
         <ReactButton
           env={'sandbox'}
           style={{
-            size: size,
+            size: this.props.size,
             color: 'blue',
             shape: 'pill',
             label: 'checkout',
@@ -333,15 +328,24 @@ class ReviewOrder extends Component {
       paymentMethod = this.props.awesome.paymentMethod;
     }
 
+    const isMobile = window.innerWidth < 480;
+
+    let size;
+    if (isMobile) {
+      size = 'medium';
+    } else {
+      size = 'large';
+    }
+
     if (paymentMethod === "credit") {
-      paymentButton = <MyCartComponent total={bundleTotal} pageHistory={this.props.history}/>;
+      paymentButton = <MyCartComponent total={bundleTotal} size={size} pageHistory={this.props.history}/>;
     } else if (paymentMethod === "cash" || paymentMethod === "check") {
       paymentButton = <div onClick={this.completeOrder.bind(this)} className="simple-button blue-button top-margin-30"><p>place your order</p></div>;
     } else {
       paymentButton = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
     }
 
-    const isMobile = window.innerWidth < 480;
+
     const relevantLayout = isMobile ? <MobileReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
