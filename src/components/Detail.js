@@ -282,7 +282,6 @@ class Detail extends Component {
       }
     });
 
-    this.props.history.push('/review-order');
     let count = 0;
 
     for (let i = 0; i < myForm.elements.length; i++) {
