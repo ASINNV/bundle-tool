@@ -283,34 +283,34 @@ class Detail extends Component {
     });
 
     this.props.history.push('/review-order');
-    // let count = 0;
-    //
-    // for (let i = 0; i < myForm.elements.length; i++) {
-    //   if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
-    //     // console.log('please fill in the payment method field.');
-    //     myForm.elements[i].className += " required-field";
-    //     count += 1;
-    //   } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
-    //       myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
-    //   }
-    // }
-    //
-    // if (count === 0) {
-    //   fetch(url, {
-    //     method: 'POST', // or 'PUT'
-    //     body: JSON.stringify(data)
-    //   }).then(res => res.json())
-    //     .catch((error) => {
-    //       // console.error('Error:', error)
-    //     })
-    //     .then((response) => {
-    //       // console.log('Success:', response)
-    //       this.props.history.push('/review-order');
-    //     })
-    //     .catch((error) => {
-    //       // console.error('Error:', error);
-    //     });
-    // }
+    let count = 0;
+
+    for (let i = 0; i < myForm.elements.length; i++) {
+      if (myForm.elements[i].value === "pick" || myForm.elements[i].value === "") {
+        // console.log('please fill in the payment method field.');
+        myForm.elements[i].className += " required-field";
+        count += 1;
+      } else if (myForm.elements[i].className.indexOf(' required-field') !== -1) {
+          myForm.elements[i].className = myForm.elements[i].className.slice(0, myForm.elements[i].className.indexOf(' required-field'));
+      }
+    }
+
+    if (count === 0) {
+      fetch(url, {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+        .catch((error) => {
+          // console.error('Error:', error)
+        })
+        .then((response) => {
+          // console.log('Success:', response)
+          this.props.history.push('/review-order');
+        })
+        .catch((error) => {
+          // console.error('Error:', error);
+        });
+    }
 
 
 
@@ -360,6 +360,7 @@ class Detail extends Component {
         newCustom[i].include = true;
       }
       this.props.setInclusion(newCustom);
+      localStorage.setItem("custom_list", JSON.stringify(newCustom));
       document.getElementById('select-all-button').checked = true;
     } else {
       for (let i = 0; i < newCustom.length; i++) {
@@ -470,7 +471,7 @@ class Detail extends Component {
         {relevantLayout}
 
         <div className="button-container">
-          <div className="simple-button shadowed checkout" onClick={this.toggleCheckout.bind(this)}>checkout</div>
+          <div className="simple-button shadowed checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
         </div>
 
         <p id="required-popup">please pick at least one item to checkout</p>
@@ -515,7 +516,7 @@ class Detail extends Component {
                 </select>
               </div>
               <div className="label-input-couplet">
-                <p className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>confirm order</p>
+                <p className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>review your order</p>
               </div>
             </form>
 

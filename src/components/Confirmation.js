@@ -28,7 +28,7 @@ class MobileConfirmation extends Component {
 
               <div className="vert-margin-large hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU BOUGHT THE</p>
+                  <p className="small-text dark-text">YOU PURCHASED</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -85,7 +85,7 @@ class DesktopConfirmation extends Component {
 
               <div className="vert-margin-30 hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU BOUGHT THE</p>
+                  <p className="small-text dark-text">YOU PURCHASED</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -151,13 +151,13 @@ class Confirmation extends Component {
 
     switch (paymentMethod) {
       case "credit":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod} card</p><p className="block">Please click the button below to finish your order</p></div>;
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">Your order is now complete.</p></div>;
         break;
       case "cash":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please come to our office to pay, the address is as follows:</p><p className="block">Arena Cove, Unit G</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height vert-margin-20"><p className="light-text smallish-text spaced-line-height">Deliver payment to:</p><p className="block blue-text">And Moore Studios<br/>790 Port Road, Unit G<br/>Point Arena, CA 95468</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
         break;
       case "check":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please mail your check to the following address:</p><p className="block">P.O. BOX 444, Point Arena, CA 95468</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
+        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height vert-margin-20"><p className="light-text smallish-text spaced-line-height">Mail check to:</p><p className="block blue-text">And Moore Studios<br/>P.O. BOX 445<br/>Point Arena, CA 95468</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
         break;
       default:
         console.log('hit the default on the confirmation page');
@@ -166,8 +166,6 @@ class Confirmation extends Component {
     if (storedVar) {
 
       if (storedVar === 1) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
@@ -176,8 +174,6 @@ class Confirmation extends Component {
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
       } else if (storedVar === 2) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
@@ -185,10 +181,7 @@ class Confirmation extends Component {
         service = getServiceName(this.props.awesome, list);
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
-        console.log(bundleTotal);
       } else if (storedVar === 3) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
@@ -197,8 +190,6 @@ class Confirmation extends Component {
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
       } else if (storedVar === 4) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "custom";
 
         if (localStorage.getItem("custom_list")) {

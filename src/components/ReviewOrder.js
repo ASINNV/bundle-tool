@@ -35,11 +35,11 @@ class MyCartComponent extends Component {
 
         // The payment is complete!
         // You can now show a confirmation message to the customer
-        this.props.pushableHistory.push('/confirmation');
+        this.props.pageHistory.push('/confirmation');
       });
     };
     // let shape = this.props.isItMobile ? 'rect' : 'pill';
-    let shape, size;
+    let size;
     if (this.props.isItMobile) {
       size = 'medium';
     } else {
@@ -70,18 +70,6 @@ class MyCartComponent extends Component {
 class MobileReviewOrder extends Component {
   render() {
 
-
-    let date = new Date();
-    let newdate = new Date(date);
-
-    newdate.setDate(newdate.getDate() + 14);
-
-    let dd = newdate.getDate();
-    let mm = newdate.getMonth() + 1;
-    let y = newdate.getFullYear();
-
-    let someFormattedDate = mm + '/' + dd + '/' + y;
-
     return (
       <div>
 
@@ -102,7 +90,7 @@ class MobileReviewOrder extends Component {
 
               <div className="vert-margin-large hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU'RE ABOUT TO BUY</p>
+                  <p className="small-text dark-text">ORDER SUMMARY</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -116,10 +104,8 @@ class MobileReviewOrder extends Component {
                   <h1 className="medium-title vert-margin-10 green-text">
                     <p className="sub-footer-price">${this.props.bundleTotal}</p>
                   </h1>
-                  {this.props.paymentMethodDirections}
+                  {this.props.paymentButton}
                 </div>
-
-                {this.props.paymentMethod === "credit" ? <MyCartComponent total={this.props.bundleTotal} isItMobile={this.props.isMobile} pushableHistory={this.props.pageHistory}/> : null}
 
               </div>
 
@@ -159,7 +145,7 @@ class DesktopReviewOrder extends Component {
 
               <div className="vert-margin-30 hor-margin-20">
                 <div className="full centered light-text medium-title vert-margin-20">
-                  <p className="small-text dark-text">YOU'RE ABOUT TO BUY</p>
+                  <p className="small-text dark-text">ORDER SUMMARY</p>
                   <p className="green-text">{this.props.bundleName}</p>
                   <p className="small-text confirmation-niceties">PACKAGE</p>
                 </div>
@@ -173,10 +159,8 @@ class DesktopReviewOrder extends Component {
                   <h1 className="medium-title vert-margin-10 green-text">
                     <p className="sub-footer-price">${this.props.bundleTotal}</p>
                   </h1>
-                  {this.props.paymentMethodDirections}
+                  {this.props.paymentButton}
                 </div>
-
-                {this.props.paymentMethod === "credit" ? <MyCartComponent total={this.props.bundleTotal} pushableHistory={this.props.pageHistory}/> : null}
 
               </div>
 
@@ -197,8 +181,11 @@ class DesktopReviewOrder extends Component {
 }
 
 class ReviewOrder extends Component {
+  completeOrder(e) {
+    this.props.history.push('/confirmation');
+  }
   render() {
-    let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod;
+    let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod, paymentButton;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
     if (localStorage.getItem("payment_method")) {
       paymentMethod = localStorage.getItem("payment_method");
@@ -206,39 +193,17 @@ class ReviewOrder extends Component {
       paymentMethod = this.props.awesome.paymentMethod;
     }
 
-    let paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
-
-    let date = new Date();
-    let newdate = new Date(date);
-
-    newdate.setDate(newdate.getDate() + 14);
-
-    let dd = newdate.getDate();
-    let mm = newdate.getMonth() + 1;
-    let y = newdate.getFullYear();
-
-    let someFormattedDate = mm + '/' + dd + '/' + y;
-
-
-    switch (paymentMethod) {
-      case "credit":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="block">Please click the button below to checkout</p></div>;
-        break;
-      case "cash":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please come to our office to pay, the address is as follows:</p><p className="block">Arena Cove, Unit G</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
-        break;
-      case "check":
-        paymentMethodDirections = <div className="light-text smallish-text spaced-line-height"><p className="light-text smallish-text spaced-line-height">You chose to pay by {paymentMethod}</p><p className="block">Please mail your check to the following address:</p><p className="block">P.O. BOX 444, Point Arena, CA 95468</p><p className="light-text smallish-text spaced-line-height">Please submit payment by {someFormattedDate}</p></div>;
-        break;
-      default:
-        console.log('hit the default on the confirmation page');
+    if (paymentMethod === "credit") {
+      paymentButton = <MyCartComponent total={this.props.bundleTotal} pageHistory={this.props.history}/>;
+    } else if (paymentMethod === "cash" || paymentMethod === "check") {
+      paymentButton = <div onClick={this.completeOrder.bind(this)} className="simple-button blue-button top-margin-30"><p>place your order</p></div>;
+    } else {
+      paymentButton = <div className="light-text smallish-text spaced-line-height"><p className="block">You didn't select a payment method</p><p className="block">Go back, choose again, and pick a payment method next time.</p></div>;
     }
 
     if (storedVar) {
 
       if (storedVar === 1) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
@@ -247,8 +212,6 @@ class ReviewOrder extends Component {
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
       } else if (storedVar === 2) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
@@ -256,10 +219,7 @@ class ReviewOrder extends Component {
         service = getServiceName(this.props.awesome, list);
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
-        console.log(bundleTotal);
       } else if (storedVar === 3) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
@@ -268,8 +228,6 @@ class ReviewOrder extends Component {
         price = getPrice(this.props.awesome, list);
         bundleTotal = getBundlePrice(list);
       } else if (storedVar === 4) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
         bundleName = "custom";
 
         if (localStorage.getItem("custom_list")) {
@@ -329,7 +287,7 @@ class ReviewOrder extends Component {
     }
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileReviewOrder pageHistory={this.props.history} isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder pageHistory={this.props.history} isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 
