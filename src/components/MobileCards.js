@@ -50,7 +50,7 @@ class MobileCards extends Component {
               <p>startup</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.startup} functionalityDepth={1} page="other"/>
+            <ItemList list_array={this.props.awesome.startup} functionalityDepth={1} page="home"/>
 
             <div className="sub-footer">
               <p className="sub-footer-price">${startupBundlePrice}</p>
@@ -66,7 +66,7 @@ class MobileCards extends Component {
               <p>recommended</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} page="other" featured={true}/>
+            <ItemList list_array={this.props.awesome.recommended} functionalityDepth={1} page="home" featured={true}/>
 
             <div className="sub-footer green-bg">
               <p className="sub-footer-price">${recommendedBundlePrice}</p>
@@ -81,7 +81,7 @@ class MobileCards extends Component {
               <p>enterprise</p>
             </div>
 
-            <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1} page="other"/>
+            <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={1} page="home"/>
 
             <div className="sub-footer">
               <p className="sub-footer-price">${enterpriseBundlePrice}</p>

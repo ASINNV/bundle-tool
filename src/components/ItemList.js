@@ -111,7 +111,7 @@ class ItemList extends Component {
         }
 
       }
-      unorderedList = <div className="list-container height-equalizer"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     } else if (this.props.page === "custom") {
 
@@ -132,7 +132,7 @@ class ItemList extends Component {
         }
 
       }
-      unorderedList = <div className="list-container height-equalizer"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     } else if (this.props.page === "confirmation") {
 
@@ -144,7 +144,7 @@ class ItemList extends Component {
       }
       unorderedList = <ul className="line-item-container small-text">{newArray}</ul>;
 
-    } else {
+    } else if (this.props.page === "home") {
 
       for (let i = 0; i < this.props.list_array.length; i++) {
         if (this.props.list_array[i].include === true) {
@@ -166,6 +166,26 @@ class ItemList extends Component {
       } else {
         unorderedList = <div className="list-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
       }
+
+    } else {
+
+      for (let i = 0; i < this.props.list_array.length; i++) {
+        if (this.props.list_array[i].include === true) {
+          possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
+        } else {
+          possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
+        }
+        if (this.props.functionalityDepth === 2 && this.props.list_array[i].include === true) {
+          newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+        } else if (this.props.functionalityDepth === 1 && this.props.list_array[i].include === true) {
+          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
+        } else if (this.props.functionalityDepth === 0 && this.props.list_array[i].include === true) {
+          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p></li>);
+        }
+
+      }
+
+      unorderedList = <div className="list-container responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     }
 

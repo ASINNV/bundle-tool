@@ -48,7 +48,7 @@ class DesktopCards extends Component {
             <p>startup</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.startup} functionalityDepth={0} page="other" />
+          <ItemList list_array={this.props.awesome.startup} functionalityDepth={0} page="home" />
           {/*<div className="list-container">*/}
             {/*<ul className="line-item-container small-text">*/}
               {/*{createList(this.props.startup)}*/}
@@ -66,7 +66,7 @@ class DesktopCards extends Component {
             <p>recommended</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="other" featured={true} />
+          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="home" featured={true} />
 
           <div className="sub-footer green-bg">
             <p className="sub-footer-price">${recommendedBundlePrice}</p>
@@ -79,7 +79,7 @@ class DesktopCards extends Component {
             <p>enterprise</p>
           </div>
 
-          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} page="other" />
+          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} page="home" />
 
           <div className="sub-footer">
             <p className="sub-footer-price">${enterpriseBundlePrice}</p>

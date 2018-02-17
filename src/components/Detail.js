@@ -127,9 +127,9 @@ class DesktopDetail extends Component {
     return (
       <div className="inner-content-container">
 
-        <div className="centered bottom-margin-medium background-image">
+        <div className={this.props.detailClass}>
           <p className="small-text white-text">YOU'RE LOOKING AT THE</p>
-          <p className="large-title yellow-text">{this.props.bundleName}</p>
+          <p className="large-title">{this.props.bundleName}</p>
           <p className="confirmation-niceties white-text">PACKAGE</p>
 
         </div>
@@ -137,7 +137,7 @@ class DesktopDetail extends Component {
         <section id="bod" className="app-body">
 
           <div className="flex-center-top">
-            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline doublewide">
+            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline doublewide responsive-card">
 
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
@@ -154,7 +154,7 @@ class DesktopDetail extends Component {
             </div>
             <div id="sidebar" className="inline">
               <div id="shopping-cart">
-                <div id="pack-one" className="card service-pack shadowed overflow-hidden">
+                <div id="pack-one" className="card service-pack shadowed overflow-hidden responsive-card">
 
                   <div id="cart-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>shopping cart</p>
@@ -169,13 +169,13 @@ class DesktopDetail extends Component {
                 </div>
               </div>
               <div id="description-box" className="">
-                <div id="pack-one" className="card service-pack shadowed overflow-hidden inline">
+                <div id="pack-one" className="card service-pack shadowed overflow-hidden inline responsive-card">
 
                   <div id="description-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>description</p>
                   </div>
 
-                  <div className="list-container">
+                  <div className="list-container responsive-container">
                     {this.props.description}
                   </div>
 
@@ -215,7 +215,7 @@ class Detail extends Component {
     let emailAddress = myForm.elements["emailAddress"].value;
     let phoneNumber = myForm.elements["phoneNumber"].value;
     let paymentMethod = myForm.elements["paymentMethod"].value;
-    let bundlePriceData = 0;
+    let bundlePriceData;
     let bundle = "didn't work";
     let services = [];
 
@@ -398,6 +398,7 @@ class Detail extends Component {
 
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
+    let detailClassName = "centered bottom-margin-medium recommended-image"
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
 
     if (storedVar) {
@@ -408,40 +409,47 @@ class Detail extends Component {
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.startup);
-        service = getServiceName(this.props.awesome, this.props.awesome.startup);
-        price = getPrice(this.props.awesome, this.props.awesome.startup);
-        bundleTotal = getBundlePrice(this.props.awesome.startup);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium startup-image";
+
       } else if (storedVar === 2) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.recommended);
-        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-        price = getPrice(this.props.awesome, this.props.awesome.recommended);
-        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium recommended-image";
+
       } else if (storedVar === 3) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium enterprise-image";
       } else if (storedVar === 4) {
         // console.log(localStorage.getItem("chosen_bundle"));
         // console.log(storedVar);
         bundleName = "custom";
         list = this.props.awesome.custom;
         page = "custom";
-        description = getDescription(this.props.awesome, this.props.awesome.custom);
-        service = getServiceName(this.props.awesome, this.props.awesome.custom);
-        price = getPrice(this.props.awesome, this.props.awesome.custom);
-        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium custom-image";
+
         selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
       }
     } else {
@@ -449,41 +457,45 @@ class Detail extends Component {
         bundleName = "startup";
         list = this.props.awesome.startup;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.startup);
-        service = getServiceName(this.props.awesome, this.props.awesome.startup);
-        price = getPrice(this.props.awesome, this.props.awesome.startup);
-        bundleTotal = getBundlePrice(this.props.awesome.startup);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium startup-image";
       } else if (this.props.awesome.chosen_bundle === 1) {
         bundleName = "recommended";
         list = this.props.awesome.recommended;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.recommended);
-        service = getServiceName(this.props.awesome, this.props.awesome.recommended);
-        price = getPrice(this.props.awesome, this.props.awesome.recommended);
-        bundleTotal = getBundlePrice(this.props.awesome.recommended);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium recommended-image";
       } else if (this.props.awesome.chosen_bundle === 2) {
         bundleName = "enterprise";
         list = this.props.awesome.enterprise;
         page = "detail";
-        description = getDescription(this.props.awesome, this.props.awesome.enterprise);
-        service = getServiceName(this.props.awesome, this.props.awesome.enterprise);
-        price = getPrice(this.props.awesome, this.props.awesome.enterprise);
-        bundleTotal = getBundlePrice(this.props.awesome.enterprise);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium enterprise-image";
       } else if (this.props.awesome.chosen_bundle === 3) {
         bundleName = "custom";
         list = this.props.awesome.custom;
         page = "custom";
-        description = getDescription(this.props.awesome, this.props.awesome.custom);
-        service = getServiceName(this.props.awesome, this.props.awesome.custom);
-        price = getPrice(this.props.awesome, this.props.awesome.custom);
-        bundleTotal = getBundlePrice(this.props.awesome.custom);
+        description = getDescription(this.props.awesome, list);
+        service = getServiceName(this.props.awesome, list);
+        price = getPrice(this.props.awesome, list);
+        bundleTotal = getBundlePrice(list);
+        detailClassName = "centered bottom-margin-medium custom-image";
         selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
       }
     }
 
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileDetail list_array={list} page={page} selectAllElement={selectAllElement} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopDetail list_array={list} page={page} selectAllElement={selectAllElement} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileDetail list_array={list} page={page} selectAllElement={selectAllElement} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopDetail list_array={list} detailClass={detailClassName} page={page} selectAllElement={selectAllElement} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 
