@@ -21,7 +21,6 @@ export const getDescription = (myObj, list) => {
   if (myObj.active_item > -1 && list !== undefined && list !== null) {
 
     possibleP = <p className="description-p">{list[myObj.active_item].description}</p>;
-    console.log(list[myObj.active_item], myObj.active_item);
     return <div className="description-container light-text">{possibleP}</div>;
 
   } else {

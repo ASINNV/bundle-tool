@@ -208,10 +208,10 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    setActiveItem: (numbo) => {
+    setActiveItem: (myNumber) => {
       dispatch({
         type: "SET_ACTIVE_ITEM",
-        payload: numbo
+        payload: myNumber
       });
 
     },

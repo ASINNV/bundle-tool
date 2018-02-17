@@ -395,11 +395,25 @@ class Detail extends Component {
       document.getElementById('select-all-button').checked = false;
     }
   }
+  componentDidMount() {
+    let needSelecting = false;
 
+    for (let i = 0; i < this.props.awesome.custom.length; i++) {
+      if (this.props.awesome.custom[i].include === false) {
+        needSelecting = true;
+      }
+    }
+    if (needSelecting === false) {
+      document.getElementById('select-all-button').checked = true;
+    }
+  }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
     let detailClassName = "centered bottom-margin-medium recommended-image"
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
+
+
+
 
     if (storedVar) {
 
