@@ -396,16 +396,19 @@ class Detail extends Component {
     }
   }
   componentDidMount() {
-    let needSelecting = false;
+    if (this.props.awesome.chosen_bundle === 3) {
+      let needSelecting = false;
 
-    for (let i = 0; i < this.props.awesome.custom.length; i++) {
-      if (this.props.awesome.custom[i].include === false) {
-        needSelecting = true;
+      for (let i = 0; i < this.props.awesome.custom.length; i++) {
+        if (this.props.awesome.custom[i].include === false) {
+          needSelecting = true;
+        }
+      }
+      if (needSelecting === false) {
+        document.getElementById('select-all-button').checked = true;
       }
     }
-    if (needSelecting === false) {
-      document.getElementById('select-all-button').checked = true;
-    }
+
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
