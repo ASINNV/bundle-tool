@@ -587,27 +587,25 @@ body {
   padding: 10px;
   /*margin: 0 10px;*/
   box-shadow: 0 0 5px 0 #222 !important;
+  background-size: contain;
 }
 .enterprise-image {
-  background: url('images/enterprise.jpg') -200px 210px;
+  background-image: url('images/enterprise_small.jpg');
   color: #f4b95a !important;
   text-shadow: 0 2px 8px black !important;
 }
 .recommended-image {
-  background: url('images/recommended.jpeg') 0 260px;
-  background-size: cover;
+  background-image: url('images/recommended_small.jpg');
   color: #56a49b !important;
   text-shadow: 0 2px 8px black !important;
 }
 .startup-image {
-  background: url('images/startup.jpeg') -200px 210px;
-  background-size: cover;
+  background-image: url('images/startup_small.jpg');
   color: #e3bc6d !important;
   text-shadow: 0 2px 8px black !important;
 }
 .custom-image {
-  background: url('images/custom.jpeg') 0 500px !important;
-  background-size: cover !important;
+  background-image: url('images/custom_small.jpg') !important;
   color: #ffeb3b !important;
   text-shadow: 0 2px 8px black !important;
   /*font-weight: 900 !important;*/
@@ -623,6 +621,7 @@ body {
   padding: 20px;
   font-size: 18px;
   font-family: "Lato", "Helvetica Neue";
+  line-height: 1.2em;
   /*hyphens: auto;*/
   text-align: left;
   border-bottom-right-radius: 8px;
