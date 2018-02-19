@@ -45,7 +45,8 @@ class MyCartComponent extends Component {
           data = this.props.awesome.user_data;
         }
 
-
+        this.props.setOrderConfirmed(true);
+        localStorage.setItem("order_confirmed", "true");
 
         fetch(url, {
           method: 'POST', // or 'PUT'
@@ -217,6 +218,9 @@ class ReviewOrder extends Component {
       // console.log("user_data from redux: ", data);
     }
 
+    this.props.setOrderConfirmation(true);
+    localStorage.setItem("order_confirmed", "true");
+
     fetch(url, {
       method: 'POST', // or 'PUT'
       body: JSON.stringify(data)
@@ -338,7 +342,7 @@ class ReviewOrder extends Component {
     }
 
     if (paymentMethod === "credit") {
-      paymentButton = <MyCartComponent total={bundleTotal} size={size} pageHistory={this.props.history}/>;
+      paymentButton = <MyCartComponent total={bundleTotal} size={size} setOrderConfirmed={this.props.setOrderConfirmation.bind(this)} pageHistory={this.props.history}/>;
     } else if (paymentMethod === "cash" || paymentMethod === "check") {
       paymentButton = <div onClick={this.completeOrder.bind(this)} className="simple-button blue-button top-margin-30"><p>place your order</p></div>;
     } else {
@@ -370,4 +374,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ReviewOrder);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setOrderConfirmation: (myBoolean) => {
+      dispatch({
+        type: "SET_ORDER_CONFIRMATION",
+        payload: myBoolean
+      });
+
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewOrder);

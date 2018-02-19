@@ -251,11 +251,19 @@ class Confirmation extends Component {
     const isMobile = window.innerWidth < 480;
     const relevantLayout = isMobile ? <MobileConfirmation isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopConfirmation isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentMethodDirections={paymentMethodDirections} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
+    let confirmedOrder;
+
+    if (localStorage.getItem("order_confirmed")) {
+      confirmedOrder = localStorage.getItem("order_confirmed") ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button narrow-button vert-margin-30">Get Started</Link></div>;
+    } else {
+      confirmedOrder = this.props.awesome.order_confirmed ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button narrow-button vert-margin-30">Get Started</Link></div>;
+    }
+
     return (
 
       <section id="bod" className="app-body">
 
-        {relevantLayout}
+        {confirmedOrder}
 
       </section>
     );

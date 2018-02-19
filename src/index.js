@@ -187,7 +187,8 @@ const initialState = {
   active_item: -1,
   user_data: {
     firstName: "Default"
-  }
+  },
+  order_confirmed: false
 };
 
 const awesomeReducer = (state = initialState, action) => {
@@ -224,6 +225,12 @@ const awesomeReducer = (state = initialState, action) => {
       state = {
         ...state,
         user_data: action.payload
+      };
+      break;
+    case "SET_ORDER_CONFIRMATION":
+      state = {
+        ...state,
+        order_confirmed: action.payload
       };
       break;
     case "SET_ACTIVE_ITEM":

@@ -369,6 +369,8 @@ class Detail extends Component {
       }
     }
 
+    this.refs.companyNameInput.focus(); // automatically focus on the first input field of the form for user convenience
+
 
   }
   selectAll() {
@@ -539,7 +541,7 @@ class Detail extends Component {
               <p className="user-input-label left">personal info</p>
               <div className="label-input-couplet">
                 {/*<label className="user-input-label" htmlFor="companyName">Company Name</label>*/}
-                <input className="user-input" type="text" name="companyName" placeholder="Company Name"/>
+                <input className="user-input" type="text" name="companyName" placeholder="Company Name" ref="companyNameInput"/>
               </div>
               <div className="label-input-couplet">
                 {/*<label className="user-input-label" htmlFor="firstName">First Name</label>*/}

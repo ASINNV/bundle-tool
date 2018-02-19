@@ -622,7 +622,8 @@ body {
   z-index: 1;
   padding: 20px;
   font-size: 18px;
-  font-family: "Proxima Nova", "Helvetica Neue";
+  font-family: "Lato", "Helvetica Neue";
+  /*hyphens: auto;*/
   text-align: left;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
