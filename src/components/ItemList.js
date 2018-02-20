@@ -89,50 +89,99 @@ class ItemList extends Component {
     // } else {
     // }
   }
+  deactivateItems() {
+    let item_containers = document.getElementsByClassName('active');
+    for (let i = 0; i < item_containers.length; i++) {
+      item_containers[i].className = item_containers[i].className.slice(0, item_containers[i].className.indexOf(' active'));
+    }
+    this.props.setActiveItem(-1);
+  }
 
   render() {
     var newArray = [];
     let possibleP;
     let unorderedList;
+    const isMobile = window.innerWidth < 480;
+
     if (this.props.page === "detail") {
 
-      for (let i = 0; i < this.props.list_array.length; i++) {
-        if (this.props.list_array[i].include === true) {
-          possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
-        } else {
-          possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
-        }
-        if (this.props.functionalityDepth === 2) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        } else if (this.props.functionalityDepth === 1) {
-          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        } else if (this.props.functionalityDepth === 0) {
-          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        }
+      if (isMobile === true) {
+        for (let i = 0; i < this.props.list_array.length; i++) {
+          if (this.props.list_array[i].include === true) {
+            possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
+          } else {
+            possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
+          }
+          if (this.props.functionalityDepth === 2) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 1) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 0) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          }
 
+        }
+        unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      } else {
+        for (let i = 0; i < this.props.list_array.length; i++) {
+          if (this.props.list_array[i].include === true) {
+            possibleP = <div className="line-item-checkmark green-text inline noselect flex-vertical-center">&#10003;</div>;
+          } else {
+            possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
+          }
+          if (this.props.functionalityDepth === 2) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onMouseEnter={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 1) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onMouseEnter={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 0) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          }
+
+        }
+        unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text" onMouseLeave={this.deactivateItems.bind(this)}>{newArray}</ul></div>;
       }
-      unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     } else if (this.props.page === "custom") {
 
-      for (let i = 0; i < this.props.list_array.length; i++) {
-        if (this.props.list_array[i].include === true) {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
-        } else {
-          possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
-        }
-        if (this.props.functionalityDepth === 3) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        } else if (this.props.functionalityDepth === 2) {
-          newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        } else if (this.props.functionalityDepth === 1) {
-          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        } else if (this.props.functionalityDepth === 0) {
-          newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
-        }
+      if (isMobile === true) {
+        for (let i = 0; i < this.props.list_array.length; i++) {
+          if (this.props.list_array[i].include === true) {
+            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+          } else {
+            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+          }
+          if (this.props.functionalityDepth === 3) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 2) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 1) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 0) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          }
 
+        }
+        unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
+      } else {
+        for (let i = 0; i < this.props.list_array.length; i++) {
+          if (this.props.list_array[i].include === true) {
+            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+          } else {
+            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+          }
+          if (this.props.functionalityDepth === 3) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onMouseEnter={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 2) {
+            newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onMouseEnter={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 1) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          } else if (this.props.functionalityDepth === 0) {
+            newArray.push(<li key={i} className="flex relative">{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
+          }
+
+        }
+        unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text" onMouseLeave={this.deactivateItems.bind(this)}>{newArray}</ul></div>;
       }
-      unorderedList = <div className="list-container height-equalizer responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     } else if (this.props.page === "confirmation") {
 
