@@ -421,7 +421,7 @@ body {
 }
 .equis {
   transform-origin: 50% 50%;
-  transition: transform .25s ease-in-out;
+  transition: transform .25s ease-in-out, color .25s ease-in-out;
 }
 .equis:hover {
   /*opacity: 0.5;*/
