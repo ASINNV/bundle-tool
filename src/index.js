@@ -179,7 +179,7 @@ const initialState = {
     }
   ],
   default_item: {
-    description: "Please click a line item for more information.",
+    description: "Please mouse over a line item for more information.",
     price: 0
   },
   chosen_bundle: 1,
@@ -245,7 +245,6 @@ const awesomeReducer = (state = initialState, action) => {
         custom: action.payload
       };
       break;
-
     default:
       return state;
   }

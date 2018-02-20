@@ -407,12 +407,28 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  padding-left: 20px;
-  padding-right: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  margin-left: 8px;
+  border-radius: 100%;
+
 }
-.half-opacity-hover:hover {
-  opacity: 0.5;
-  transition: opacity .1s ease-in-out;
+.equis {
+  transform-origin: 50% 50%;
+  transition: transform .25s ease-in-out;
+}
+.equis:hover {
+  /*opacity: 0.5;*/
+  color: #498d5e !important;
+  /*background-color: orange !important;*/
+  transform: rotate(45deg);
+
 }
 
 .line-item-name { /* create space between check mark and deliverable */

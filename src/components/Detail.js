@@ -92,7 +92,7 @@ class DesktopDetail extends Component {
     } else if (target.id === "cart-header") {
       element.innerText = "A list of all services & deliverables to be included at checkout. A total price can be found at the bottom of this window.";
     } else if (target.id === "description-header") {
-      element.innerText = "Please click on a service in the window on the left to see its description here.";
+      element.innerText = "Please mouse over a service in the window on the left to see its description here.";
     }
 
     header.appendChild(element);
