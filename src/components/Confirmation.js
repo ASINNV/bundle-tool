@@ -16,7 +16,7 @@ class MobileConfirmation extends Component {
         <section id="bod" className="app-body">
 
           <div className="flex-center-top">
-            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline triplewide auto-height vert-margin-20">
+            <div id="item-showcase" className="card shadowed overflow-hidden inline triplewide auto-height vert-margin-20">
 
 
 
@@ -73,7 +73,7 @@ class DesktopConfirmation extends Component {
           <Link to="/" className="back-button">&larr; home</Link>
 
           <div className="flex-center-top">
-            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline triplewide auto-height bottom-margin-medium">
+            <div id="item-showcase" className="card shadowed overflow-hidden inline triplewide auto-height bottom-margin-medium">
 
 
 

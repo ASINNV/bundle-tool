@@ -205,6 +205,7 @@ class ItemList extends Component {
         } else {
           possibleP = <div className="line-item-checkmark red-text inline noselect flex-vertical-center">&#10005;</div>;
         }
+
         if (this.props.functionalityDepth === 2 && this.props.list_array[i].include === true) {
           newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p></li>);
         } else if (this.props.functionalityDepth === 1 && this.props.list_array[i].include === true) {
@@ -241,7 +242,6 @@ class ItemList extends Component {
       unorderedList = <div className="list-container responsive-container"><ul className="line-item-container small-text">{newArray}</ul></div>;
 
     }
-
 
     return (
       <div>

@@ -28,7 +28,7 @@ class MobileDetail extends Component {
         <section id="bod" className="app-body">
 
           <div>
-            <div id="pack-one" className="card service-pack shadowed overflow-hidden">
+            <div id="pack-one" className="card shadowed overflow-hidden">
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
               <div className="sub-header">
@@ -137,7 +137,7 @@ class DesktopDetail extends Component {
         <section id="bod" className="app-body">
 
           <div className="flex-center-top">
-            <div id="item-showcase" className="card service-pack shadowed overflow-hidden inline doublewide responsive-card">
+            <div id="item-showcase" className="card shadowed overflow-hidden inline doublewide responsive-card">
 
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
@@ -154,7 +154,7 @@ class DesktopDetail extends Component {
             </div>
             <div id="sidebar" className="inline">
               <div id="shopping-cart">
-                <div id="pack-one" className="card service-pack shadowed overflow-hidden responsive-card">
+                <div id="pack-one" className="card shadowed overflow-hidden responsive-card">
 
                   <div id="cart-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>shopping cart</p>
@@ -169,7 +169,7 @@ class DesktopDetail extends Component {
                 </div>
               </div>
               <div id="description-box" className="">
-                <div id="pack-one" className="card service-pack shadowed overflow-hidden inline responsive-card">
+                <div id="pack-one" className="card shadowed overflow-hidden inline responsive-card">
 
                   <div id="description-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
                     <p>description</p>
@@ -562,7 +562,7 @@ class Detail extends Component {
               <p className="user-input-label left">payment method</p>
               <div className="label-input-couplet">
                 {/*<label className="user-input-label" htmlFor="paymentMethod">Payment Method</label>*/}
-                <select className="user-input" name="paymentMethod" id="" defaultValue="pick">
+                <select className="user-input select-input" name="paymentMethod" id="" defaultValue="pick">
                   <option value="pick">Select a method…</option>
                   <option value="credit">Credit Card</option>
                   <option value="check">Check</option>

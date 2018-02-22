@@ -44,7 +44,7 @@ class MobileCards extends Component {
     return (
       <ReactSwipe className="carousel" swipeOptions={{continuous: false, startSlide: 1}}>
         <div>
-          <Link to="/startup" id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
+          <Link to="/startup" id="pack-one" className="card shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 
             <div className="sub-header">
               <p>startup</p>
@@ -60,7 +60,7 @@ class MobileCards extends Component {
         </div>
         <div>
 
-          <Link to="/recommended" id="pack-two" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
+          <Link to="/recommended" id="pack-two" className="card shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 
             <div className="sub-header green-bg">
               <p>recommended</p>
@@ -75,7 +75,7 @@ class MobileCards extends Component {
           </Link>
         </div>
         <div>
-          <Link to="/enterprise" id="pack-three" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
+          <Link to="/enterprise" id="pack-three" className="card shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)}>
 
             <div className="sub-header">
               <p>enterprise</p>
