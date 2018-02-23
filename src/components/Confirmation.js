@@ -254,9 +254,9 @@ class Confirmation extends Component {
     let confirmedOrder;
 
     if (localStorage.getItem("order_confirmed")) {
-      confirmedOrder = localStorage.getItem("order_confirmed") ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button narrow-button vert-margin-30">Get Started</Link></div>;
+      confirmedOrder = localStorage.getItem("order_confirmed") ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button green-button narrow-button vert-margin-30">Get Started</Link></div>;
     } else {
-      confirmedOrder = this.props.awesome.order_confirmed ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button narrow-button vert-margin-30">Get Started</Link></div>;
+      confirmedOrder = this.props.awesome.order_confirmed ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button green-button narrow-button vert-margin-30">Get Started</Link></div>;
     }
 
     return (
