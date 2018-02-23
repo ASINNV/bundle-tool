@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import paypal from "paypal-checkout";
 
@@ -154,7 +154,7 @@ class DesktopReviewOrder extends Component {
 
         <section id="bod" className="app-body relative">
 
-          <Link to="/" className="back-button">&larr; home</Link>
+          <div className="back-button" onClick={this.props.handleNavigation.bind(this)}>&larr; back</div>
 
           <div className="flex-center-top">
             <div id="item-showcase" className="card shadowed overflow-hidden inline triplewide auto-height bottom-margin-medium">
@@ -236,6 +236,11 @@ class ReviewOrder extends Component {
         // console.error('Error:', error);
       });
 
+  }
+  handleNavigation(e) {
+    console.log(e);
+    console.log(this.props.history);
+    this.props.history.goBack();
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod, paymentButton;
@@ -350,7 +355,7 @@ class ReviewOrder extends Component {
     }
 
 
-    const relevantLayout = isMobile ? <MobileReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
+    const relevantLayout = isMobile ? <MobileReviewOrder isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} service={service} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/> : <DesktopReviewOrder handleNavigation={this.handleNavigation.bind(this)} isMobile={isMobile} list_array={list} page={page} selectAllElement={selectAllElement} paymentButton={paymentButton} paymentMethod={paymentMethod} description={description} price={price} bundleTotal={bundleTotal} bundleName={bundleName}/>;
 
     return (
 

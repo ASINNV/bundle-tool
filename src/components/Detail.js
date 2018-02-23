@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // const fetch = require('node-fetch');
 // import fetch from "node-fetch";
 
@@ -57,7 +57,7 @@ class MobileDetail extends Component {
                 </div>
 
                 <div className="button-container">
-                  <p onClick={this.hidePopupDesc.bind(this)} className="simple-button shadowed popup-button">close</p>
+                  <p onClick={this.hidePopupDesc.bind(this)} className="simple-button green-button popup-button">close</p>
                 </div>
               </div>
             </div>
@@ -340,7 +340,7 @@ class Detail extends Component {
 
 
   }
-  toggleCheckout() {
+  toggleCheckout(e) {
     let custom = this.props.awesome.custom;
     let allFalse = true;
     let required = document.getElementById('required-popup');
@@ -411,6 +411,11 @@ class Detail extends Component {
       }
     }
 
+  }
+  handleNavigation(e) {
+    console.log(e);
+    console.log(this.props.history);
+    this.props.history.goBack();
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
@@ -520,12 +525,12 @@ class Detail extends Component {
 
       <section id="bod" className="app-body relative">
 
-        <Link to="/" className="back-button">&larr; back</Link>
+        <div className="back-button" onClick={this.handleNavigation.bind(this)}>&larr; back</div>
 
         {relevantLayout}
 
         <div className="button-container">
-          <div className="simple-button shadowed checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
+          <div className="simple-button green-button checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
         </div>
 
         <p id="required-popup">please pick at least one item to checkout</p>

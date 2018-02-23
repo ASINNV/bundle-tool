@@ -51,7 +51,7 @@ class Main extends Component {
           <p>-or-</p>
         </div>
         <div className="button-container">
-          <Link to="/custom" className="simple-button shadowed narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</Link>
+          <Link to="/custom" className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</Link>
         </div>
       </section>
     );

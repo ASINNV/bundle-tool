@@ -3,14 +3,12 @@ import { connect } from "react-redux";
 
 class ItemList extends Component {
   setActiveFuncWrapper(e) {
-    let helper = e.target.tagName;
     let target = e.target;
 
     const isMobile = window.innerWidth < 480;
 
-    while (helper !== "LI") {
-      helper = e.target.parentNode.tagName;
-      target = e.target.parentNode;
+    while (target.tagName !== "LI") {
+      target = target.parentNode;
     }
 
     if (isMobile) {
@@ -43,6 +41,7 @@ class ItemList extends Component {
         // }
         // this.props.setActiveItem(-1);
         target.className = target.className + " active";
+        console.log("same target.childNodes[0] = ", target.childNodes[0]);
       } else {
         // for (let i = 0; i < target.parentNode.childNodes.length; i++) {
         //   if (target.parentNode.childNodes[i].className.indexOf(' active') !== -1) {
@@ -52,27 +51,44 @@ class ItemList extends Component {
         // }
         target.className = target.className + " active";
         this.props.setActiveItem(Number(target.id.slice(10)));
+
+        // if (target.childNodes[0].className.indexOf(" custom-hoverable") !== -1) {
+        //   target.childNodes[0].className = target.childNodes[0].className.slice(0, target.childNodes[0].className.indexOf(" custom-hoverable"));
+        //   console.log("same target.childNodes[0] = ", target.childNodes[0]);
+        // } else {
+        //   target.childNodes[0].className += " custom-hoverable";
+        //   console.log("same target.childNodes[0] = ", target.childNodes[0]);
+        // }
+
       }
 
     }
 
   }
   selectItem(e) {
-    let myObj = this.props.awesome.custom[e.target.id.slice(6)];
+    let target = e.target;
+
+    while (target.tagName !== "DIV") {
+      target = target.parentNode;
+    }
+
+    let myObj = this.props.awesome.custom[target.id.slice(6)];
     let myList = this.props.awesome.custom;
     let selectAllButton = document.getElementById('select-all-button');
     let allSelected = true;
+
+    console.log(target, "target target target");
 
     if (selectAllButton.checked === true) {
       selectAllButton.checked = false;
     }
 
-    if (this.props.awesome.custom[e.target.id.slice(6)].include === false) {
+    if (this.props.awesome.custom[target.id.slice(6)].include === false) {
       myObj.include = true;
-      myList[e.target.id.slice(6)] = myObj;
-    } else if (this.props.awesome.custom[e.target.id.slice(6)].include === true) {
+      myList[target.id.slice(6)] = myObj;
+    } else if (this.props.awesome.custom[target.id.slice(6)].include === true) {
       myObj.include = false;
-      myList[e.target.id.slice(6)] = myObj;
+      myList[target.id.slice(6)] = myObj;
     }
     this.props.setInclusion(myList);
     localStorage.setItem("custom_list", JSON.stringify(myList));
@@ -86,7 +102,7 @@ class ItemList extends Component {
       selectAllButton.checked = true;
     }
 
-    // if (e.target.innerHTML === '&#10003;') {
+    // if (target.innerHTML === '&#10003;') {
     // } else if (e.target.innerHTML === '&#10005;') {
     // } else {
     // }
@@ -149,9 +165,9 @@ class ItemList extends Component {
       if (isMobile === true) {  // mobile block
         for (let i = 0; i < this.props.list_array.length; i++) {
           if (this.props.list_array[i].include === true) {
-            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+            possibleP = <div id={"check-" + i} className="custom-line-item-checkmark line-item-checkmark inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}><p className="the-check">&#10003;</p><p className="box green-box"/></div>;
           } else {
-            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+            possibleP = <div id={"check-" + i} className="custom-line-item-equis line-item-checkmark inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}><p className="the-equis">&#10005;</p><p className="box"/></div>;
           }
           if (this.props.functionalityDepth === 3) {
             newArray.push(<li key={i} id={"list-item-" + i} className="flex relative">{possibleP}<p className="line-item-name inline noselect" onClick={this.setActiveFuncWrapper.bind(this)}>{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
@@ -169,9 +185,9 @@ class ItemList extends Component {
       } else {  // desktop block
         for (let i = 0; i < this.props.list_array.length; i++) {
           if (this.props.list_array[i].include === true) {
-            possibleP = <div id={"check-" + i} className="line-item-checkmark half-opacity-hover green-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10003;</div>;
+            possibleP = <div id={"check-" + i} className="custom-line-item-checkmark line-item-checkmark inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}><p className="the-check">&#10003;</p><p className="box green-box"/></div>;
           } else {
-            possibleP = <div id={"check-" + i} className="line-item-checkmark equis half-opacity-hover red-text inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}>&#10005;</div>;
+            possibleP = <div id={"check-" + i} className="custom-line-item-equis line-item-checkmark inline noselect flex-vertical-center" onClick={this.selectItem.bind(this)}><p className="the-equis">&#10005;</p><p className="box"/></div>;
           }
           if (this.props.functionalityDepth === 3) {
             newArray.push(<li key={i} id={"list-item-" + i} className="flex relative" onMouseEnter={this.setActiveFuncWrapper.bind(this)}>{possibleP}<p className="line-item-name inline noselect">{this.props.list_array[i].name}</p><p className="line-item-price flex-vertical-center">${this.props.list_array[i].price}</p></li>);
