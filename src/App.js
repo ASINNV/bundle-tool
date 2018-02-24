@@ -34,7 +34,7 @@ class App extends Component {
           </nav>
 
 
-          <div className="content-container">
+          <div id="granny-bod" className="content-container">
 
             <Route exact path="/" component={Main}/>
             <Route exact path="/startup" component={Detail}/>

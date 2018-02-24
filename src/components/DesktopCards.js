@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // import { createList } from "./Functions";
@@ -34,6 +34,8 @@ class DesktopCards extends Component {
 
     this.props.setPackage(setting);
     localStorage.setItem("chosen_bundle", setting + 1);
+
+    this.props.pageAnimation();
   }
   showButton(e) {
     if (document.getElementById('floating-button')) {
@@ -77,7 +79,7 @@ class DesktopCards extends Component {
 
     return (
       <div className="flex-centered">
-        <Link to="/startup" id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
+        <a id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
 
           <div className="sub-header">
             <p>startup</p>
@@ -94,8 +96,8 @@ class DesktopCards extends Component {
             <p className="sub-footer-price">${startupBundlePrice}</p>
           </div>
 
-        </Link>
-        <Link to="/recommended" id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
+        </a>
+        <a id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
 
           <div className="sub-header green-bg">
             <p>recommended</p>
@@ -107,8 +109,8 @@ class DesktopCards extends Component {
             <p className="sub-footer-price">${recommendedBundlePrice}</p>
           </div>
 
-        </Link>
-        <Link to="/enterprise" id="pack-three" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
+        </a>
+        <a id="pack-three" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
 
           <div className="sub-header">
             <p>enterprise</p>
@@ -120,7 +122,7 @@ class DesktopCards extends Component {
             <p className="sub-footer-price">${enterpriseBundlePrice}</p>
           </div>
 
-        </Link>
+        </a>
       </div>
     );
   }

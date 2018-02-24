@@ -80,6 +80,7 @@ body {
 .overlay {
   display: none;
   position: fixed;
+  opacity: 0;
   top: 0;
   bottom: 0;
   left: 0;
@@ -886,6 +887,24 @@ body {
 
 }
 @media (min-width: 601px) {
+  #bod, #checkout-window, #parent-bod {
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+  .hidden-view {
+    transform: scale(0.90);
+    opacity: 0;
+  }
+  .animate-in {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  .animate-out {
+    opacity: 0 !important;
+    transform: scale(0.9) !important;
+  }
+  .fade-out {
+    opacity: 0 !important;
+  }
   .corner-x:hover {
     background-color: #d26868;
   }

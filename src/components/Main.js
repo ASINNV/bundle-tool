@@ -3,19 +3,89 @@ import React, { Component } from "react";
 import DesktopCards from "./DesktopCards";
 import MobileCards from "./MobileCards";
 import {connect} from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class Main extends Component {
   loadCustomPage(e) {
     let customPageNumber = 3;
     this.props.setPackage(customPageNumber);
     localStorage.setItem('chosen_bundle', customPageNumber + 1);
-    console.log(navigator.userAgent, navigator.language, navigator.platform);
+
+    let bod = document.getElementById('bod');
+    if (bod && document.getElementsByClassName.length > 0) {
+      if (bod.className.indexOf(' hidden-view') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+      }
+      if (bod.className.indexOf(' animate-in') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+      }
+      bod.className += ' animate-out';
+    }
+    setTimeout(() => {
+      this.props.history.push('/custom');
+    }, 200);
+  }
+  pageAnimation() {
+    let myPath = '/';
+    if (localStorage.getItem("chosen_bundle")) {
+      switch (localStorage.getItem("chosen_bundle")) {
+        case "1":
+          myPath = '/startup';
+          break;
+        case "2":
+          myPath = '/recommended';
+          break;
+        case "3":
+          myPath = '/enterprise';
+          break;
+        default:
+          console.log("not in localStorage");
+      }
+    } else {
+      switch (this.props.awesome.chosen_bundle) {
+        case 0:
+          myPath = '/startup';
+          break;
+        case 1:
+          myPath = '/recommended';
+          break;
+        case 2:
+          myPath = '/enterprise';
+          break;
+        default:
+          console.log("not in awesome reducer");
+      }
+    }
+
+    let bod = document.getElementById('bod');
+    if (bod && document.getElementsByClassName.length > 0) {
+      if (bod.className.indexOf(' hidden-view') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+      }
+      if (bod.className.indexOf(' animate-in') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+      }
+      bod.className += ' animate-out';
+    }
+    setTimeout(() => {
+      this.props.history.push(myPath);
+    }, 200);
+
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      let bod = document.getElementById('bod');
+      if (bod && document.getElementsByClassName.length > 0) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        bod.className += ' animate-in';
+      }
+    }, 50);
   }
 
   render() {
 
     localStorage.clear(); // remove all locally stored key/value pairs when visiting root directory
+
 
     // function createList(array) {
     //   var newArray = [];
@@ -35,11 +105,11 @@ class Main extends Component {
     // var enterprise = createList(this.props.awesome.enterprise);
 
     const isMobile = window.innerWidth < 480;
-    const relevantLayout = isMobile ? <MobileCards /> : <DesktopCards startup={this.props.awesome.startup} recommended={this.props.awesome.recommended} enterprise={this.props.awesome.enterprise}/>;
+    const relevantLayout = isMobile ? <MobileCards /> : <DesktopCards pageAnimation={this.pageAnimation.bind(this)} startup={this.props.awesome.startup} recommended={this.props.awesome.recommended} enterprise={this.props.awesome.enterprise}/>;
 
 
     return (
-      <section id="bod" className="app-body">
+      <section id="bod" className="app-body hidden-view">
         <div className="full centered vert-margin-large">
           <p className="large-title green-text">choose bundle</p>
           <p className="large-subtitle gray-text">or create your own</p>
@@ -51,7 +121,7 @@ class Main extends Component {
           <p>-or-</p>
         </div>
         <div className="button-container">
-          <Link to="/custom" className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</Link>
+          <a className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</a>
         </div>
       </section>
     );

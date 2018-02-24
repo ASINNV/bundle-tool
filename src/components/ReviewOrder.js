@@ -238,9 +238,29 @@ class ReviewOrder extends Component {
 
   }
   handleNavigation(e) {
-    console.log(e);
-    console.log(this.props.history);
-    this.props.history.goBack();
+    let bod = document.getElementById('bod');
+    if (bod && document.getElementsByClassName.length > 0) {
+      if (bod.className.indexOf(' hidden-view') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+      }
+      if (bod.className.indexOf(' animate-in') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+      }
+      bod.className += ' animate-out';
+    }
+    setTimeout(() => {
+      this.props.history.goBack();
+    }, 200);
+
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      let bod = document.getElementById('bod');
+      if (bod && document.getElementsByClassName.length > 0) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        bod.className += ' animate-in';
+      }
+    }, 50);
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod, paymentButton;
@@ -359,7 +379,7 @@ class ReviewOrder extends Component {
 
     return (
 
-      <section id="bod" className="app-body">
+      <section id="bod" className="app-body hidden-view">
 
         {relevantLayout}
 

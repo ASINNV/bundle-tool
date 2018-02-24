@@ -134,7 +134,7 @@ class DesktopDetail extends Component {
 
         </div>
 
-        <section id="bod" className="app-body">
+        <section id="" className="app-body">
 
           <div className="flex-center-top">
             <div id="item-showcase" className="card shadowed overflow-hidden inline doublewide responsive-card">
@@ -304,7 +304,28 @@ class Detail extends Component {
 
     if (count === 0) {
       this.props.setUserData(data);
-      this.props.history.push('/review-order');
+
+      let bod = document.getElementById('bod');
+      let checkoutWindow = document.getElementById('checkout-window');
+      if (bod) {
+        if (bod.className.indexOf(' hidden-view') !== -1) {
+          bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        }
+        if (bod.className.indexOf(' animate-in') !== -1) {
+          bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+        }
+
+        checkoutWindow.className += ' fade-out';
+
+        setTimeout(() => {
+          bod.className += ' animate-out';
+        }, 200);
+
+      }
+
+      setTimeout(() => {
+        this.props.history.push('/review-order');
+      }, 400);
 
     }
 
@@ -356,11 +377,18 @@ class Detail extends Component {
     } else {
       let checkout = document.getElementById('checkout-window');
       if (checkout.className.indexOf(' flex-centered') !== -1) {
-        checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
+        checkout.className += " fade-out";
+        setTimeout(() => {
+          checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
+        }, 200);
         document.querySelector("form").reset();
 
       } else {
         checkout.className += " flex-centered";
+        setTimeout(() => {
+          checkout.className += " animate-in";
+        }, 50);
+
 
       }
       // console.log(checkout.className);
@@ -411,12 +439,32 @@ class Detail extends Component {
       }
     }
 
+    setTimeout(() => {
+      let bod = document.getElementById('bod');
+      if (bod && document.getElementsByClassName.length > 0) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        bod.className += ' animate-in';
+      }
+    }, 50);
+
   }
   handleNavigation(e) {
-    console.log(e);
-    console.log(this.props.history);
-    this.props.history.goBack();
+    let bod = document.getElementById('bod');
+    if (bod && document.getElementsByClassName.length > 0) {
+      if (bod.className.indexOf(' hidden-view') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+      }
+      if (bod.className.indexOf(' animate-in') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+      }
+      bod.className += ' animate-out';
+    }
+    setTimeout(() => {
+      this.props.history.goBack();
+    }, 200);
+
   }
+
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
     let detailClassName = "centered bottom-margin-medium recommended-image"
@@ -523,18 +571,20 @@ class Detail extends Component {
 
     return (
 
-      <section id="bod" className="app-body relative">
+      <div id="parent-bod">
+        <section id="bod" className="app-body relative hidden-view">
 
-        <div className="back-button" onClick={this.handleNavigation.bind(this)}>&larr; back</div>
+          <div className="back-button" onClick={this.handleNavigation.bind(this)}>&larr; back</div>
 
-        {relevantLayout}
+          {relevantLayout}
 
-        <div className="button-container">
-          <div className="simple-button green-button checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
-        </div>
+          <div className="button-container">
+            <div className="simple-button green-button checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
+          </div>
 
-        <p id="required-popup">please pick at least one item to checkout</p>
+          <p id="required-popup">please pick at least one item to checkout</p>
 
+        </section>
         <div id="checkout-window" className="overlay">
           <div className="form-card shadow">
             <span className="corner-x" onClick={this.toggleCheckout.bind(this)}>&#10005;</span>
@@ -581,9 +631,7 @@ class Detail extends Component {
 
           </div>
         </div>
-
-
-      </section>
+      </div>
     );
   }
 }

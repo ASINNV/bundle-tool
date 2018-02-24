@@ -126,6 +126,31 @@ class DesktopConfirmation extends Component {
 }
 
 class Confirmation extends Component {
+  handleNavigation() {
+    let bod = document.getElementById('bod');
+    if (bod && document.getElementsByClassName.length > 0) {
+      if (bod.className.indexOf(' hidden-view') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+      }
+      if (bod.className.indexOf(' animate-in') !== -1) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+      }
+      bod.className += ' animate-out';
+    }
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 200);
+
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      let bod = document.getElementById('bod');
+      if (bod && document.getElementsByClassName.length > 0) {
+        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        bod.className += ' animate-in';
+      }
+    }, 50);
+  }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod;
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
@@ -254,14 +279,14 @@ class Confirmation extends Component {
     let confirmedOrder;
 
     if (localStorage.getItem("order_confirmed")) {
-      confirmedOrder = localStorage.getItem("order_confirmed") ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button green-button narrow-button vert-margin-30">Get Started</Link></div>;
+      confirmedOrder = localStorage.getItem("order_confirmed") ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><a onClick={this.handleNavigation.bind(this)} className="simple-button green-button narrow-button vert-margin-30">Get Started</a></div>;
     } else {
-      confirmedOrder = this.props.awesome.order_confirmed ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><Link to="/" className="simple-button green-button narrow-button vert-margin-30">Get Started</Link></div>;
+      confirmedOrder = this.props.awesome.order_confirmed ? relevantLayout : <div><h2 className="medium-title vert-margin-10 light-text">Oops!</h2><p className="light-text small-text">Looks like you haven't ordered anything.</p><a onClick={this.handleNavigation.bind(this)} className="simple-button green-button narrow-button vert-margin-30">Get Started</a></div>;
     }
 
     return (
 
-      <section id="bod" className="app-body">
+      <section id="bod" className="app-body hidden-view">
 
         {confirmedOrder}
 
