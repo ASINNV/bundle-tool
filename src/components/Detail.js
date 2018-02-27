@@ -28,7 +28,7 @@ class MobileDetail extends Component {
         <section id="bod" className="app-body">
 
           <div>
-            <div id="pack-one" className="card shadowed overflow-hidden">
+            <div id="pack-one" className="card shadowed overflow-hidden relative">
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
               <div className="sub-header">
@@ -317,15 +317,23 @@ class Detail extends Component {
 
         checkoutWindow.className += ' fade-out';
 
-        setTimeout(() => {
+        if (isMobile) {
           bod.className += ' animate-out';
-        }, 200);
+        } else {
+          setTimeout(() => {
+            bod.className += ' animate-out';
+          }, 150);
+        }
 
       }
-
-      setTimeout(() => {
+      if (isMobile) {
         this.props.history.push('/review-order');
-      }, 400);
+      } else {
+        setTimeout(() => {
+          this.props.history.push('/review-order');
+        }, 300);
+      }
+
 
     }
 
@@ -365,6 +373,7 @@ class Detail extends Component {
     let custom = this.props.awesome.custom;
     let allFalse = true;
     let required = document.getElementById('required-popup');
+    const isMobile = window.innerWidth < 480;
 
     for (let i = 0; i < custom.length; i++) {
       if (custom[i].include === true) {
@@ -377,17 +386,26 @@ class Detail extends Component {
     } else {
       let checkout = document.getElementById('checkout-window');
       if (checkout.className.indexOf(' flex-centered') !== -1) {
-        checkout.className += " fade-out";
-        setTimeout(() => {
+        if (isMobile) {
           checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
-        }, 200);
+        } else {
+          checkout.className += " fade-out";
+          setTimeout(() => {
+            checkout.className = checkout.className.slice(0, checkout.className.indexOf(' flex-centered'));
+          }, 200);
+        }
         document.querySelector("form").reset();
 
       } else {
-        checkout.className += " flex-centered";
-        setTimeout(() => {
-          checkout.className += " animate-in";
-        }, 50);
+        if (isMobile) {
+          checkout.className += " flex-centered";
+        } else {
+          checkout.className += " flex-centered";
+          setTimeout(() => {
+            checkout.className += " animate-in";
+          }, 50);
+        }
+
 
 
       }
@@ -469,100 +487,111 @@ class Detail extends Component {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null;
     let detailClassName = "centered bottom-margin-medium recommended-image"
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
-
-
-
+    let currentPath = this.props.history.location.pathname;
 
     if (storedVar) {
+      switch (storedVar) {
+        case 1:
+          bundleName = "startup";
+          list = this.props.awesome.startup;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium startup-image";
+          break;
+        case 2:
+          bundleName = "recommended";
+          list = this.props.awesome.recommended;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium recommended-image";
+          break;
+        case 3:
+          bundleName = "enterprise";
+          list = this.props.awesome.enterprise;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium enterprise-image";
+          break;
+        case 4:
+          bundleName = "custom";
+          list = this.props.awesome.custom;
+          page = "custom";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium custom-image";
 
-      if (storedVar === 1) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
-        bundleName = "startup";
-        list = this.props.awesome.startup;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium startup-image";
+          selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+          break;
+        default:
+          console.log('hit the default case');
+      }
+    } else if (this.props.awesome.chosen_bundle !== -1) {
+      switch (this.props.awesome.chosen_bundle) {
+        case 0:
+          bundleName = "startup";
+          list = this.props.awesome.startup;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium startup-image";
+          break;
+        case 1:
+          bundleName = "recommended";
+          list = this.props.awesome.recommended;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium recommended-image";
+          break;
+        case 2:
+          bundleName = "enterprise";
+          list = this.props.awesome.enterprise;
+          page = "detail";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium enterprise-image";
+          break;
+        case 3:
+          bundleName = "custom";
+          list = this.props.awesome.custom;
+          page = "custom";
+          description = getDescription(this.props.awesome, list);
+          service = getServiceName(this.props.awesome, list);
+          price = getPrice(this.props.awesome, list);
+          bundleTotal = getBundlePrice(list);
+          detailClassName = "centered bottom-margin-medium custom-image";
 
-      } else if (storedVar === 2) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
-        bundleName = "recommended";
-        list = this.props.awesome.recommended;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium recommended-image";
-
-      } else if (storedVar === 3) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
-        bundleName = "enterprise";
-        list = this.props.awesome.enterprise;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium enterprise-image";
-      } else if (storedVar === 4) {
-        // console.log(localStorage.getItem("chosen_bundle"));
-        // console.log(storedVar);
-        bundleName = "custom";
-        list = this.props.awesome.custom;
-        page = "custom";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium custom-image";
-
-        selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+          selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+          break;
+        default:
+          console.log('hit the default case');
       }
     } else {
-      if (this.props.awesome.chosen_bundle === 0) {
-        bundleName = "startup";
-        list = this.props.awesome.startup;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium startup-image";
-      } else if (this.props.awesome.chosen_bundle === 1) {
-        bundleName = "recommended";
-        list = this.props.awesome.recommended;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium recommended-image";
-      } else if (this.props.awesome.chosen_bundle === 2) {
-        bundleName = "enterprise";
-        list = this.props.awesome.enterprise;
-        page = "detail";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium enterprise-image";
-      } else if (this.props.awesome.chosen_bundle === 3) {
-        bundleName = "custom";
-        list = this.props.awesome.custom;
-        page = "custom";
-        description = getDescription(this.props.awesome, list);
-        service = getServiceName(this.props.awesome, list);
-        price = getPrice(this.props.awesome, list);
-        bundleTotal = getBundlePrice(list);
-        detailClassName = "centered bottom-margin-medium custom-image";
-        selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
-      }
+      bundleName = currentPath.slice(1);
+      list = this.props.awesome[currentPath.slice(1)];
+      page = (currentPath.slice(1) === "custom" ? "custom" : "detail");
+      description = getDescription(this.props.awesome, list);
+      service = getServiceName(this.props.awesome, list);
+      price = getPrice(this.props.awesome, list);
+      bundleTotal = getBundlePrice(list);
+      detailClassName = "centered bottom-margin-medium " + currentPath.slice(1) + "-image";
     }
 
 

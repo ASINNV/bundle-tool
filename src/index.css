@@ -527,6 +527,7 @@ body {
   cursor: pointer;
 }
 
+
 /*.custom-line-item-checkmark:before, .custom-line-item-equis:before {*/
   /*content: '';*/
   /*position: absolute;*/
@@ -546,7 +547,7 @@ body {
   color: mediumseagreen;
 }
 .box {
-  content: 'hey';
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -888,7 +889,7 @@ body {
 }
 @media (min-width: 601px) {
   #bod, #checkout-window, #parent-bod {
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition: transform 0.15s ease-in-out, opacity 0.15s ease-in-out;
   }
   .hidden-view {
     transform: scale(0.90);
@@ -950,9 +951,13 @@ body {
   /* choose your bundle page styles */
   /* choose your bundle page styles */
   /* choose your bundle page styles */
+  .overlay {
+    opacity: 1;
+  }
   .card {
     width: 85%;
     margin: 0;
+    position: inherit;
   }
   .service-pack {
 

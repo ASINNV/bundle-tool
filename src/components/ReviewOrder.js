@@ -239,6 +239,8 @@ class ReviewOrder extends Component {
   }
   handleNavigation(e) {
     let bod = document.getElementById('bod');
+    const isMobile = window.innerWidth < 480;
+
     if (bod && document.getElementsByClassName.length > 0) {
       if (bod.className.indexOf(' hidden-view') !== -1) {
         bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
@@ -248,19 +250,36 @@ class ReviewOrder extends Component {
       }
       bod.className += ' animate-out';
     }
-    setTimeout(() => {
+    if (isMobile) {
       this.props.history.goBack();
-    }, 200);
+    } else {
+      setTimeout(() => {
+        this.props.history.goBack();
+      }, 150);
+    }
 
   }
   componentDidMount() {
-    setTimeout(() => {
-      let bod = document.getElementById('bod');
-      if (bod && document.getElementsByClassName.length > 0) {
-        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
-        bod.className += ' animate-in';
-      }
-    }, 50);
+    const isMobile = window.innerWidth < 480;
+
+    if (isMobile) {
+      console.log('this is mobile, I must have messed something up if you\'re seeing this. Check line 262 of ReviewOrder component');
+    } else {
+      setTimeout(() => {
+        let bod = document.getElementById('bod');
+        if (bod && document.getElementsByClassName.length > 0) {
+          bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+          bod.className += ' animate-in';
+        }
+      }, 50);
+    }
+    // setTimeout(() => {
+    //   let bod = document.getElementById('bod');
+    //   if (bod && document.getElementsByClassName.length > 0) {
+    //     bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+    //     bod.className += ' animate-in';
+    //   }
+    // }, 50);
   }
   render() {
     let description, service, price, bundleTotal, bundleName, list, page, selectAllElement = null, paymentMethod, paymentButton;

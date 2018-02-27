@@ -7,23 +7,31 @@ import {connect} from "react-redux";
 
 class Main extends Component {
   loadCustomPage(e) {
+    const isMobile = window.innerWidth < 480;
+
     let customPageNumber = 3;
     this.props.setPackage(customPageNumber);
     localStorage.setItem('chosen_bundle', customPageNumber + 1);
 
-    let bod = document.getElementById('bod');
-    if (bod && document.getElementsByClassName.length > 0) {
-      if (bod.className.indexOf(' hidden-view') !== -1) {
-        bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+    if (!isMobile) {
+
+      let bod = document.getElementById('bod');
+      if (bod && document.getElementsByClassName.length > 0) {
+        if (bod.className.indexOf(' hidden-view') !== -1) {
+          bod.className = bod.className.slice(0, bod.className.indexOf(' hidden-view'));
+        }
+        if (bod.className.indexOf(' animate-in') !== -1) {
+          bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
+        }
+        bod.className += ' animate-out';
       }
-      if (bod.className.indexOf(' animate-in') !== -1) {
-        bod.className = bod.className.slice(0, bod.className.indexOf(' animate-in'));
-      }
-      bod.className += ' animate-out';
-    }
-    setTimeout(() => {
+      setTimeout(() => {
+        this.props.history.push('/custom');
+      }, 150);
+    } else {
       this.props.history.push('/custom');
-    }, 200);
+    }
+
   }
   pageAnimation() {
     let myPath = '/';
@@ -80,11 +88,12 @@ class Main extends Component {
         bod.className += ' animate-in';
       }
     }, 50);
+    localStorage.clear(); // remove all locally stored key/value pairs when visiting root directory
   }
 
   render() {
 
-    localStorage.clear(); // remove all locally stored key/value pairs when visiting root directory
+
 
 
     // function createList(array) {

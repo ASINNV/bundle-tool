@@ -34,6 +34,7 @@ class DesktopCards extends Component {
 
     this.props.setPackage(setting);
     localStorage.setItem("chosen_bundle", setting + 1);
+    console.log(localStorage.getItem("chosen_bundle"), "dfajshdlfkjasdhflkajsdhflaksdjhflkj");
 
     this.props.pageAnimation();
   }

@@ -139,7 +139,7 @@ class Confirmation extends Component {
     }
     setTimeout(() => {
       this.props.history.push('/');
-    }, 200);
+    }, 150);
 
   }
   componentDidMount() {

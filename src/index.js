@@ -182,7 +182,7 @@ const initialState = {
     description: "Please mouse over a line item for more information.",
     price: 0
   },
-  chosen_bundle: 1,
+  chosen_bundle: -1,
   paymentMethod: 'none',
   active_item: -1,
   user_data: {
