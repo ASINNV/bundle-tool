@@ -489,7 +489,21 @@ class Detail extends Component {
     let storedVar = Number(localStorage.getItem("chosen_bundle"));
     let currentPath = this.props.history.location.pathname;
 
-    if (storedVar) {
+    if (currentPath !== "/") {
+      bundleName = currentPath.slice(1);
+      list = this.props.awesome[currentPath.slice(1)];
+      page = (currentPath.slice(1) === "custom" ? "custom" : "detail");
+      description = getDescription(this.props.awesome, list);
+      service = getServiceName(this.props.awesome, list);
+      price = getPrice(this.props.awesome, list);
+      bundleTotal = getBundlePrice(list);
+      detailClassName = "centered bottom-margin-medium " + currentPath.slice(1) + "-image";
+
+      if (currentPath === "/custom") {
+        selectAllElement = <input type="checkbox" id="select-all-button" className="select-all" onClick={this.selectAll.bind(this)}/>;
+      }
+
+    } else if (storedVar) {
       switch (storedVar) {
         case 1:
           bundleName = "startup";
@@ -583,15 +597,6 @@ class Detail extends Component {
         default:
           console.log('hit the default case');
       }
-    } else {
-      bundleName = currentPath.slice(1);
-      list = this.props.awesome[currentPath.slice(1)];
-      page = (currentPath.slice(1) === "custom" ? "custom" : "detail");
-      description = getDescription(this.props.awesome, list);
-      service = getServiceName(this.props.awesome, list);
-      price = getPrice(this.props.awesome, list);
-      bundleTotal = getBundlePrice(list);
-      detailClassName = "centered bottom-margin-medium " + currentPath.slice(1) + "-image";
     }
 
 
