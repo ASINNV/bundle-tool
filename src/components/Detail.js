@@ -659,7 +659,7 @@ class Detail extends Component {
                 </select>
               </div>
               <div className="label-input-couplet">
-                <p className="user-input user-input-button" onClick={this.submitInformation.bind(this)}>review your order</p>
+                <p className="user-input user-input-button green-button" onClick={this.submitInformation.bind(this)}>review your order</p>
               </div>
             </form>
 

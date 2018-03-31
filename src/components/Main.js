@@ -130,7 +130,9 @@ class Main extends Component {
           <p>-or-</p>
         </div>
         <div className="button-container">
-          <a className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>custom bundle</a>
+          <a className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>
+            <p className="h-100 lh-175">custom bundle</p>
+          </a>
         </div>
       </section>
     );

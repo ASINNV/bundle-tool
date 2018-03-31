@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // import { createList } from "./Functions";
@@ -8,9 +8,9 @@ import { getBundlePrice } from "./Functions";
 
 class DesktopCards extends Component {
   crazyFunc(e) {
-    let three = document.getElementById('pack-three');
-    let two = document.getElementById('pack-two');
-    let one = document.getElementById('pack-one');
+    let three = document.getElementById('three-dimensional-card-3');
+    let two = document.getElementById('three-dimensional-card-2');
+    let one = document.getElementById('three-dimensional-card-1');
 
     let whoa = e.target;
     let setting = 1;
@@ -59,7 +59,7 @@ class DesktopCards extends Component {
 
       setTimeout(() => {
         myElement.style.opacity = 1;
-      }, 150);
+      }, 50);
     }
   }
   removeButton(e) {
@@ -73,57 +73,60 @@ class DesktopCards extends Component {
       target.removeChild(elementToRemove);
     }
   }
+  depth(e) {
+    let thing = e.target;
+
+    while (thing.tagName !== "A") {
+      thing = thing.parentNode;
+    }
+
+    let card = document.getElementById(thing.id);
+    if (card !== null) {
+      var cardRect = card.getBoundingClientRect();
+
+      var percentX = Math.round(((e.clientX - cardRect.left)/1.5) - 100);
+      var percentY = Math.round(((e.clientY - cardRect.top)/2) - 100);
+
+      card.style.cssText = "transform: translateX(0px) translateY(0px) translateZ(45px) scaleX(1) scaleY(1) scaleZ(1) rotateX(" + Math.round(percentY/-15) + "deg) rotateY(" + Math.round(percentX/15) + "deg) rotateZ(0deg) skewX(0deg) skewY(0deg); box-shadow: " + Math.round(percentX/-15) + "px " + Math.round(percentY/-15) + "px 40px 0 rgba(0, 0, 0, .4);"; // with dynamic box-shadow
+    }
+  }
+  leavingDepth(e) {
+    let thing = e.target;
+
+    while (thing.tagName !== "A") {
+      thing = thing.parentNode;
+    }
+
+    let card = document.getElementById(thing.id);
+
+    card.style.cssText = "transform: translateX(0px) translateY(0px) translateZ(0px) scaleX(1) scaleY(1) scaleZ(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skewX(0deg) skewY(0deg); box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .3); transition: box-shadow .5s ease, transform .5s ease;";
+  }
   render() {
     var startupBundlePrice = getBundlePrice(this.props.awesome.startup);
     var recommendedBundlePrice = getBundlePrice(this.props.awesome.recommended);
     var enterpriseBundlePrice = getBundlePrice(this.props.awesome.enterprise);
 
     return (
-      <div className="flex-centered">
-        <a id="pack-one" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
+      <div className="flex-centered perspective-parent">
 
-          <div className="sub-header">
-            <p>startup</p>
-          </div>
-
-          <ItemList list_array={this.props.awesome.startup} functionalityDepth={0} page="home" />
-          {/*<div className="list-container">*/}
-            {/*<ul className="line-item-container small-text">*/}
-              {/*{createList(this.props.startup)}*/}
-            {/*</ul>*/}
-          {/*</div>*/}
-
-          <div className="sub-footer">
-            <p className="sub-footer-price">${startupBundlePrice}</p>
-          </div>
-
+        <a id="three-dimensional-card-1" onMouseMove={this.depth.bind(this)} onMouseLeave={this.leavingDepth.bind(this)} onClick={this.crazyFunc.bind(this)}>
+          <div className="bundle-image" />
+          <p className="card-name">STARTUP</p>
+          <p className="card-desc">Operating on a budget? This bundle will get you up-and-running in no time.</p>
         </a>
-        <a id="pack-two" className="card service-pack featured-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
 
-          <div className="sub-header green-bg">
-            <p>recommended</p>
-          </div>
-
-          <ItemList list_array={this.props.awesome.recommended} functionalityDepth={0} page="home" featured={true} />
-
-          <div className="sub-footer green-bg">
-            <p className="sub-footer-price">${recommendedBundlePrice}</p>
-          </div>
-
+        <a id="three-dimensional-card-2" onMouseMove={this.depth.bind(this)} onMouseLeave={this.leavingDepth.bind(this)} onClick={this.crazyFunc.bind(this)}>
+          <div className="bundle-image" />
+          <p className="card-name">RECOMMENDED</p>
+          <p className="card-desc">This bundle will provide you with everything you need while still keeping costs down as much as possible.</p>
         </a>
-        <a id="pack-three" className="card service-pack shadowed overflow-hidden" onClick={this.crazyFunc.bind(this)} onMouseOver={this.showButton.bind(this)} onMouseLeave={this.removeButton.bind(this)}>
 
-          <div className="sub-header">
-            <p>enterprise</p>
-          </div>
-
-          <ItemList list_array={this.props.awesome.enterprise} functionalityDepth={0} page="home" />
-
-          <div className="sub-footer">
-            <p className="sub-footer-price">${enterpriseBundlePrice}</p>
-          </div>
-
+        <a id="three-dimensional-card-3" onMouseMove={this.depth.bind(this)} onMouseLeave={this.leavingDepth.bind(this)} onClick={this.crazyFunc.bind(this)}>
+          <div className="bundle-image" />
+          <p className="card-name">ENTERPRISE</p>
+          <p className="card-desc">If you've got money to blow, this bundle is for you. You'll get it all, no expense spared.</p>
         </a>
+
       </div>
     );
   }
