@@ -120,8 +120,8 @@ class Main extends Component {
     return (
       <section id="bod" className="app-body hidden-view">
         <div className="full centered vert-margin-large">
-          <p className="large-title green-text">choose bundle</p>
-          <p className="large-subtitle gray-text">or create your own</p>
+          <p className="large-title green-text">Choose a Bundle</p>
+          <p className="large-subtitle gray-text">or Create Your Own</p>
         </div>
 
         {relevantLayout}
@@ -131,7 +131,7 @@ class Main extends Component {
         </div>
         <div className="button-container">
           <a className="simple-button green-button narrow-button" onClick={this.loadCustomPage.bind(this)}>
-            <p className="h-100 lh-175">custom bundle</p>
+            <p className="">Create a Bundle</p>
           </a>
         </div>
       </section>

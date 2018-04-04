@@ -57,7 +57,7 @@ class MobileDetail extends Component {
                 </div>
 
                 <div className="button-container">
-                  <p onClick={this.hidePopupDesc.bind(this)} className="simple-button green-button popup-button">close</p>
+                  <p onClick={this.hidePopupDesc.bind(this)} className="simple-button green-button popup-button h-100 lh-175">close</p>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ class DesktopDetail extends Component {
               {this.props.selectAllElement === null ? false : this.props.selectAllElement}
 
               <div id="services-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
-                <p>services & deliverables</p>
+                <p>Services & Deliverables</p>
               </div>
 
               <ItemList list_array={this.props.list_array} functionalityDepth={2} page={this.props.page} />
@@ -157,7 +157,7 @@ class DesktopDetail extends Component {
                 <div id="pack-one" className="card shadowed overflow-hidden responsive-card">
 
                   <div id="cart-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
-                    <p>shopping cart</p>
+                    <p>Shopping Cart</p>
                   </div>
 
                   <ItemList list_array={this.props.list_array} functionalityDepth={0} page="other" />
@@ -172,7 +172,7 @@ class DesktopDetail extends Component {
                 <div id="pack-one" className="card shadowed overflow-hidden inline responsive-card">
 
                   <div id="description-header" className="sub-header" onMouseEnter={this.showTooltip.bind(this)} onMouseLeave={this.hideTooltip.bind(this)}>
-                    <p>description</p>
+                    <p>Description</p>
                   </div>
 
                   <div className="list-container responsive-container">
@@ -197,6 +197,7 @@ class DesktopDetail extends Component {
 class Detail extends Component {
   submitInformation(e) {
     e.preventDefault();
+    e.stopPropagation();
     // if (localStorage.getItem("chosen_bundle")) {
     //   this.props.setPackage(Number(localStorage.getItem("chosen_bundle")));
     // }
@@ -370,6 +371,7 @@ class Detail extends Component {
 
   }
   toggleCheckout(e) {
+    e.stopPropagation();
     let custom = this.props.awesome.custom;
     let allFalse = true;
     let required = document.getElementById('required-popup');
@@ -405,17 +407,13 @@ class Detail extends Component {
             checkout.className += " animate-in";
           }, 50);
         }
-
-
-
+        this.refs.companyNameInput.focus(); // automatically focus on the first input field of the form for user convenience
       }
-      // console.log(checkout.className);
+      // reset red required popups
       if (required.style.display === 'block') {
         required.style.display = 'none';
       }
     }
-
-    this.refs.companyNameInput.focus(); // automatically focus on the first input field of the form for user convenience
 
 
   }
@@ -490,7 +488,7 @@ class Detail extends Component {
     let currentPath = this.props.history.location.pathname;
 
     if (currentPath !== "/") {
-      bundleName = currentPath.slice(1);
+      bundleName = currentPath.slice(1, 2).toUpperCase() + currentPath.slice(2);
       list = this.props.awesome[currentPath.slice(1)];
       page = (currentPath.slice(1) === "custom" ? "custom" : "detail");
       description = getDescription(this.props.awesome, list);
@@ -506,7 +504,7 @@ class Detail extends Component {
     } else if (storedVar) {
       switch (storedVar) {
         case 1:
-          bundleName = "startup";
+          bundleName = "Startup";
           list = this.props.awesome.startup;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -516,7 +514,7 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium startup-image";
           break;
         case 2:
-          bundleName = "recommended";
+          bundleName = "Recommended";
           list = this.props.awesome.recommended;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -526,7 +524,7 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium recommended-image";
           break;
         case 3:
-          bundleName = "enterprise";
+          bundleName = "Enterprise";
           list = this.props.awesome.enterprise;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -536,9 +534,9 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium enterprise-image";
           break;
         case 4:
-          bundleName = "custom";
+          bundleName = "Custom";
           list = this.props.awesome.custom;
-          page = "custom";
+          page = "ustom";
           description = getDescription(this.props.awesome, list);
           service = getServiceName(this.props.awesome, list);
           price = getPrice(this.props.awesome, list);
@@ -553,7 +551,7 @@ class Detail extends Component {
     } else if (this.props.awesome.chosen_bundle !== -1) {
       switch (this.props.awesome.chosen_bundle) {
         case 0:
-          bundleName = "startup";
+          bundleName = "Startup";
           list = this.props.awesome.startup;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -563,7 +561,7 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium startup-image";
           break;
         case 1:
-          bundleName = "recommended";
+          bundleName = "Recommended";
           list = this.props.awesome.recommended;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -573,7 +571,7 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium recommended-image";
           break;
         case 2:
-          bundleName = "enterprise";
+          bundleName = "Enterprise";
           list = this.props.awesome.enterprise;
           page = "detail";
           description = getDescription(this.props.awesome, list);
@@ -583,7 +581,7 @@ class Detail extends Component {
           detailClassName = "centered bottom-margin-medium enterprise-image";
           break;
         case 3:
-          bundleName = "custom";
+          bundleName = "Custom";
           list = this.props.awesome.custom;
           page = "custom";
           description = getDescription(this.props.awesome, list);
@@ -613,17 +611,19 @@ class Detail extends Component {
           {relevantLayout}
 
           <div className="button-container">
-            <div className="simple-button green-button checkout" onClick={this.toggleCheckout.bind(this)}>confirm bundle</div>
+            <div className="simple-button green-button checkout" onClick={this.toggleCheckout.bind(this)}>
+              <p className="">Confirm Bundle</p>
+            </div>
           </div>
 
           <p id="required-popup">please pick at least one item to checkout</p>
 
         </section>
-        <div id="checkout-window" className="overlay">
+        <div id="checkout-window" className="overlay" onClick={this.toggleCheckout.bind(this)}>
           <div className="form-card shadow">
             <span className="corner-x" onClick={this.toggleCheckout.bind(this)}>&#10005;</span>
             <div className="full centered checkout-title green-text">
-              <p>client info</p>
+              <p>Client Info</p>
             </div>
 
             <form action="" className="user-form">
@@ -659,7 +659,9 @@ class Detail extends Component {
                 </select>
               </div>
               <div className="label-input-couplet">
-                <p className="user-input user-input-button green-button" onClick={this.submitInformation.bind(this)}>review your order</p>
+                <div className="user-input user-input-button green-button" onClick={this.submitInformation.bind(this)}>
+                  <p className="h-100">Review My Order</p>
+                </div>
               </div>
             </form>
 
