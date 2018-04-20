@@ -73,6 +73,19 @@ body {
   cursor: default;
 }
 
+
+.test-banner {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: #ffe000;
+  color: #333;
+  padding: 10px 10px;
+}
+
+
 .App {
   /*height: 100vh;*/
   font-family: "Lato", "Helvetica Neue";
