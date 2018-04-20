@@ -31,6 +31,7 @@ class App extends Component {
 
           <nav id="head" className="app-header dark-gray-element">
             <Link to="/" className="light-text">AMS</Link>
+            <p className="test-banner">TEST MODE</p>
           </nav>
 
 
